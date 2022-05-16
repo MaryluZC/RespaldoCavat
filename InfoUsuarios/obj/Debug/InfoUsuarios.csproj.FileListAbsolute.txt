@@ -1,0 +1,11 @@
+C:\Users\ml.sosa\Documents\InfoUsuarios\bin\Debug\InfoUsuarios.dll
+C:\Users\ml.sosa\Documents\InfoUsuarios\bin\Debug\InfoUsuarios.pdb
+C:\Users\ml.sosa\Documents\InfoUsuarios\obj\Debug\InfoUsuarios.csproj.CoreCompileInputs.cache
+C:\Users\ml.sosa\Documents\InfoUsuarios\obj\Debug\InfoUsuarios.dll
+C:\Users\ml.sosa\Documents\InfoUsuarios\obj\Debug\InfoUsuarios.pdb
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\InfoUsuarios\bin\Debug\InfoUsuarios.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\InfoUsuarios\bin\Debug\InfoUsuarios.pdb
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\InfoUsuarios\obj\Debug\InfoUsuarios.csproj.AssemblyReference.cache
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\InfoUsuarios\obj\Debug\InfoUsuarios.csproj.CoreCompileInputs.cache
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\InfoUsuarios\obj\Debug\InfoUsuarios.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\InfoUsuarios\obj\Debug\InfoUsuarios.pdb

@@ -1,0 +1,76 @@
+C:\Users\ml.sosa\Documents\Cavat\bin\Cavat.dll.config
+C:\Users\ml.sosa\Documents\Cavat\bin\Cavat.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\Cavat.pdb
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\csc.exe
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\csc.exe.config
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\csc.rsp
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\csi.exe
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\csi.rsp
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\System.AppContext.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\vbc.exe
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\vbc.exe.config
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\vbc.rsp
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\VBCSCompiler.exe
+C:\Users\ml.sosa\Documents\Cavat\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\ml.sosa\Documents\Cavat\bin\InfoUsuarios.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\ml.sosa\Documents\Cavat\bin\InfoUsuarios.pdb
+C:\Users\ml.sosa\Documents\Cavat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\ml.sosa\Documents\Cavat\obj\Debug\Cavat.csproj.AssemblyReference.cache
+C:\Users\ml.sosa\Documents\Cavat\obj\Debug\Cavat.csproj.CoreCompileInputs.cache
+C:\Users\ml.sosa\Documents\Cavat\obj\Debug\Cavat.csproj.CopyComplete
+C:\Users\ml.sosa\Documents\Cavat\obj\Debug\Cavat.dll
+C:\Users\ml.sosa\Documents\Cavat\obj\Debug\Cavat.pdb
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\Cavat.dll.config
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\Cavat.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\Cavat.pdb
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\csc.exe
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\csc.exe.config
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\csc.rsp
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\csi.exe
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\csi.rsp
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\System.AppContext.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\vbc.exe
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\vbc.exe.config
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\vbc.rsp
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\VBCSCompiler.exe
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\InfoUsuarios.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\InfoUsuarios.pdb
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\Cavat.csproj.AssemblyReference.cache
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\Cavat.csproj.CoreCompileInputs.cache
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\Cavat.csproj.CopyComplete
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\Cavat.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\Cavat.pdb

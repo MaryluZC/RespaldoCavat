@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/wcfComun" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/wcfComun" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="login">
+    <xs:sequence>
+      <xs:element name="_x003C_opc_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_paswd_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_usuario_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="login" nillable="true" type="tns:login" />
+  <xs:complexType name="wRespuesta">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="elDataSet" nillable="true">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:appinfo>
+              <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:element ref="xs:schema" />
+            <xs:any />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="mensaje" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="wRespuesta" nillable="true" type="tns:wRespuesta" />
+  <xs:complexType name="Registro">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:cambioPass">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ape1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ape2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="bloqueado" type="xs:int" />
+          <xs:element minOccurs="0" name="cedulaP" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idPregunta" type="xs:int" />
+          <xs:element minOccurs="0" name="idStatus" type="xs:int" />
+          <xs:element minOccurs="0" name="idTipoDoc" type="xs:int" />
+          <xs:element minOccurs="0" name="idTipoUser" type="xs:int" />
+          <xs:element minOccurs="0" name="intentos" type="xs:int" />
+          <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="nombreDoc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="numNotaria" type="xs:int" />
+          <xs:element minOccurs="0" name="respuesta" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="telCel" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Registro" nillable="true" type="tns:Registro" />
+  <xs:complexType name="cambioPass">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:login">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cambioPsw" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="cambioPass" nillable="true" type="tns:cambioPass" />
+</xs:schema>

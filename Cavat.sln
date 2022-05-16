@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cavat", "Cavat.csproj", "{F5492F16-2F91-4A19-8EB6-41056BBAE33A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoUsuarios", "..\InfoUsuarios\InfoUsuarios.csproj", "{94ECD536-EBA6-4573-8BFB-C9B4E08F4353}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5492F16-2F91-4A19-8EB6-41056BBAE33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5492F16-2F91-4A19-8EB6-41056BBAE33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5492F16-2F91-4A19-8EB6-41056BBAE33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5492F16-2F91-4A19-8EB6-41056BBAE33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94ECD536-EBA6-4573-8BFB-C9B4E08F4353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94ECD536-EBA6-4573-8BFB-C9B4E08F4353}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94ECD536-EBA6-4573-8BFB-C9B4E08F4353}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94ECD536-EBA6-4573-8BFB-C9B4E08F4353}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF04E7A1-4DAB-43B8-82DB-69053FA40F61}
+	EndGlobalSection
+EndGlobal

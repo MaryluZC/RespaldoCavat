@@ -143,21 +143,22 @@ namespace Cavat
                     int msgRes = rs.mensaje;
                     dsaux = rs.elDataSet;
 
-                    if (rs.elDataSet.Tables[0].Rows.Count > 0)
-                    {
-                        //---VARIABLES COMUNES -------------------------------
-                        UserLoginCache.nombre = UserLoginCache.nombre;
-                        UserLoginCache.tipoUser = dsaux.Tables[0].Rows[0][0].ToString();
-                        UserLoginCache.nombre = dsaux.Tables[0].Rows[0][2].ToString();
-                        UserLoginCache.ape1 = dsaux.Tables[0].Rows[0][3].ToString();
-                        UserLoginCache.ape2 = dsaux.Tables[0].Rows[0][4].ToString();                        
-                        //   var validLogin = LoginUser(login);
-                   }
+                    //if (rs.elDataSet.Tables[0].Rows.Count > 0)
+                    //{                                            
+                        //   Aaqui estaba la asignacion de variales comunes pero se paso al caso 1 del switch
+                //   }
                     // Debemos sregresar la tabla y asignar a las variables comunes los valores devueltos y luego continuar con lo de abajo
 
                     switch (msgRes)
                     {
                         case 1:
+                            //---VARIABLES COMUNES -------------------------------
+                            UserLoginCache.nombre = UserLoginCache.nombre;
+                            UserLoginCache.tipoUser = dsaux.Tables[0].Rows[0][0].ToString();
+                            UserLoginCache.nombre = dsaux.Tables[0].Rows[0][2].ToString();
+                            UserLoginCache.ape1 = dsaux.Tables[0].Rows[0][3].ToString();
+                            UserLoginCache.ape2 = dsaux.Tables[0].Rows[0][4].ToString();
+
                             if (UserLoginCache.tipoUser == "Administrador")
                             {
                                 Response.Redirect("Admin.aspx");

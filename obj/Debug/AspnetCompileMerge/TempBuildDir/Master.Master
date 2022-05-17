@@ -1,0 +1,163 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="Cavat.Master" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>CAVAT</title>
+    <link rel="icon" href="img/logoCAVAT1.png" draggable="false">
+    <link href="bootstrap-5.1.3/css/bootstrap.css" rel="stylesheet" />
+    <link href="magic-master/dist/magic.min.css" rel="stylesheet" />
+    <link href="css/Admin.css" rel="stylesheet" />
+    <script src="js/Valida.js"></script> 
+      <%--Leaflet--%>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />     
+    <link href="css/notarios.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <div>
+            <asp:ContentPlaceHolder ID="Header" runat="server">
+               <div class="container-fluid" style="background:#A99696; height:5rem; text-align:center;">
+                        <img src="img/logoCavat.png" alt="" style="width:7rem; height:auto; float:left;" class="d-inline-block align-text-top" draggable="false">
+                       <div class="row ">
+                          <div class="col-md-4"> </div>
+                          <div class="col-md-4">
+                             
+                          </div>
+                          <div class="col-md-4" style="text-align:end; padding-top:1rem;"> 
+                              <asp:ImageButton ID="btnCerrarSesion" runat="server" ImageUrl="img/salir.png" OnClick="btnCerrarSesion_Click" style="width:2rem;" ToolTip="Salir"  /><br />
+                              <b>Fecha: <%: DateTime.Now.ToString("dd-MM-yyyy") %></b>                             
+                          </div>
+                      </div>
+                    </div>
+            </asp:ContentPlaceHolder>
+
+            <asp:ContentPlaceHolder ID="Body" runat="server">
+
+            </asp:ContentPlaceHolder>
+
+
+            <asp:ContentPlaceHolder ID="Footer" runat="server">
+                 <footer style="position:relative; bottom:0; background:rgb(47 46 46); width:100%; text-align:center;" class="vh-100">
+                     <div class="container text-white mx-auto my-auto" >
+                         <div class="row">
+                             <div class="col-md-6" style="padding:2em; ">
+                                 <img src="img/IRCEP%20transparente.png" style="width:10rem; height:auto;" draggable="false"/>
+                                 <h5 class="p-3">Instituto Registral y Catastral del Estado de Puebla</h5>
+                                 <h6>11 Oriente 2003 Col. Azcárate<br />
+                                     <br />Oficinas Centrales.<br />
+                                     <br />Dirección de Catastro: (222) 213 75 00 ext: 135.<br />
+                                     <br />Dirección de Registro Público de la Propiedad: (22) 213 75 00 ext: 105 </h6>
+                             </div>
+
+                             <div class="col-md-6" style="padding:2em; ">
+                                 <img src="img/lgo.png" style="width:18rem; height:auto;" draggable="false"/>
+                                 <h5 class="p-3"> 
+                                     <a href="http://www.ircep.gob.mx/directorio.html">Directorio.</a> <br /><br />
+                                     <a href="http://www.ircep.gob.mx/portada_quejas.html"  >Quejas y Sugerencias.</a> <br /><br />                              
+                                     <a href="#"   data-bs-toggle="modal" data-bs-target="#ModalAvisoPrivacidad">Aviso de Privacidad.</a><br /><br />
+                                     <a href="#"  data-bs-toggle="modal" data-bs-target="#ModalLeyTransparencia">Ley de Transparencia y Acceso a la información.</a><br />
+                                 </h5>
+                             </div>
+                         </div>
+                     </div>
+                 </footer>
+            </asp:ContentPlaceHolder>
+
+            
+           <%--MODAL AVISO DE PRIVACIDAD--%>
+    <div class="modal fade" id="ModalAvisoPrivacidad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabe1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-white" style="background: rgb(86,75,75);">
+                    <h5 class="modal-title" id="exampleModalLabe3">Avisos de Privacidad.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row align-content-center text-align-justify" style="padding:3rem;">
+
+                       <div  class="rounded mx-auto d-block" style="width:90%; height:30rem; background:rgba(212, 203, 198 ,0.7); padding:1rem; align-content:center; overflow-y:auto;">
+                            El aviso de privacidad es un documento que deben elaborar las personas físicas (abogados, médicos, dentistas) o morales (empresas, organizaciones o sociedades) que recopilen información personal de las personas a las que les ofrecen sus productos y/o servicios.
+                            Por ley, el aviso de privacidad debe ponerse a disposición de los interesados, estar publicado y difundirse, a efecto de que las personas (titulares de los datos personales) puedan conocerlo y en su caso oponerse al uso, tratamiento y/o transferencia de sus datos.
+                           ¿Cómo utilizar este documento?
+                           Este documento está diseñado para elaborar un aviso de privacidad integral en cual pueden señalarse los datos personales que serán recabados así como los fines por los que se recopilan los datos personales.
+                           El documento incluye las adaptaciones que deben realizarse en caso de que los datos personales sean compartidos con un tercero.
+                           Así mismo, este documento se encuentra adaptado para especificar:
+                           - Los medios por los que las personas podrán ejercitar sus derechos
+                           - La forma en la que los titulares podrán informarse de las modificaciones al aviso de privacidad
+                           - Los espacios necesarios para que las personas puedan otorgar su consentimiento expreso y por escrito en caso de que se proporcionen datos personales sensibles
+                           Respecto a este último punto es importante precisar que los datos personales sensibles son datos personales que pueden dar origen a conductas discriminatorias. En particular se consideran sensibles aquellos que puedan revelar aspectos como origen racial o étnico, estado de salud, información genética, creencias religiosas, filosóficas y morales, afiliación sindical, opiniones políticas, preferencia sexual. Por lo cual, hay que tener en cuenta que si va a recabar datos personales sensibles, por ley se requiere obtener la autorización expresa y por escrito de la persona que otorga sus datos personales, y dicha autorización debe incluir una firma autógrafa o en su caso la firma electrónica del titular de los datos personales.
+                           Una vez elaborado el aviso de privacidad usualmente este se pone a disposición de los titulares (las personas que otorgan o facilitan sus datos personales) de la siguiente forma:
+                           a) Cuando los datos personales sean obtenidos en parecencia del titular, el aviso de privacidad es facilitado en el momento en que se recaban los datos, de forma clara y fehaciente, a través de los mismos formatos o medios por los que se recaban los datos. Para estos casos, el modelo ya incluye los espacios necesarios para la firma del titular cuando esta es requerida, específicamente cuando se recaban datos personales sensibles.
+                           b) Cuando los datos personales sean obtenidos sin parecencia del titular, como por ejemplo a través de internet o por teléfono (la ley incluye además medios ópticos, sonoros, visuales, o a través de cualquier otra tecnología). En estos casos, se proporciona al menos: la identidad y el domicilio de quien recaba los datos así como los fines para los que serán utilizados y los mecanismos para que el titular conozca el texto completo del aviso de privacidad.
+                            Es importante mencionar que el documento cuenta con todos los requisitos establecidos en la ley, específicamente en el artículo 16 de la Ley Federal de Protección de Datos Personales en Posesión de Particulares
+                       </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Entiendo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                   <%--MODAL LEY DE TRANSPARENCIA Y ACCESO A LA INFORMACIÓN--%>
+    <div class="modal fade" id="ModalLeyTransparencia" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabe1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-white" style="background: rgb(86,75,75);">
+                    <h5 class="modal-title" id="exampleModalLabe2">Ley de Transparencia y Acceso a la Información.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row align-content-center text-align-justify" style="padding:3rem;">
+
+                       <div  class="rounded mx-auto d-block" style="width:90%; height:30rem; background:rgba(212, 203, 198 ,0.7); padding:1rem; align-content:center; overflow-y:auto;">
+                            Artículo 1.- La presente Ley es de orden público, interés general, observancia
+                            obligatoria y tiene por objeto: <br />
+                            I.- Garantizar el derecho de las personas de acceder en términos de esta Ley a la
+                            información pública;<br />
+                            II.- Regular los procedimientos para su obtención y establecer las instancias ante
+                            las cuales se diriman las controversias que resulten de su aplicación en el ámbito
+                            de cualquiera de los Poderes del Estado o de los Municipios;<br />
+                            III.- Contribuir a la democratización de la sociedad y plena vigencia del Estado de
+                            Derecho; así como impulsar una cultura de la transparencia, para lo cual el órgano
+                            garante promoverá en los ámbitos público, privado y social, los temas de
+                            transparencia y del derecho a la información pública;<br />
+                            IV.- Transparentar la gestión pública mediante la difusión de la información que
+                            generen los Sujetos Obligados;<br />
+                            V.- Garantizar la protección de los datos personales, en posesión de los Sujetos
+                            Obligados; y<br />
+                            VI.- Mejorar la organización, clasificación y manejo de los documentos en los que
+                            conste información pública.<br /><br />
+                            Artículo 2.- Para los efectos de esta Ley se entenderá por:<br />
+                            I.- Comisión: La Comisión para el Acceso a la Información Pública de la
+                            Administración Pública Estatal o los órganos análogos determinados por los
+                            Poderes Legislativo y Judicial; los Ayuntamientos de la Entidad y los Órganos Constitucionalmente Autónomos, independientemente de su denominación;
+                       </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Entiendo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+       <!-- JavaScript Bundle with Popper -->
+        <script src="bootstrap-5.1.3/js/bootstrap.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
+        <%--Leaflet--%>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <%--SWEETALERT--%>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    </form>
+</body>
+</html>

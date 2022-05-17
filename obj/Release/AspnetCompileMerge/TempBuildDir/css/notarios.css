@@ -1,0 +1,15 @@
+﻿*{
+    margin:0px;
+    padding:0px;
+}
+.btn:hover {
+    transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    box-shadow:5px 5px 5px gray;
+}
+
+.muestaImg:hover {
+    transform: scale(1.8); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+p {
+    text-align: justify;
+}

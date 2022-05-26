@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=18.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>packages\AjaxControlToolkit.18.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -138,6 +141,27 @@
     <Content Include="img\next.png" />
     <Content Include="img\ojo.png" />
     <Content Include="img\predio\rustico.png" />
+    <Content Include="img\predio\rustico\agostaderoincluido.png" />
+    <Content Include="img\predio\rustico\agostaderotemporal.png" />
+    <Content Include="img\predio\rustico\agricola.png" />
+    <Content Include="img\predio\rustico\bosqueMontaña.png" />
+    <Content Include="img\predio\rustico\cantera.png" />
+    <Content Include="img\predio\rustico\distanciaPredio.PNG" />
+    <Content Include="img\predio\rustico\eriazo.png" />
+    <Content Include="img\predio\rustico\escarpado.png" />
+    <Content Include="img\predio\rustico\extraccion.png" />
+    <Content Include="img\predio\rustico\forestal.png" />
+    <Content Include="img\predio\rustico\ganadero.png" />
+    <Content Include="img\predio\rustico\llanoPlano.png" />
+    <Content Include="img\predio\rustico\lomerioAccidentado.png" />
+    <Content Include="img\predio\rustico\lomerioSuave.png" />
+    <Content Include="img\predio\rustico\mina.png" />
+    <Content Include="img\predio\rustico\montañoso.jpg" />
+    <Content Include="img\predio\rustico\monteAlto.png" />
+    <Content Include="img\predio\rustico\monteBajo.png" />
+    <Content Include="img\predio\rustico\riego.png" />
+    <Content Include="img\predio\rustico\temporal1a.png" />
+    <Content Include="img\predio\rustico\temporal2a.png" />
     <Content Include="img\predio\Suburbano.JPG" />
     <Content Include="img\predio\urbano.png" />
     <Content Include="img\relieve\Elevada.png" />
@@ -146,6 +170,38 @@
     <Content Include="img\sali1.png" />
     <Content Include="img\salir.png" />
     <Content Include="img\ubiMan\UbicacionManzana.png" />
+    <Content Include="jquery.maskedinput-master\.gitignore" />
+    <Content Include="jquery.maskedinput-master\demo\datepicker.html" />
+    <Content Include="jquery.maskedinput-master\demo\index.html" />
+    <Content Include="jquery.maskedinput-master\dist\jquery.maskedinput.js" />
+    <Content Include="jquery.maskedinput-master\dist\jquery.maskedinput.min.js" />
+    <Content Include="jquery.maskedinput-master\gruntfile.js" />
+    <Content Include="jquery.maskedinput-master\lib\jquery-1.8.3.min.js" />
+    <Content Include="jquery.maskedinput-master\lib\jquery-1.9.0.min.js" />
+    <Content Include="jquery.maskedinput-master\spec\Backspace.Spec.js" />
+    <Content Include="jquery.maskedinput-master\spec\Completed.Spec.js" />
+    <Content Include="jquery.maskedinput-master\spec\Delete.spec.js" />
+    <Content Include="jquery.maskedinput-master\spec\Enter.Spec.js" />
+    <Content Include="jquery.maskedinput-master\spec\Escape.Spec.js" />
+    <Content Include="jquery.maskedinput-master\spec\Focus.Spec.js" />
+    <Content Include="jquery.maskedinput-master\spec\Init.Spec.js" />
+    <Content Include="jquery.maskedinput-master\spec\lib\jasmine-species\jasmine-be-calm.css" />
+    <Content Include="jquery.maskedinput-master\spec\lib\jasmine-species\jasmine-grammar.js" />
+    <Content Include="jquery.maskedinput-master\spec\lib\jasmine-species\jasmine-reporting.js" />
+    <Content Include="jquery.maskedinput-master\spec\lib\jasmine\jasmine-html.js" />
+    <Content Include="jquery.maskedinput-master\spec\lib\jasmine\jasmine.css" />
+    <Content Include="jquery.maskedinput-master\spec\lib\jasmine\jasmine.js" />
+    <Content Include="jquery.maskedinput-master\spec\lib\jquery.keymasher.js" />
+    <Content Include="jquery.maskedinput-master\spec\lib\matchers.js" />
+    <Content Include="jquery.maskedinput-master\spec\lib\setup.js" />
+    <Content Include="jquery.maskedinput-master\spec\Optional.Spec.js" />
+    <Content Include="jquery.maskedinput-master\spec\Paste.Spec.js" />
+    <Content Include="jquery.maskedinput-master\spec\Placeholder.spec.js" />
+    <Content Include="jquery.maskedinput-master\spec\Raw.Spec.js" />
+    <Content Include="jquery.maskedinput-master\spec\Readonly.Spec.js" />
+    <Content Include="jquery.maskedinput-master\spec\Setup.Spec.js" />
+    <Content Include="jquery.maskedinput-master\spec\Typing.Spec.js" />
+    <Content Include="jquery.maskedinput-master\src\jquery.maskedinput.js" />
     <Content Include="js\Modals.js" />
     <Content Include="js\Valida.js" />
     <Content Include="Notarios.aspx" />
@@ -245,6 +301,16 @@
     <None Include="Connected Services\ServiceCavat\ServiceCavat3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="jquery.maskedinput-master\.travis.yml" />
+    <Content Include="jquery.maskedinput-master\bower.json" />
+    <Content Include="jquery.maskedinput-master\CONTRIBUTING.md" />
+    <Content Include="jquery.maskedinput-master\jquery.maskedinput.nuspec" />
+    <Content Include="jquery.maskedinput-master\LICENSE" />
+    <Content Include="jquery.maskedinput-master\package.json" />
+    <Content Include="jquery.maskedinput-master\README.md" />
+    <Content Include="jquery.maskedinput-master\spec\lib\jasmine-species\BSD.LICENSE" />
+    <Content Include="jquery.maskedinput-master\spec\lib\jasmine-species\version.json" />
+    <Content Include="jquery.maskedinput-master\spec\lib\jasmine\MIT.LICENSE" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

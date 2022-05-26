@@ -4,7 +4,7 @@ using System.Net.Mail;
 
 namespace Cavat.data
 {
-    public class SenMail:ConnectionToString
+    public class SenMail : ConnectionToString
     {
         public int SendMail(string correo1, string motivo, string asunto)
         {
@@ -39,7 +39,7 @@ namespace Cavat.data
                 smtp.Dispose();
             }
         }
-        
+
 
     }
 }

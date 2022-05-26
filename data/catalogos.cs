@@ -1,11 +1,11 @@
-﻿using System;
+﻿using InfoUsuarios;
+using System;
 using System.Data;
 using System.Data.SqlClient;
-using InfoUsuarios;
 
 namespace Cavat.data
 {
-    public class catalogos:ConnectionToString
+    public class catalogos : ConnectionToString
     {
         public DataTable Catalogo(int opc)
         {

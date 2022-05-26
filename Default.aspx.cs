@@ -1,18 +1,18 @@
 ﻿using Cavat.data;
-using System;
-using System.Data;
-using System.Web.UI.WebControls;
 using Cavat.ServiceCavat;
 using InfoUsuarios;
 using InfoUsuarios.cache;
+using System;
+using System.Data;
+using System.Web.UI.WebControls;
 namespace Cavat
 {
     public partial class Default : System.Web.UI.Page
-    {       
+    {
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
             //Response.Cache.SetCacheability(HttpCacheability.NoCache);
             //Response.Cache.SetExpires(DateTime.Now.AddDays(-1));
             //Response.Cache.SetNoStore();
@@ -26,16 +26,16 @@ namespace Cavat
                 ddlTipoDocumento();
                 ddlTipoUser();
                 ddlPreguntaPsw();
-              
+
             }
-           
+
         }
         public void ddlPregunta()
         {
             catalogos cat = new catalogos();
             try
-            {              
-                DataTable ddt;                
+            {
+                DataTable ddt;
                 ddt = cat.Catalogo(1);//2
                 ddlPreguntaR.DataSource = ddt;
                 ddlPreguntaR.DataValueField = "pregunta";
@@ -145,8 +145,8 @@ namespace Cavat
 
                     //if (rs.elDataSet.Tables[0].Rows.Count > 0)
                     //{                                            
-                        //   Aaqui estaba la asignacion de variales comunes pero se paso al caso 1 del switch
-                //   }
+                    //   Aaqui estaba la asignacion de variales comunes pero se paso al caso 1 del switch
+                    //   }
                     // Debemos sregresar la tabla y asignar a las variables comunes los valores devueltos y luego continuar con lo de abajo
 
                     switch (msgRes)
@@ -202,7 +202,7 @@ namespace Cavat
                 msgError("Usuario Vacio.");
                 lnkRegistro.Visible = false;
             }
-            
+
         }
         private void msgError(string msg)
         {
@@ -241,7 +241,7 @@ namespace Cavat
                 {
                     SolicitudReg.Visible = true;
                     //cORRREGIR
-                    var validReg =0; //user.Registrar(txtNombreR.Text, txtApePatR.Text, txtApeMatR.Text, txtCorreoR.Text,
+                    var validReg = 0; //user.Registrar(txtNombreR.Text, txtApePatR.Text, txtApeMatR.Text, txtCorreoR.Text,
                     //    txtCedulaR.Text, ddlPreguntaR.SelectedIndex, txtRespuestaR.Text, txtTelefonoCelularR.Text,
                     //    numNotaria, status, ddlTipoUserR.SelectedIndex, ddlTipoComR.SelectedIndex, flUpFileR.FileName, 2);
 
@@ -313,7 +313,7 @@ namespace Cavat
             try
             {
                 //CORREGIRRRRRRRRR
-                var validReg=0;// = user.solRecPsw(txtUsuRecPsw.Text, txtMailRecPsw.Text, ddlPregRecPsw.SelectedIndex, txtRespRecPsw.Text, 4);
+                var validReg = 0;// = user.solRecPsw(txtUsuRecPsw.Text, txtMailRecPsw.Text, ddlPregRecPsw.SelectedIndex, txtRespRecPsw.Text, 4);
                 if (validReg == 2)
                 {
                     lblmsgPsw.Visible = true;

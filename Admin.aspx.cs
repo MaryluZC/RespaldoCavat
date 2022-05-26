@@ -1,11 +1,11 @@
 ﻿using Cavat.data;
+using InfoUsuarios;
+using InfoUsuarios.cache;
 using System;
 using System.Data;
 using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using InfoUsuarios;
-using InfoUsuarios.cache;
 namespace Cavat
 {
     public partial class Admin : System.Web.UI.Page
@@ -15,9 +15,9 @@ namespace Cavat
         SenMail mail = new SenMail();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (ifus.user != string.Empty || ifus.user!=null)
+            if (ifus.user != string.Empty || ifus.user != null)
             {
-                 if (!IsPostBack)
+                if (!IsPostBack)
                 {
                     llenaRegistrosA();
                     llenaSolReg();
@@ -32,7 +32,7 @@ namespace Cavat
                 }
             }
             else
-            {               
+            {
                 Response.Redirect("Default.aspx");
             }
         }
@@ -131,8 +131,8 @@ namespace Cavat
         {
             //if (IsPostBack)
             //{
-                CleanRegNuevNota();
-          //  }
+            CleanRegNuevNota();
+            //  }
         }
         public void CleanRegNuevNota()
         {
@@ -182,7 +182,7 @@ namespace Cavat
                     string mensaje = "";
                     if (val == 1)
                     {
-                        int v =user.ChangePass(txtNewCPSW.Text, 7, txtUserCPSW.Text); //debe la contraseña.
+                        int v = user.ChangePass(txtNewCPSW.Text, 7, txtUserCPSW.Text); //debe la contraseña.
 
                         if (v == 7)
                         {
@@ -211,9 +211,15 @@ namespace Cavat
             }
         }
 
+        protected void GVSolicitudes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GVSolicitudes.PageIndex = e.NewPageIndex;
+            llenaSolReg();
+        }
         protected void GVSolicitudes_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Poner el paaso de paginacion en Grid
+
         }
 
         protected void GVSolicitudes_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -308,31 +314,32 @@ namespace Cavat
         protected void txtEnviarCorreo_Click(object sender, EventArgs e)
         {
             string mensaje = "";
-            if (txtCausaRechazo.Text == string.Empty) {
+            if (txtCausaRechazo.Text == string.Empty)
+            {
                 mensaje = "El motivo de causa de rechazo no debe estar vacío. Intente Nuevamente";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
                 CleanRegNuevNota();//Limpia las cajas de texto
             }
             else
             {
-            
-            mail.SendMail(txtcorreo.Text, txtCausaRechazo.Text, "Rechazo de Solicitud Portal Notarial Cavat");
-            int v1 = user.DeleteUserr(txtCedulaP.Text, 5);            
-            if (v1 == 8)
-            {
-                mensaje = "Se Elimino la Solicitud";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
+
+                mail.SendMail(txtcorreo.Text, txtCausaRechazo.Text, "Rechazo de Solicitud Portal Notarial Cavat");
+                int v1 = user.DeleteUserr(txtCedulaP.Text, 5);
+                if (v1 == 8)
+                {
+                    mensaje = "Se Elimino la Solicitud";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
                     CleanRegNuevNota();//Limpia las cajas de texto
                 }
-            else
-            {
-                mensaje = "No Puedo Eliminar la Solicitud";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
+                else
+                {
+                    mensaje = "No Puedo Eliminar la Solicitud";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
                     CleanRegNuevNota();//Limpia las cajas de texto
                 }
-            llenaRegistrosA(); //Actualiza los datos del sistema
-            llenaSolReg();//Actualiza los datos del sistema            
-            txtCausaRechazo.Text = "";
+                llenaRegistrosA(); //Actualiza los datos del sistema
+                llenaSolReg();//Actualiza los datos del sistema            
+                txtCausaRechazo.Text = "";
             }
         }
 
@@ -413,5 +420,7 @@ namespace Cavat
                 //Falta enviar mensaje de exito o fracaso para informar al usuario que se envio el correo
             }
         }
+
+
     }
 }

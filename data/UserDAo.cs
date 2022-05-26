@@ -1,10 +1,7 @@
 ﻿using InfoUsuarios;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace Cavat.data
 {
@@ -170,7 +167,7 @@ namespace Cavat.data
                     object result = cmd.ExecuteScalar();
                     connection.Close();
                     mnsg.mensaje = (int)returno.Value;
-                    nresp = mnsg.mensaje;                    
+                    nresp = mnsg.mensaje;
 
 
                 }

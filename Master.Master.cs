@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using InfoUsuarios.cache;
+using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using InfoUsuarios;
-using InfoUsuarios.cache;
 
 namespace Cavat
 {
@@ -13,7 +8,7 @@ namespace Cavat
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
 
         }
 

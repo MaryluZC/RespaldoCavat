@@ -1,47 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Cavat.data;
+using InfoUsuarios;
+using System;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Cavat.data;
-using InfoUsuarios;
-using InfoUsuarios.cache;
 
 namespace Cavat
 {
     public partial class Notarios : System.Web.UI.Page
     {
-     
-            catalogos cat = new catalogos();
+
+        catalogos cat = new catalogos();
         protected void Page_Load(object sender, EventArgs e)
         {
-          
-            if (UserLoginCache.nombre == string.Empty || UserLoginCache.nombre == null )
-            {
-                Response.Redirect("Default.aspx");
-            }
-            else
-            {
-                if (!IsPostBack)
-                {
-                    ddlmunicipio();
-                    ddlRelieve();
-                    ddlTipoPredio1();
-                    ddlUbicaManzana();
-                    ddlTipoPredio2();
-                    ddlRelPorcentaje();
-                    ddlUbicaManzana();
-                    ddlClasificacionPred();
-                    ddlConvercavionConstrucion();
-                    ddlEdadConstruc();
 
-                    //lblUserNot.Text = "Usuario: " + UserLoginCache.tipoUser;///Coloca el nombre del Usuario
-                    //lblNombreNot.Text = "Nombre: " + UserLoginCache.nombre + " " + UserLoginCache.ape1 + " " + UserLoginCache.ape2;
-                }
+
+            //if (UserLoginCache.nombre == string.Empty || UserLoginCache.nombre == null )
+            //{
+            //    Response.Redirect("Default.aspx");
+            //}
+            //else
+            //{
+            if (!IsPostBack)
+            {
+                ddlmunicipio();
+                ddlRelieve();
+                ddlTipoPredio1();
+                ddlUbicaManzana();
+                ddlUbicaManzana();
+                ddlClasificacionPred();
+                ddlConvercavionConstrucion();
+                ddlEdadConstruc();
+
+                //lblUserNot.Text = "Usuario: " + UserLoginCache.tipoUser;///Coloca el nombre del Usuario
+                //lblNombreNot.Text = "Nombre: " + UserLoginCache.nombre + " " + UserLoginCache.ape1 + " " + UserLoginCache.ape2;
             }
+            // }
         }
         public void ddlEdadConstruc()
         {
@@ -82,29 +77,7 @@ namespace Cavat
                 }
             }
         }
-        public void ddlRelPorcentaje()
-        {
-            if (!IsPostBack)
-            {
-                try
-                {
-                    ddlPorcentaje.Items.Insert(0, new ListItem("Porcentaje"));
-                    ddlPorcentaje.Items.Insert(1, new ListItem("0% (Nivel)"));
-                    ddlPorcentaje.Items.Insert(2, new ListItem("1-5%"));
-                    ddlPorcentaje.Items.Insert(3, new ListItem("5.1-10%"));
-                    ddlPorcentaje.Items.Insert(4, new ListItem("10.1-20%"));
-                    ddlPorcentaje.Items.Insert(5, new ListItem("20.1-30%"));
-                    ddlPorcentaje.Items.Insert(6, new ListItem("30.1-40%"));
-                    ddlPorcentaje.Items.Insert(7, new ListItem("40.1-50%"));
-                    ddlPorcentaje.Items.Insert(8, new ListItem("50.1-Más%"));
 
-                }
-                catch (Exception ex)
-                {
-                    Response.Write(ex);
-                }
-            }
-        }
         public void ddlTipoPredio1()
         {
             if (!IsPostBack)
@@ -124,25 +97,7 @@ namespace Cavat
                 }
             }
         }
-        public void ddlTipoPredio2()
-        {
-            if (!IsPostBack)
-            {
-                try
-                {
-                    DataTable ddt;
-                    ddt = cat.Catalogo(6);//--> Catalogo Localidades 
-                    ddltipoPred.DataSource = ddt;
-                    ddltipoPred.DataValueField = "tipPredio";
-                    ddltipoPred.DataBind();
-                    ddltipoPred.Items.Insert(0, new ListItem("Tipo"));
-                }
-                catch (Exception ex)
-                {
-                    Response.Write(ex);
-                }
-            }
-        }
+
         public void ddlmunicipio()
         {
             if (!IsPostBack)
@@ -231,13 +186,72 @@ namespace Cavat
 
         protected void btnFactorTerreno_Click(object sender, ImageClickEventArgs e)
         {
-            UbicacionPredio.Visible = false;
-            Presentacion.Visible = false;
-            DatosConstruccion.Visible = false;
-            VerMapa.Visible = false;
-            FactorTerreno.Visible = true;
-            FactorConstruccion.Visible = false;
-            Georreferencia.Visible = false;
+            if (usoSuelo.tipoPredio == string.Empty || usoSuelo.tipoPredio == null)
+            {
+                //   ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "OpenModalAprob('Elija un tipo de predio')", true);
+                Response.Write("<script>alert('Elija un tipo de Predio')</script>");
+                UbicacionPredio.Visible = true;
+            }
+            else if (usoSuelo.tipoPredio == "Rústico")
+            {
+                lbltipoPredio.Text = usoSuelo.tipoPredio;
+                UbicacionPredio.Visible = false;
+                FactorTerreno.Visible = true;
+                ContentRustico.Visible = true;
+                ContentUrbano.Visible = false;
+
+               
+                //ddlSuperficieRustico.Visible = true; //Sustituir por seleccion UDM
+                txtSuperficieRustico.Visible = false;
+
+
+                //ddlSuperficieRustico.ClearSelection();  //Sustituir por seleccion UDM
+                //ddlSuperficieRustico.Items.Clear();
+                //VerSuperficeRustico();//llenar ddl
+                ddlUsoSueloRustico.ClearSelection();
+                ddlUsoSueloRustico.Items.Clear();
+                UsoSueloRustico();//checar el postback
+
+                ddlTopografiaRustico.ClearSelection();
+                ddlTopografiaRustico.Items.Clear();
+                topografiaRustico();
+
+                ddlDistanciaUDM.ClearSelection();
+                ddlDistanciaUDM.Items.Clear();
+                ddlUDMDistancia();
+                ddlUbicaciónRustico.ClearSelection();
+                ddlUbicaciónRustico.Items.Clear();
+                ddlUbicacionRustic();
+                //Poner contenedor Urbao y Suburabao en false
+                //cuando cambie vaciar los componentes del otro
+            }
+            else
+            {
+                lbltipoPredio.Text = usoSuelo.tipoPredio;
+                UbicacionPredio.Visible = false;
+                FactorTerreno.Visible = true;
+                ContentUrbano.Visible = true;
+                ContentRustico.Visible = false;
+
+               
+             //   ddlSuperficieRustico.Visible = false;//Sustituir por seleccion UDM
+                txtSuperficieRustico.Visible = true;
+                //cuando cambie vaciar los componentes del otro
+                ddlUsoSueloUrbano.Items.Clear();
+                ddlUsoSueloUrbano.ClearSelection();
+                verUsoSueloUrbano();
+                ddlDesnivelUrbano.Items.Clear();
+                ddlDesnivelUrbano.ClearSelection();
+                VerDesnivelUrbano();
+
+            }
+            //UbicacionPredio.Visible = false;
+            //Presentacion.Visible = false;
+            //DatosConstruccion.Visible = false;
+            //VerMapa.Visible = false;
+            //FactorTerreno.Visible = true;
+            //FactorConstruccion.Visible = false;
+            //Georreferencia.Visible = false;
         }
 
         protected void btnFactorConstruccion_Click(object sender, ImageClickEventArgs e)
@@ -301,24 +315,157 @@ namespace Cavat
 
         protected void ddlTipoPredio_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (IsPostBack)
+            int va = int.Parse(ddlTipoPredio.SelectedIndex.ToString());//Label1.Text = va.ToString();
+            usoSuelo.tipoPredio = ddlTipoPredio.SelectedValue.ToString();
+            try
             {
-                int va = int.Parse(ddlTipoPredio.SelectedIndex.ToString());//Label1.Text = va.ToString();                
-                try
+                if (va == 1)//rústico
                 {
-                    if (va == 1)
-                    {
-                        txtUDM.Text = "ha";
-                    }
-                    else
-                    {
-                        txtUDM.Text = "m²";
-                    }
+                    txtParaje.Visible = true;
+                    ddlLocalidad.Visible = ddlZonaValor.Visible = false;
+                    txtCalle.Visible = txtNumero.Visible = txtColonia.Visible = txtCP.Visible = false;
+                    //Poner conteedor Urbao y Suburabao en false
+                    //cuando cambie vaciar los componentes del otro
                 }
-                catch (Exception ex)
+                else if (va == 2 || va == 3)
+                { //Urban o suburbano
+                    txtParaje.Visible = false;
+                    txtParaje.Text = "";
+                    ddlLocalidad.Visible = ddlZonaValor.Visible = true;
+                    txtCalle.Visible = txtNumero.Visible = txtColonia.Visible = txtCP.Visible = true;
+                }
+                else
                 {
-                    throw ex;
+                    //ddlSuperficieRustico.Visible = false;//Sustituir por seleccion UDM
+                    txtSuperficieRustico.Visible = false;
+                  
+                    ContentRustico.Visible = false;//Falta vaciar cada componente
+                    ContentUrbano.Visible = false;                               //Poner contenedor Urbao y Suburabao en false y vaciar sus componentes
+
+
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        //public void VerSuperficeRustico()
+        //{
+        //    try
+        //    {
+        //        ddlSuperficieRustico.Items.Insert(0, new ListItem("UDM"));
+        //        ddlSuperficieRustico.Items.Insert(1, new ListItem("METROS"));
+        //        ddlSuperficieRustico.Items.Insert(2, new ListItem("HECTAREAS"));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Response.Write(ex);
+        //    }
+        //}
+        public void VerDesnivelUrbano()
+        {
+            try
+            {
+                ddlDesnivelUrbano.Items.Insert(0, new ListItem("¿Existe desnivel?"));
+                ddlDesnivelUrbano.Items.Insert(1, new ListItem("SI"));
+                ddlDesnivelUrbano.Items.Insert(2, new ListItem("NO"));
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+            }
+        }
+        public void verUsoSueloUrbano()
+        {
+            try
+            {
+                ddlUsoSueloUrbano.Items.Insert(0, new ListItem("Uso de Suelo"));
+                ddlUsoSueloUrbano.Items.Insert(1, new ListItem("Habitacional Campestre"));
+                ddlUsoSueloUrbano.Items.Insert(2, new ListItem("Habitacional Residencial"));
+                ddlUsoSueloUrbano.Items.Insert(3, new ListItem("Habitacional Medio"));
+                ddlUsoSueloUrbano.Items.Insert(4, new ListItem("Habitacional Económico"));
+                ddlUsoSueloUrbano.Items.Insert(5, new ListItem("Habitacional Interés Social"));
+                ddlUsoSueloUrbano.Items.Insert(6, new ListItem("Habitacional Popular Progresivo"));
+                ddlUsoSueloUrbano.Items.Insert(7, new ListItem("Comercial Alta (Subsuelos Urbanos o Centros Comerciales)"));
+                ddlUsoSueloUrbano.Items.Insert(8, new ListItem("Comercial Baja (Comercio de Barrio)"));
+                ddlUsoSueloUrbano.Items.Insert(9, new ListItem("Parque Industrial (Industria Pesada y Media)"));
+                ddlUsoSueloUrbano.Items.Insert(10, new ListItem("Corredor Industrial (Industria Media y Ligera)"));
+                ddlUsoSueloUrbano.Items.Insert(11, new ListItem("Preservación Ecológica (Reserva Ecológica)"));
+                ddlUsoSueloUrbano.Items.Insert(12, new ListItem("Historicas"));
+                ddlUsoSueloUrbano.Items.Insert(13, new ListItem("Otras Especiales (Ecoturística y Arqueológica)"));
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+            }
+        }
+
+        public void ddlUbicacionRustic()
+        {
+            try
+            {
+                ddlUbicaciónRustico.Items.Insert(0, new ListItem("Ubicación"));
+                ddlUbicaciónRustico.Items.Insert(1, new ListItem("Predio interior sin derecho de paso constituido"));
+                ddlUbicaciónRustico.Items.Insert(2, new ListItem("Predio interior con derecho de paso constituido"));
+                ddlUbicaciónRustico.Items.Insert(3, new ListItem("Camino vecinal transitable durante determinadas épocas del año"));
+                ddlUbicaciónRustico.Items.Insert(4, new ListItem("Camino rural con estructura de terracería transitable todo el año"));
+                ddlUbicaciónRustico.Items.Insert(5, new ListItem("Carretera pavimentada (feredal o estatal)"));
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+            }
+        }
+        public void ddlUDMDistancia()
+        {
+            try
+            {
+                ddlDistanciaUDM.Items.Insert(0, new ListItem("UDM"));
+                ddlDistanciaUDM.Items.Insert(1, new ListItem("m"));
+                ddlDistanciaUDM.Items.Insert(2, new ListItem("km"));
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+            }
+        }
+
+        public void UsoSueloRustico()
+        {
+            try
+            {
+                ddlUsoSueloRustico.Items.Insert(0, new ListItem("Uso de Suelo"));
+                ddlUsoSueloRustico.Items.Insert(1, new ListItem("Agrícola"));
+                ddlUsoSueloRustico.Items.Insert(2, new ListItem("Ganadero"));
+                ddlUsoSueloRustico.Items.Insert(3, new ListItem("Forestal"));
+                ddlUsoSueloRustico.Items.Insert(4, new ListItem("Extracción"));
+                ddlUsoSueloRustico.Items.Insert(5, new ListItem("Eriazo"));
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+            }
+        }
+        public void topografiaRustico()
+        {
+            try
+            {
+                ddlTopografiaRustico.Items.Insert(0, new ListItem("Topografía y Relieve"));
+                ddlTopografiaRustico.Items.Insert(1, new ListItem("Llano/Plano"));
+                ddlTopografiaRustico.Items.Insert(2, new ListItem("Lomerío Suave/Modernamente Inclinado"));
+                ddlTopografiaRustico.Items.Insert(3, new ListItem("Lomerío accidentado/Iniciado "));
+                ddlTopografiaRustico.Items.Insert(4, new ListItem("Escarpado"));
+                ddlTopografiaRustico.Items.Insert(5, new ListItem("Montañoso"));
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex);
             }
         }
 
@@ -453,5 +600,164 @@ namespace Cavat
             }
         }
 
+        protected void ddlUsoSueloRustico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (IsPostBack)
+            {
+                int va = int.Parse(ddlUsoSueloRustico.SelectedIndex.ToString());
+                //Label1.Text = va.ToString();
+                try
+                {
+                    ddlTipoSRustico.ClearSelection();
+                    ddlTipoSRustico.Items.Clear();
+                    ddltipoSueloRustico(va);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public void ddltipoSueloRustico(int id)
+        {
+            try
+            {
+                //hacer SP para obteer los datos
+                ddlTipoSRustico.Items.Insert(0, new ListItem("Tipo"));
+                switch (id)
+                {
+                    case 1:
+
+                        ddlTipoSRustico.Items.Insert(1, new ListItem("Temporal 1a"));
+                        ddlTipoSRustico.Items.Insert(2, new ListItem("Temporal 2a"));
+                        ddlTipoSRustico.Items.Insert(3, new ListItem("Riego"));
+                        break;
+                    case 2:
+                        ddlTipoSRustico.Items.Insert(1, new ListItem("Agostadero de temporal"));
+                        ddlTipoSRustico.Items.Insert(2, new ListItem("Agostadero incluido"));
+                        break;
+                    case 3:
+                        ddlTipoSRustico.Items.Insert(1, new ListItem("Monte Alto"));
+                        ddlTipoSRustico.Items.Insert(2, new ListItem("Monte Bajo"));
+                        ddlTipoSRustico.Items.Insert(3, new ListItem("Bosque de Monaña"));
+                        break;
+                    case 4:
+                        ddlTipoSRustico.Items.Insert(1, new ListItem("Canteras"));
+                        ddlTipoSRustico.Items.Insert(2, new ListItem("Minas"));
+                        break;
+                    case 5:
+                        ddlTipoSRustico.Items.Insert(1, new ListItem("Eriazo"));
+                        break;
+                    default:
+                        ddlTipoSRustico.ClearSelection();
+                        ddlTipoSRustico.Items.Clear();
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+            }
+
+        }
+
+        protected void ddlTipoSRustico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (ddlTipoSRustico.SelectedValue.ToString())
+            {
+                case "Temporal 1a":
+                    txtClave.Text = "RAT 01";
+                    break;
+                case "Temporal 2a":
+                    txtClave.Text = "RAT 02";
+                    break;
+                case "Riego":
+                    txtClave.Text = "RAT 03";
+                    break;
+                case "Agostadero de temporal":
+                    txtClave.Text = "RGA 04";
+                    break;
+                case "Agostadero incluido":
+                    txtClave.Text = "RGA 05";
+                    break;
+                case "Monte Alto":
+                    txtClave.Text = "RFM 06";
+                    break;
+                case "Monte Bajo":
+                    txtClave.Text = "RFM 07";
+                    break;
+                case "Bosque de Monaña":
+                    txtClave.Text = "RFB 08";
+                    break;
+                case "Canteras":
+                    txtClave.Text = "REC 09";
+                    break;
+                case "Minas":
+                    txtClave.Text = "REM 10";
+                    break;
+                case "Eriazo":
+                    txtClave.Text = "RER 11";
+                    break;
+                default:
+                    txtClave.Text = "Clave";
+                    break;
+
+            }
+        }
+
+        protected void ddlDesnivelUrbano_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int valor1 = int.Parse(ddlDesnivelUrbano.SelectedIndex.ToString());//obtiene el indice del elemento
+            if (valor1 == 1)
+            {
+                TipodesnivelUrb.Visible = true;
+                ddlTipoDesnivelUrbano.Items.Clear();
+                ddlTipoDesnivelUrbano.ClearSelection();
+                verTipoDesnivelUrbano();
+            }
+            else
+            {
+                TipodesnivelUrb.Visible = false;
+            }
+        }
+
+        public void verTipoDesnivelUrbano()
+        {
+            try
+            {
+                ddlTipoDesnivelUrbano.Items.Insert(0, new ListItem("Tipo"));
+                ddlTipoDesnivelUrbano.Items.Insert(1, new ListItem("Hundido"));
+                ddlTipoDesnivelUrbano.Items.Insert(2, new ListItem("Elevado"));
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+            }
+        }
+
+        protected void ddlUbicacionManzana_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string cad = ddlUbicacionManzana.SelectedValue.ToString();
+            switch (cad)
+            {
+                case "Cabecera de manzana":
+                    try
+                    {
+                        TipodesnivelUrb.Visible = true;
+                        ddlTipoVialidad.Items.Insert(0, new ListItem("Tipo de vialidad"));
+                        ddlTipoVialidad.Items.Insert(1, new ListItem("Andador"));
+                        ddlTipoVialidad.Items.Insert(2, new ListItem("Callejón"));
+                        ddlTipoVialidad.Items.Insert(3, new ListItem("Privada"));
+                        ddlTipoVialidad.Items.Insert(4, new ListItem("Ninguno"));
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write(ex);
+                    }
+                    break;
+            }
+        }
     }
 }

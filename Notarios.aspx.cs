@@ -12,9 +12,10 @@ namespace Cavat
     {
 
         catalogos cat = new catalogos();
+        valoresCalculo valores = new valoresCalculo();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+        
 
             //if (UserLoginCache.nombre == string.Empty || UserLoginCache.nombre == null )
             //{
@@ -25,7 +26,6 @@ namespace Cavat
             if (!IsPostBack)
             {
                 ddlmunicipio();
-                ddlRelieve();
                 ddlTipoPredio1();
                 ddlUbicaManzana();
                 ddlUbicaManzana();
@@ -155,58 +155,43 @@ namespace Cavat
                 }
             }
         }
-        public void ddlRelieve()
-        {
-            if (!IsPostBack)
-            {
-                try
-                {
-                    ddlTipoRelieve.Items.Insert(0, new ListItem("Topografìa y relieve"));
-                    ddlTipoRelieve.Items.Insert(1, new ListItem("Nivel"));
-                    ddlTipoRelieve.Items.Insert(2, new ListItem("Elevada"));
-                    ddlTipoRelieve.Items.Insert(3, new ListItem("Hundida"));
-
-                }
-                catch (Exception ex)
-                {
-                    Response.Write(ex);
-                }
-            }
-        }
+     
 
         protected void btnUbicaPredio_Click(object sender, ImageClickEventArgs e)
         {
             UbicacionPredio.Visible = true;
             Presentacion.Visible = false;
-            DatosConstruccion.Visible = false;
             FactorTerreno.Visible = false;
             FactorConstruccion.Visible = false;
             Georreferencia.Visible = false;
+
+            ContentUrbano.Visible = false;
         }
 
         protected void btnFactorTerreno_Click(object sender, ImageClickEventArgs e)
         {
-            if (usoSuelo.tipoPredio == string.Empty || usoSuelo.tipoPredio == null)
+            FactorConstruccion.Visible = false;
+
+            if (usoSuelo.tipoPredio == string.Empty || usoSuelo.tipoPredio == null || ddlTipoPredio.SelectedIndex == 0)
             {
                 //   ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "OpenModalAprob('Elija un tipo de predio')", true);
+
                 Response.Write("<script>alert('Elija un tipo de Predio')</script>");
                 UbicacionPredio.Visible = true;
             }
             else if (usoSuelo.tipoPredio == "Rústico")
             {
+
                 lbltipoPredio.Text = usoSuelo.tipoPredio;
                 UbicacionPredio.Visible = false;
                 FactorTerreno.Visible = true;
                 ContentRustico.Visible = true;
                 ContentUrbano.Visible = false;
 
-               
+
                 //ddlSuperficieRustico.Visible = true; //Sustituir por seleccion UDM
                 txtSuperficieRustico.Visible = false;
 
-
-                //ddlSuperficieRustico.ClearSelection();  //Sustituir por seleccion UDM
-                //ddlSuperficieRustico.Items.Clear();
                 //VerSuperficeRustico();//llenar ddl
                 ddlUsoSueloRustico.ClearSelection();
                 ddlUsoSueloRustico.Items.Clear();
@@ -222,6 +207,7 @@ namespace Cavat
                 ddlUbicaciónRustico.ClearSelection();
                 ddlUbicaciónRustico.Items.Clear();
                 ddlUbicacionRustic();
+                ddlTipoSRustico.Items.Insert(0, new ListItem("Tipo"));
                 //Poner contenedor Urbao y Suburabao en false
                 //cuando cambie vaciar los componentes del otro
             }
@@ -233,8 +219,7 @@ namespace Cavat
                 ContentUrbano.Visible = true;
                 ContentRustico.Visible = false;
 
-               
-             //   ddlSuperficieRustico.Visible = false;//Sustituir por seleccion UDM
+                //   ddlSuperficieRustico.Visible = false;//Sustituir por seleccion UDM
                 txtSuperficieRustico.Visible = true;
                 //cuando cambie vaciar los componentes del otro
                 ddlUsoSueloUrbano.Items.Clear();
@@ -258,11 +243,13 @@ namespace Cavat
         {
             UbicacionPredio.Visible = false;
             Presentacion.Visible = false;
-            DatosConstruccion.Visible = false;
             VerMapa.Visible = false;
             FactorTerreno.Visible = false;
             FactorConstruccion.Visible = true;
             Georreferencia.Visible = false;
+
+            ContentUrbano.Visible = false;
+
         }
 
         protected void ddlMunicipio_SelectedIndexChanged(object sender, EventArgs e)
@@ -338,11 +325,9 @@ namespace Cavat
                 {
                     //ddlSuperficieRustico.Visible = false;//Sustituir por seleccion UDM
                     txtSuperficieRustico.Visible = false;
-                  
-                    ContentRustico.Visible = false;//Falta vaciar cada componente
-                    ContentUrbano.Visible = false;                               //Poner contenedor Urbao y Suburabao en false y vaciar sus componentes
-
-
+                    txtParaje.Visible = txtCalle.Visible = txtNumero.Visible = txtColonia.Visible = txtCP.Visible = false;
+                    ddlLocalidad.Visible = ddlZonaValor.Visible = false;
+                    //Falta vaciar cada componente
                 }
             }
             catch (Exception ex)
@@ -384,19 +369,13 @@ namespace Cavat
             try
             {
                 ddlUsoSueloUrbano.Items.Insert(0, new ListItem("Uso de Suelo"));
-                ddlUsoSueloUrbano.Items.Insert(1, new ListItem("Habitacional Campestre"));
-                ddlUsoSueloUrbano.Items.Insert(2, new ListItem("Habitacional Residencial"));
-                ddlUsoSueloUrbano.Items.Insert(3, new ListItem("Habitacional Medio"));
-                ddlUsoSueloUrbano.Items.Insert(4, new ListItem("Habitacional Económico"));
-                ddlUsoSueloUrbano.Items.Insert(5, new ListItem("Habitacional Interés Social"));
-                ddlUsoSueloUrbano.Items.Insert(6, new ListItem("Habitacional Popular Progresivo"));
-                ddlUsoSueloUrbano.Items.Insert(7, new ListItem("Comercial Alta (Subsuelos Urbanos o Centros Comerciales)"));
-                ddlUsoSueloUrbano.Items.Insert(8, new ListItem("Comercial Baja (Comercio de Barrio)"));
-                ddlUsoSueloUrbano.Items.Insert(9, new ListItem("Parque Industrial (Industria Pesada y Media)"));
-                ddlUsoSueloUrbano.Items.Insert(10, new ListItem("Corredor Industrial (Industria Media y Ligera)"));
-                ddlUsoSueloUrbano.Items.Insert(11, new ListItem("Preservación Ecológica (Reserva Ecológica)"));
-                ddlUsoSueloUrbano.Items.Insert(12, new ListItem("Historicas"));
-                ddlUsoSueloUrbano.Items.Insert(13, new ListItem("Otras Especiales (Ecoturística y Arqueológica)"));
+                ddlUsoSueloUrbano.Items.Insert(1, new ListItem("Habitacional")); //Devolver 1 a mony
+                ddlUsoSueloUrbano.Items.Insert(2, new ListItem("Comercial Alta (Subsuelos Urbanos o Centros Comerciales)"));//Devolver 3 a mony
+                ddlUsoSueloUrbano.Items.Insert(3, new ListItem("Comercial Media"));//Devolver 2 a mony
+                ddlUsoSueloUrbano.Items.Insert(4, new ListItem("Comercial Baja (Comercio de Barrio)"));//Devolver 2 a mony
+                ddlUsoSueloUrbano.Items.Insert(5, new ListItem("Historica"));//Devolver 2 a mony
+                ddlUsoSueloUrbano.Items.Insert(6, new ListItem("Industrial"));//Devolver 2 a mony
+                ddlUsoSueloUrbano.Items.Insert(7, new ListItem("Otras"));//Devolver 4 a mony
             }
             catch (Exception ex)
             {
@@ -602,21 +581,19 @@ namespace Cavat
 
         protected void ddlUsoSueloRustico_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (IsPostBack)
+            int va = int.Parse(ddlUsoSueloRustico.SelectedIndex.ToString());
+            //Label1.Text = va.ToString();
+            try
             {
-                int va = int.Parse(ddlUsoSueloRustico.SelectedIndex.ToString());
-                //Label1.Text = va.ToString();
-                try
-                {
-                    ddlTipoSRustico.ClearSelection();
-                    ddlTipoSRustico.Items.Clear();
-                    ddltipoSueloRustico(va);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                ddlTipoSRustico.ClearSelection();
+                ddlTipoSRustico.Items.Clear();
+                ddltipoSueloRustico(va);
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         public void ddltipoSueloRustico(int id)
@@ -745,19 +722,88 @@ namespace Cavat
                 case "Cabecera de manzana":
                     try
                     {
-                        TipodesnivelUrb.Visible = true;
-                        ddlTipoVialidad.Items.Insert(0, new ListItem("Tipo de vialidad"));
-                        ddlTipoVialidad.Items.Insert(1, new ListItem("Andador"));
-                        ddlTipoVialidad.Items.Insert(2, new ListItem("Callejón"));
-                        ddlTipoVialidad.Items.Insert(3, new ListItem("Privada"));
-                        ddlTipoVialidad.Items.Insert(4, new ListItem("Ninguno"));
+                        ddlTipoVialidad.ClearSelection();
+                        TipoVialidad.Visible = true;
+                        AngulosEsq.Visible = false;
+                        TieneEsquina.Visible = true;
+                        EsquinasColin.Visible = false;
+                        ddlTipoVialidad.Items.Insert(0, new ListItem("¿Alguna de las vialidades que rodea el predio pertecenece a ?"));
+                        ddlTipoVialidad.Items.Insert(1, new ListItem("Andador"));//devolver 1
+                        ddlTipoVialidad.Items.Insert(2, new ListItem("Callejón"));//devolver 1
+                        ddlTipoVialidad.Items.Insert(3, new ListItem("Privada"));//devolver 1
+                        ddlTipoVialidad.Items.Insert(4, new ListItem("Ninguno"));//devolver 0
                     }
                     catch (Exception ex)
                     {
                         Response.Write(ex);
                     }
                     break;
+                case "Esquina":
+                    //preguntar sobre los angulos de las esquinas 
+                    //si angulo > 135 y angulo < 45 regreso 1 
+                    // y si no regreso un 0 y preguntar si las esquinas estan formadas por andador callejon o privada
+                    TieneEsquina.Visible = true;
+                    TipoVialidad.Visible = true;
+                    AngulosEsq.Visible = true;
+                    EsquinasColin.Visible = false;
+                    break;
+                case "Lote manzanero":
+                    TieneEsquina.Visible = true;
+                    TipoVialidad.Visible = true;
+                    EsquinasColin.Visible = true;
+                    ddlTipoVialidad.Items.Insert(0, new ListItem("¿Alguna de las vialidades que rodea el predio pertecenece a ?"));
+                    ddlTipoVialidad.Items.Insert(1, new ListItem("Andador"));//devolver 1
+                    ddlTipoVialidad.Items.Insert(2, new ListItem("Callejón"));//devolver 1
+                    ddlTipoVialidad.Items.Insert(3, new ListItem("Privada"));//devolver 1
+                    ddlTipoVialidad.Items.Insert(4, new ListItem("Ninguno"));//devolver 0
+
+                    break;
+                default:
+                    TipoVialidad.Visible = false;
+                    TieneEsquina.Visible = false;
+                    AngulosEsq.Visible = false;
+                    EsquinasColin.Visible = false;
+                    break;
             }
         }
+
+        protected void txtFrenterustico_TextChanged(object sender, EventArgs e)
+        {
+            valoresCalculo.valorFrente = float.Parse(txtFrenterustico.Text);              
+            if (valoresCalculo.valorFrente < 1.5)
+            {
+                Response.Write("<script>alert('El frente no puede ser menor a 1.5m, por favor verifique.')</script>");
+                txtFrenterustico.Text = "";
+                txtFrenterustico.BorderColor = Color.Red;
+                txtFrenterustico.BorderWidth = 2;
+            }
+
+            else if (valoresCalculo.valorFrente < 6.0)
+            {
+                txtFrenterustico.BorderColor = Color.Transparent;
+                txtFrenterustico.BorderWidth = 0;
+                //Habilitar caja de texto para 
+                ddlPreguntaFraccionamiento.ClearSelection();
+                ddlPreguntaFraccionamiento.Items.Clear();
+                //llenar ddl
+                ddlPreguntaFraccionamiento.Items.Insert(0, new ListItem("FRACCIONAMIENTO/UNIDAD DE INTERES SOCIAL"));
+                ddlPreguntaFraccionamiento.Items.Insert(1, new ListItem("SÍ"));
+                ddlPreguntaFraccionamiento.Items.Insert(2, new ListItem("NO"));
+
+                if (ddlPreguntaFraccionamiento.SelectedValue.ToString() == "NO")
+                {
+                    //Llamar WS del Calcular valor MONY
+                }
+
+                PreguntaFraccionamiento.Visible = true;
+            } 
+            else
+            {               
+                PreguntaFraccionamiento.Visible = false;
+            }
+        }
+
+       
     }
+
 }

@@ -105,6 +105,15 @@ namespace Cavat
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UbicacionPredio;
 
         /// <summary>
+        /// Control UpdatePanel2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+
+        /// <summary>
         /// Control ddlTipoPredio.
         /// </summary>
         /// <remarks>
@@ -186,6 +195,15 @@ namespace Cavat
         protected global::System.Web.UI.WebControls.TextBox txtCP;
 
         /// <summary>
+        /// Control btnSiguiente1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSiguiente1;
+
+        /// <summary>
         /// Control FactorTerreno.
         /// </summary>
         /// <remarks>
@@ -202,6 +220,15 @@ namespace Cavat
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbltipoPredio;
+
+        /// <summary>
+        /// Control UpdatePanelGrid.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelGrid;
 
         /// <summary>
         /// Control ContentRustico.
@@ -303,6 +330,15 @@ namespace Cavat
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ContentUrbano;
 
         /// <summary>
+        /// Control UpdatePanel3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
+
+        /// <summary>
         /// Control TextBox6.
         /// </summary>
         /// <remarks>
@@ -384,13 +420,22 @@ namespace Cavat
         protected global::System.Web.UI.WebControls.DropDownList ddlUbicacionManzana;
 
         /// <summary>
-        /// Control ddlTipoRelieve.
+        /// Control PreguntaFraccionamiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoRelieve;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PreguntaFraccionamiento;
+
+        /// <summary>
+        /// Control ddlPreguntaFraccionamiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPreguntaFraccionamiento;
 
         /// <summary>
         /// Control TipodesnivelUrb.
@@ -411,13 +456,13 @@ namespace Cavat
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoDesnivelUrbano;
 
         /// <summary>
-        /// Control Div1.
+        /// Control TipoVialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TipoVialidad;
 
         /// <summary>
         /// Control ddlTipoVialidad.
@@ -429,40 +474,58 @@ namespace Cavat
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoVialidad;
 
         /// <summary>
-        /// Control DatosConstruccion.
+        /// Control TieneEsquina.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DatosConstruccion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TieneEsquina;
 
         /// <summary>
-        /// Control DropDownList17.
+        /// Control TextBox2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList17;
+        protected global::System.Web.UI.WebControls.TextBox TextBox2;
 
         /// <summary>
-        /// Control DropDownList18.
+        /// Control AngulosEsq.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList18;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AngulosEsq;
 
         /// <summary>
-        /// Control DropDownList19.
+        /// Control TextBox4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList19;
+        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+
+        /// <summary>
+        /// Control EsquinasColin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl EsquinasColin;
+
+        /// <summary>
+        /// Control TextBox10.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox10;
 
         /// <summary>
         /// Control FactorConstruccion.

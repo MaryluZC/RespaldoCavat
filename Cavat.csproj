@@ -139,6 +139,7 @@
     <Content Include="img\mundo1.gif" />
     <Content Include="img\mundo2.gif" />
     <Content Include="img\next.png" />
+    <Content Include="img\nextt.png" />
     <Content Include="img\ojo.png" />
     <Content Include="img\predio\rustico.png" />
     <Content Include="img\predio\rustico\agostaderoincluido.png" />
@@ -169,6 +170,14 @@
     <Content Include="img\relieve\Nivel.png" />
     <Content Include="img\sali1.png" />
     <Content Include="img\salir.png" />
+    <Content Include="img\ubiMan\btnCabeceraManzana.png" />
+    <Content Include="img\ubiMan\btnCNAccesoPropio.png" />
+    <Content Include="img\ubiMan\btnEsquina.png" />
+    <Content Include="img\ubiMan\btnInteriorSNAccesoPropio.png" />
+    <Content Include="img\ubiMan\btnIntermedio2Frentes.png" />
+    <Content Include="img\ubiMan\btnIntermedioReg.png" />
+    <Content Include="img\ubiMan\btnManzanero.png" />
+    <Content Include="img\ubiMan\cabeManzana.png" />
     <Content Include="img\ubiMan\UbicacionManzana.png" />
     <Content Include="jquery.maskedinput-master\.gitignore" />
     <Content Include="jquery.maskedinput-master\demo\datepicker.html" />

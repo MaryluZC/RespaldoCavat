@@ -129,7 +129,7 @@
                 <div class="row text-white" id="listUsers" >
                     <asp:UpdatePanel runat="server" ID="UpdatePanel4">
                         <ContentTemplate>
-                          <asp:GridView ID="GVSolicitudes" runat="server" Visible="true" EmptyDataText="No hay nuevas solicitudes de registro."  BorderColor="#CCCCCC" BorderStyle="None" CaptionAlign="Top" CssClass="table table-responsive shadow" AutoGenerateColumns="False" AllowPaging="True" Font-Size="X-Small" PagerStyle-BackColor="White" Width="100%" OnSelectedIndexChanged="GVSolicitudes_SelectedIndexChanged" OnRowCommand="GVSolicitudes_RowCommand">
+                          <asp:GridView ID="GVSolicitudes" runat="server" Visible="true" EmptyDataText="No hay nuevas solicitudes de registro."  BorderColor="#CCCCCC" BorderStyle="None" CaptionAlign="Top" CssClass="table table-responsive shadow" AutoGenerateColumns="False" AllowPaging="True" Font-Size="X-Small" PagerStyle-BackColor="White" Width="100%" OnSelectedIndexChanged="GVSolicitudes_SelectedIndexChanged" OnRowCommand="GVSolicitudes_RowCommand" OnPageIndexChanging="GVSolicitudes_PageIndexChanging">
                                         <AlternatingRowStyle BackColor="#F2E7EB" />
                                         <Columns>
                                             <asp:ButtonField ButtonType="Image" CommandName="aprobar" ImageUrl="~/img/ojo.png">

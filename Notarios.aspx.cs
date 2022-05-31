@@ -1,5 +1,6 @@
 ﻿using Cavat.data;
 using InfoUsuarios;
+using InfoUsuarios.cache;
 using System;
 using System.Data;
 using System.Drawing;
@@ -15,15 +16,13 @@ namespace Cavat
         valoresCalculo valores = new valoresCalculo();
         protected void Page_Load(object sender, EventArgs e)
         {
-        
-
-            //if (UserLoginCache.nombre == string.Empty || UserLoginCache.nombre == null )
-            //{
-            //    Response.Redirect("Default.aspx");
-            //}
-            //else
-            //{
-            if (!IsPostBack)
+            if (UserLoginCache.nombre == string.Empty || UserLoginCache.nombre == null)
+            {
+                Response.Redirect("Default.aspx");
+            }
+            else
+            {
+                if (!IsPostBack)
             {
                 ddlmunicipio();
                 ddlTipoPredio1();
@@ -33,10 +32,17 @@ namespace Cavat
                 ddlConvercavionConstrucion();
                 ddlEdadConstruc();
 
-                //lblUserNot.Text = "Usuario: " + UserLoginCache.tipoUser;///Coloca el nombre del Usuario
-                //lblNombreNot.Text = "Nombre: " + UserLoginCache.nombre + " " + UserLoginCache.ape1 + " " + UserLoginCache.ape2;
-            }
-            // }
+                    //lblUserNot.Text = "Usuario: " + UserLoginCache.tipoUser;///Coloca el nombre del Usuario
+                    //lblNombreNot.Text = "Nombre: " + UserLoginCache.nombre + " " + UserLoginCache.ape1 + " " + UserLoginCache.ape2;
+                }
+                else
+                {
+                    var random = new Random();
+                    var r1 = random.Next(1, 999999);
+                    lblFOLIOT.Text = Convert.ToString(r1);
+                }
+           }
+            
         }
         public void ddlEdadConstruc()
         {
@@ -247,7 +253,6 @@ namespace Cavat
             FactorTerreno.Visible = false;
             FactorConstruccion.Visible = true;
             Georreferencia.Visible = false;
-
             ContentUrbano.Visible = false;
 
         }
@@ -537,47 +542,7 @@ namespace Cavat
             }
         }
 
-        protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // string valor =  RadioButtonList1.SelectedItem.Text.ToString();//Obtiene el string del elemeto
-            int valor1 = int.Parse(RadioButtonList1.SelectedIndex.ToString());//obtiene el indice del elemento
-            switch (valor1)
-            {
-                case 0:
-                    ddlUbicacionManzana.SelectedIndex = 1;
-                    break;
-                case 1:
-                    ddlUbicacionManzana.SelectedIndex = 2;
-                    break;
-                case 2:
-                    ddlUbicacionManzana.SelectedIndex = 3;
-                    break;
-                case 3:
-                    ddlUbicacionManzana.SelectedIndex = 4;
-                    break;
-                case 4:
-                    ddlUbicacionManzana.SelectedIndex = 5;
-                    break;
-                case 5:
-                    ddlUbicacionManzana.SelectedIndex = 6;
-                    break;
-                case 6:
-                    ddlUbicacionManzana.SelectedIndex = 7;
-                    break;
-                case 7:
-                    ddlUbicacionManzana.SelectedIndex = 8;
-                    break;
-                case 8:
-                    ddlUbicacionManzana.SelectedIndex = 9;
-                    break;
-                case 9:
-                    ddlUbicacionManzana.SelectedIndex = 10;
-                    break;
-                default:
-                    ddlUbicacionManzana.ClearSelection();
-                    break;
-            }
-        }
+      
 
         protected void ddlUsoSueloRustico_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -803,7 +768,59 @@ namespace Cavat
             }
         }
 
-       
+        protected void RDBntConstruccion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (RDBntConstruccion.SelectedValue.ToString())
+            {
+                case "SI":
+                    //Habilita Construcciones
+                    btnFactorConstruccion.Enabled = true;
+                    break;
+                case "NO":
+                    //NO HABILITA NADA
+                    btnFactorConstruccion.Enabled = false;
+                    break;
+                default:
+                    //NO HABILITA NADA
+                    btnFactorConstruccion.Enabled = false;
+                    break;
+            }
+        }
+
+        protected void btnCabeceroManzana_Click(object sender, ImageClickEventArgs e)
+        {
+            ddlUbicacionManzana.SelectedIndex = 1;
+        }
+
+        protected void btnEsquinaa_Click(object sender, ImageClickEventArgs e)
+        {
+            ddlUbicacionManzana.SelectedIndex = 2;
+        }
+
+        protected void btnCnAccPropio_Click(object sender, ImageClickEventArgs e)
+        {
+            ddlUbicacionManzana.SelectedIndex = 3;
+        }
+
+        protected void btnSNAccPropio_Click(object sender, ImageClickEventArgs e)
+        {
+            ddlUbicacionManzana.SelectedIndex = 4;
+        }
+
+        protected void btnIntermedio2Fr_Click(object sender, ImageClickEventArgs e)
+        {
+            ddlUbicacionManzana.SelectedIndex = 5;
+        }
+
+        protected void btnInterReg_Click(object sender, ImageClickEventArgs e)
+        {
+            ddlUbicacionManzana.SelectedIndex = 6;
+        }
+
+        protected void btnManzaneroo_Click(object sender, ImageClickEventArgs e)
+        {
+            ddlUbicacionManzana.SelectedIndex = 7;
+        }
     }
 
 }

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace Cavat
 {
     public partial class Notarios : System.Web.UI.Page
@@ -14,6 +15,8 @@ namespace Cavat
 
         catalogos cat = new catalogos();
         valoresCalculo valores = new valoresCalculo();
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (UserLoginCache.nombre == string.Empty || UserLoginCache.nombre == null)
@@ -23,14 +26,14 @@ namespace Cavat
             else
             {
                 if (!IsPostBack)
-            {
-                ddlmunicipio();
-                ddlTipoPredio1();
-                ddlUbicaManzana();
-                ddlUbicaManzana();
-                ddlClasificacionPred();
-                ddlConvercavionConstrucion();
-                ddlEdadConstruc();
+                {
+                    ddlmunicipio();
+                    ddlTipoPredio1();
+                    ddlUbicaManzana();
+                    ddlUbicaManzana();
+                    ddlClasificacionPred();
+                    ddlConvercavionConstrucion();
+                    ddlEdadConstruc();
 
                     //lblUserNot.Text = "Usuario: " + UserLoginCache.tipoUser;///Coloca el nombre del Usuario
                     //lblNombreNot.Text = "Nombre: " + UserLoginCache.nombre + " " + UserLoginCache.ape1 + " " + UserLoginCache.ape2;
@@ -41,8 +44,8 @@ namespace Cavat
                     var r1 = random.Next(1, 999999);
                     lblFOLIOT.Text = Convert.ToString(r1);
                 }
-           }
-            
+            }
+
         }
         public void ddlEdadConstruc()
         {
@@ -161,7 +164,7 @@ namespace Cavat
                 }
             }
         }
-     
+
 
         protected void btnUbicaPredio_Click(object sender, ImageClickEventArgs e)
         {
@@ -176,24 +179,28 @@ namespace Cavat
 
         protected void btnFactorTerreno_Click(object sender, ImageClickEventArgs e)
         {
+            fFactorTerreno();
+            RBUDMSuperficie.SelectedValue = "m";
+        }
+        public void fFactorTerreno()
+        {
             FactorConstruccion.Visible = false;
 
             if (usoSuelo.tipoPredio == string.Empty || usoSuelo.tipoPredio == null || ddlTipoPredio.SelectedIndex == 0)
             {
-                //   ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "OpenModalAprob('Elija un tipo de predio')", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('error','PARA PODER CONTINUAR DEBE ELEGIR UN TIPO DE PREDIO.')", true);
 
-                Response.Write("<script>alert('Elija un tipo de Predio')</script>");
                 UbicacionPredio.Visible = true;
+                ddlTipoPredio.BorderColor = Color.Red;
+                ddlTipoPredio.BorderWidth = 3;
             }
             else if (usoSuelo.tipoPredio == "Rústico")
             {
-
                 lbltipoPredio.Text = usoSuelo.tipoPredio;
                 UbicacionPredio.Visible = false;
                 FactorTerreno.Visible = true;
                 ContentRustico.Visible = true;
                 ContentUrbano.Visible = false;
-
 
                 //ddlSuperficieRustico.Visible = true; //Sustituir por seleccion UDM
                 txtSuperficieRustico.Visible = false;
@@ -236,15 +243,7 @@ namespace Cavat
                 VerDesnivelUrbano();
 
             }
-            //UbicacionPredio.Visible = false;
-            //Presentacion.Visible = false;
-            //DatosConstruccion.Visible = false;
-            //VerMapa.Visible = false;
-            //FactorTerreno.Visible = true;
-            //FactorConstruccion.Visible = false;
-            //Georreferencia.Visible = false;
         }
-
         protected void btnFactorConstruccion_Click(object sender, ImageClickEventArgs e)
         {
             UbicacionPredio.Visible = false;
@@ -273,6 +272,9 @@ namespace Cavat
                 {
                     throw ex;
                 }
+
+                ddlZonaValor.Items.Insert(1, new ListItem("H1"));
+                ddlZonaValor.Items.Insert(1, new ListItem("H2"));
             }
         }
         public void ddlLocalidadD(int opc, int idmun)
@@ -307,6 +309,10 @@ namespace Cavat
 
         protected void ddlTipoPredio_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            ddlTipoPredio.BorderColor = Color.Transparent;
+            ddlTipoPredio.BorderWidth = 0;
+
             int va = int.Parse(ddlTipoPredio.SelectedIndex.ToString());//Label1.Text = va.ToString();
             usoSuelo.tipoPredio = ddlTipoPredio.SelectedValue.ToString();
             try
@@ -542,7 +548,7 @@ namespace Cavat
             }
         }
 
-      
+
 
         protected void ddlUsoSueloRustico_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -734,7 +740,7 @@ namespace Cavat
 
         protected void txtFrenterustico_TextChanged(object sender, EventArgs e)
         {
-            valoresCalculo.valorFrente = float.Parse(txtFrenterustico.Text);              
+            valoresCalculo.valorFrente = float.Parse(txtFrenterustico.Text);
             if (valoresCalculo.valorFrente < 1.5)
             {
                 Response.Write("<script>alert('El frente no puede ser menor a 1.5m, por favor verifique.')</script>");
@@ -761,9 +767,9 @@ namespace Cavat
                 }
 
                 PreguntaFraccionamiento.Visible = true;
-            } 
+            }
             else
-            {               
+            {
                 PreguntaFraccionamiento.Visible = false;
             }
         }
@@ -821,6 +827,113 @@ namespace Cavat
         {
             ddlUbicacionManzana.SelectedIndex = 7;
         }
+
+        protected void btnSiguiente1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (usoSuelo.tipoPredio == "Rústico")
+                {
+                    if (txtParaje.Text == string.Empty)
+                    {
+                        txtParaje.BorderColor = Color.Red;
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('error','DEBE COMPLETAR LOS CAMPOS.')", true);
+                    }
+                    else
+                    {
+                        //debe entrar al siguiente apartado y habilitar el boton FACTOR TERRENO                     
+                        btnFactorTerreno.Enabled = true;
+                        fFactorTerreno();
+                        //checkUbicarPredio.Checked = true;
+                    }
+                }
+                else
+                {
+                    if (ddlLocalidad.SelectedIndex == 0 && ddlZonaValor.SelectedIndex == 0)
+                    {
+                        ddlLocalidad.BorderColor = ddlZonaValor.BorderColor = Color.Red;
+                        ddlLocalidad.BorderWidth = ddlZonaValor.BorderWidth = 3;
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('error','DEBE COMPLETAR LOS CAMPOS.')", true);
+                        //checkUbicarPredio.Checked = false;
+                    }
+                    else if (ddlLocalidad.SelectedIndex == 0)
+                    {
+                        txtParaje.BorderColor = Color.Red;
+                        ddlZonaValor.BorderWidth = 3;
+                        ddlZonaValor.BorderColor = Color.Transparent;
+                        ddlZonaValor.BorderWidth = 0;
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('error','DEBE COMPLETAR LOS CAMPOS.')", true);
+                        //checkUbicarPredio.Checked = false;
+                    }
+                    else if (ddlZonaValor.SelectedIndex == 0)
+                    {
+                        ddlLocalidad.BorderColor = ddlZonaValor.BorderColor = Color.Transparent;
+                        ddlLocalidad.BorderWidth = ddlZonaValor.BorderWidth = 0;
+                        ddlZonaValor.BorderColor = Color.Red;
+                        ddlZonaValor.BorderWidth = 3;
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('error','DEBE COMPLETAR LOS CAMPOS.')", true);
+                        //checkUbicarPredio.Checked = false;
+                    }
+                    else
+                    {
+                        ddlZonaValor.BorderColor = Color.Transparent;
+                        ddlZonaValor.BorderWidth = 0;
+                        //debe entrar al siguiente apartado y habilitar el boton FACTOR TERRENO 
+
+                        btnFactorTerreno.Enabled = true;
+                        fFactorTerreno();
+                        //checkUbicarPredio.Checked = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void RBUDMSuperficie_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (RBUDMSuperficie.SelectedValue.ToString())
+            {
+                case "m":
+                    txtSuperficieRu.Text = Conversiones.converMetrosM(txtSuperficieRu.Text);
+                    break;
+                case "ha":
+                    //string fmt = "000-000-000.00";
+                    //double valor = double.Parse(txtSuperficieRu.Text);
+                    //string numeF = valor.ToString(fmt);
+                    //txtSuperficieRu.Text = numeF;                    
+                    txtSuperficieRu.Text = Conversiones.converHA(txtSuperficieRu.Text);
+                    break;
+                default:
+                    //NO HABILITA NADA
+                    break;
+            }
+        }
+
+        protected void txtSuperficieRu_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSuperficieRu.Text = Conversiones.converMetrosM(txtSuperficieRu.Text);
+                RBUDMSuperficie.SelectedValue = "m";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        //public string converMetros(string valuetoConvert)
+        //{
+        //    string cad = valuetoConvert.Replace("-",string.Empty);
+        //    string fmt = "000000000.00";
+        //    double valor = double.Parse(cad);
+        //    string numeF = valor.ToString(fmt);
+        //  //  txtSuperficieRu.Text = numeF;
+        //    return  numeF;
+        //}
     }
 
 }

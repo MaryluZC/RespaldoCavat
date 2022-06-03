@@ -211,6 +211,7 @@
     <Content Include="jquery.maskedinput-master\spec\Setup.Spec.js" />
     <Content Include="jquery.maskedinput-master\spec\Typing.Spec.js" />
     <Content Include="jquery.maskedinput-master\src\jquery.maskedinput.js" />
+    <Content Include="js\mensajes.js" />
     <Content Include="js\Modals.js" />
     <Content Include="js\Valida.js" />
     <Content Include="Notarios.aspx" />

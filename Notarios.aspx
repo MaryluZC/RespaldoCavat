@@ -5,31 +5,32 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
-    <div class="container-fluid " style="padding-top: 2rem; margin-bottom: 5rem;">
+    <div class="container-fluid vh-100" style="padding-top: 2rem; margin-bottom: 5rem; height:100%;">
         <div class="row">
             <%--  MENU o BOTONES--%>
             <%--<div class="col-12 col-sm-12 col-md-5 col-lg-5">--%>
             <div class="col-md-4">
-                <div class="row ">
-                    <div class="col-auto mx-auto" style="padding: 1rem; text-align: left;">
-                        <asp:CheckBox ID="checkUbicarPredio" runat="server" AutoPostBack="true" />
-                        <asp:ImageButton ID="btnUbicaPredio" runat="server" OnClick="btnUbicaPredio_Click" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Ubicar Predio" BackColor="#590422" ImageUrl="img/btn/UbicaPredio.png" CssClass="btn" Style="width: 6em;" draggable="false" />
-                        <p style="font-size: 1rem; color: rgb(128 128 128); font-weight: bold;">Ubicar Predio</p>
-                    </div>
-                    <div class="col-auto mx-auto" style="padding: 1rem; text-align: left;">
-                        <asp:CheckBox ID="checkFactorTerreno" runat="server" AutoPostBack="true" />
-                        <asp:ImageButton ID="btnFactorTerreno" OnClick="btnFactorTerreno_Click" runat="server" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Factor del Terreno" ImageUrl="img/btn/FactorTerreno.png" CssClass="btn" BackColor="#5F5E5C" Style="width: 6em;" draggable="false" />
-                        <p style="font-size: 1rem; color: rgb(128 128 128); font-weight: bold;">Factor Terreno</p>
-                    </div>
-                    <div class="col-auto  mx-auto" style="padding: 1rem; text-align: left;">
-                        <asp:CheckBox ID="checkFactorConstruccion" runat="server" AutoPostBack="true" />
-                        <asp:ImageButton ID="btnFactorConstruccion" runat="server" Enabled="false" OnClick="btnFactorConstruccion_Click" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Factor de Construcción" BackColor="#A99696" ImageUrl="img/btn/factorConstr.png" CssClass="btn" Style="width: 6em;" draggable="false" />
-                        <p style="font-size: 1rem; color: rgb(128 128 128); font-weight: bold;">Factor Construcción</p>
-                    </div>
-                    <div class="col-md-4 mx-auto" style="padding: 1rem; text-align: left;">
-                        <asp:ImageButton ID="btnGeorreferencia" Visible="false" runat="server" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Georeferencia" BackColor="#F8EFEF" ImageUrl="img/btn/Georreferencia.png" CssClass="btn" Style="width: 6em;" draggable="false" />
-                    </div>
-                </div>
+                        <div class="row ">
+                            <div class="col-auto mx-auto" style="padding: 1rem; text-align: left;">
+                                <asp:CheckBox ID="checkUbicarPredio" runat="server" AutoPostBack="true" />
+                                <asp:ImageButton ID="btnUbicaPredio" runat="server" OnClick="btnUbicaPredio_Click" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Ubicar Predio" BackColor="#590422" ImageUrl="img/btn/UbicaPredio.png" CssClass="btn" Style="width: 6em;" draggable="false" />
+                                <p style="font-size: 1rem; color: rgb(128 128 128); font-weight: bold;">Ubicar Predio</p>
+                            </div>
+                            <div class="col-auto mx-auto" style="padding: 1rem; text-align: left;">
+                                <asp:CheckBox ID="checkFactorTerreno" runat="server" AutoPostBack="true" />
+                                <asp:ImageButton ID="btnFactorTerreno" Enabled="false" OnClick="btnFactorTerreno_Click" runat="server" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Factor del Terreno" ImageUrl="img/btn/FactorTerreno.png" CssClass="btn" BackColor="#5F5E5C" Style="width: 6em;" draggable="false" />
+                                <p style="font-size: 1rem; color: rgb(128 128 128); font-weight: bold;">Factor Terreno</p>
+                            </div>
+                            <div class="col-auto  mx-auto" style="padding: 1rem; text-align: left;">
+                                <asp:CheckBox ID="checkFactorConstruccion" runat="server" AutoPostBack="true" />
+                                <asp:ImageButton ID="btnFactorConstruccion" runat="server" Enabled="false" OnClick="btnFactorConstruccion_Click" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Factor de Construcción" BackColor="#A99696" ImageUrl="img/btn/factorConstr.png" CssClass="btn" Style="width: 6em;" draggable="false" />
+                                <p style="font-size: 1rem; color: rgb(128 128 128); font-weight: bold;">Factor Construcción</p>
+                            </div>
+                            <div class="col-md-4 mx-auto" style="padding: 1rem; text-align: left;">
+                                <asp:ImageButton ID="btnGeorreferencia" Visible="false" runat="server" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Georeferencia" BackColor="#F8EFEF" ImageUrl="img/btn/Georreferencia.png" CssClass="btn" Style="width: 6em;" draggable="false" />
+                            </div>
+                        </div>
+             
             </div>
             <%--INFORMACION DEPENDIENDO DEL BOTON--%>
             <div class="col-md-8 ">
@@ -51,6 +52,11 @@
                         <asp:UpdatePanel runat="server" ID="UpdatePanel2" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <div class="row row-cols-md-4" style="padding: 1.5rem;">
+                                   <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                        <asp:DropDownList ID="ddlMunicipio" runat="server" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" Font-Size="Small" Style="text-align: left;" AutoPostBack="true" OnSelectedIndexChanged="ddlMunicipio_SelectedIndexChanged">
+                                            <asp:ListItem>Municipio</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
                                     <div class="col-12 col-sm-12 col-md-4 col-lg-4  col-xl-4 ">
                                         <div class="input-group mb-2">
                                             <asp:DropDownList ID="ddlTipoPredio" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-50" Style="text-align: left;" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoPredio_SelectedIndexChanged"></asp:DropDownList>
@@ -62,14 +68,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                                        <asp:DropDownList ID="ddlMunicipio" runat="server" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" Font-Size="Small" Style="text-align: left;" AutoPostBack="true" OnSelectedIndexChanged="ddlMunicipio_SelectedIndexChanged">
-                                            <asp:ListItem>Municipio</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-
+                                    </div>                                  
                                     <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                         <asp:DropDownList ID="ddlLocalidad" runat="server" Visible="false" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" Font-Size="Small" Style="text-align: left;" AutoPostBack="true">
                                             <asp:ListItem>Localidad</asp:ListItem>
@@ -105,7 +104,7 @@
                                     <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"></div>
                                     <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" style="text-align: right;">
                                         <div class="input-group mb-2">
-                                            <asp:Button ID="btnSiguiente1" runat="server" Text="Siguiente" CssClass="btn btn-sm" Style="background: rgb(29 75 14); color: white;" />
+                                            <asp:Button ID="btnSiguiente1" runat="server" Text="Siguiente" CssClass="btn btn-sm" Style="background: rgb(29 75 14); color: white;" OnClick="btnSiguiente1_Click" />
                                             <div class="input-group-prepend " style="background: rgb(29 75 14);">
                                                 <div class="input-group-text border-0 bg-transparent">
                                                     <img src="img/nextt.png" style="width: 1em;" />
@@ -115,6 +114,10 @@
                                     </div>
                                 </div>
                             </ContentTemplate>
+                            <Triggers>
+                                <asp:PostBackTrigger ControlID="ddlMunicipio" />
+                                <asp:PostBackTrigger ControlID="btnSiguiente1" />
+                            </Triggers>
                         </asp:UpdatePanel>
                     </div>
 
@@ -129,34 +132,19 @@
                             <ContentTemplate>
                                 <div id="ContentRustico" visible="false" runat="server">
                                     <div class="row justify-content p-4">
-                                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-1">
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-1"> 
                                             <div class="input-group mb-2">
                                                 <asp:TextBox ID="txtSuperficieRustico" ToolTip="Se debe ingresar la superficie total de su predio." Font-Size="Small" runat="server" CssClass="form-control w-75" PlaceHolder="Superfice" onkeypress="return onlyNumbers(event);" Style="width: 90%; display: inline-block" Visible="false" TextMode="Number"></asp:TextBox>
-                                                <asp:TextBox ID="txtSuperficieRu" runat="server" Font-Size="Small" CssClass="form-control w-50" PlaceHolder="Superfice"></asp:TextBox>
+                                                <asp:TextBox ID="txtSuperficieRu" runat="server" MaxLength="12" Font-Size="Small" ToolTip="Se debe ingresar la superficie total de su predio." CssClass="form-control w-50" PlaceHolder="Superfice" onkeypress="return onlyNumbersSuperficie(evt);" OnTextChanged="txtSuperficieRu_TextChanged" AutoPostBack="true"></asp:TextBox>
                                                 <div class="input-group-prepend ">
                                                     <div class="input-group-text" style="font-size: 0.8em;">
-                                                        <input type='radio' class="form-check-input" id='radio_m' name='radioName' value='m' style="display: inline-block" />m  &nbsp; 
-                                                    <input type='radio' class="form-check-input" id='radio_ha' name='radioName' value='ha' style="display: inline-block" />ha
+                                                        <asp:RadioButtonList ID="RBUDMSuperficie" runat="server" OnSelectedIndexChanged="RBUDMSuperficie_SelectedIndexChanged" AutoPostBack="true" Font-Size="Small" RepeatLayout="Flow" Style="display:flex;">                                                       
+                                                            <asp:ListItem >m² &nbsp</asp:ListItem>
+                                                            <asp:ListItem >ha</asp:ListItem>
+                                                        </asp:RadioButtonList>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <%--  <div class="row">
-                                            <div class="col-5" style="text-align: center;">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-7">
-                                               
-                                            </div>
-                                        </div>--%>
                                         </div>
                                         <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-1">
                                             <div class="input-group mb-2">
@@ -397,8 +385,8 @@
                                 <asp:Label ID="Label1" runat="server" Font-Size="Medium" Text="¿Su predio cuenta con construcción?"></asp:Label>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-1">
-                                <asp:RadioButtonList ID="RDBntConstruccion" runat="server" OnSelectedIndexChanged="RDBntConstruccion_SelectedIndexChanged" AutoPostBack="true" Font-Size="Small">
-                                    <asp:ListItem>SI</asp:ListItem>
+                                <asp:RadioButtonList ID="RDBntConstruccion" runat="server" OnSelectedIndexChanged="RDBntConstruccion_SelectedIndexChanged" AutoPostBack="true" Font-Size="Small ">
+                                    <asp:ListItem>SI </asp:ListItem>
                                     <asp:ListItem>NO</asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
@@ -493,10 +481,14 @@
                 </div>
             </div>
         </div>
-         <div class="row">
-            <h5 class="text-danger"> FOLIO:  <asp:Label ID="lblFOLIOT" runat="server" Text=""></asp:Label></h5>
-         </div>
-       
+
+         <div class="row" runat="server" id="FOLIOTRAMITE">
+             <div class="co-4 col-sm-4 col-md-4 col-lg-4 ">
+                  <h5 class="text-danger"> FOLIO:  <asp:Label ID="lblFOLIOT" runat="server" Text=""></asp:Label></h5>
+             </div>
+             <div class="co-4 col-sm-4 col-md-4 col-lg-4 "> </div>
+             <div class="co-4 col-sm-4 col-md-4 col-lg-4 "> </div>           
+         </div>       
     </div> 
 
         <%--VISUALIZARA MAPA--%>
@@ -1028,7 +1020,24 @@
         </div>
     </div>
 
-
+    <%--    ******************   LETREROS     **************************--%>
+        <%--MODAL PARA APROBAR SOLICITUD DE USUARIO--%>   
+    <div class="modal fade" id="LetreroSuccess"data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"> 
+          <div class="modal-header text-white text-center" style="background:rgbA(79, 71 ,71 ,0.5);">
+            <h5 class="modal-title" id="exampleModalLabel1">MENSAJE</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center"  style="background:rgbA(79, 71 ,71 ,0.5);">
+            <asp:Label ID="lblLetreroSuccess" runat="server" Text="" Font-Bold="true"></asp:Label>
+          </div>
+          <div class="modal-footer"  style="background:rgbA(79, 71 ,71 ,0.5);">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Entiendo</button>
+          </div>   
+        </div>
+      </div>
+    </div>
 
     <%--Leaflet--%>
    
@@ -1047,29 +1056,38 @@
       
         })
       </script>--%>
-       <script type="text/javascript">
-           $(document).ready(function () {              
 
-               $("input[name=radioName]").click(function () {
-                  /* alert("La edad seleccionada es: " + $('input:radio[name=radioName]:checked').val());*/
-                   if ($('input:radio[name=radioName]:checked').val() === 'm') {
-                       /*alert("Metro: " + $('input:radio[name=radioName]:checked').val());*/
-                       $('#<%=txtSuperficieRu.ClientID%>').mask("000000000.00");
-                   } else {
-                     /*  alert("Hectarea: " + $('input:radio[name=radioName]:checked').val());*/
-                       $('#<%=txtSuperficieRu.ClientID%>').mask("000-000-000.00");
-                   }     
-               });
 
-            <%--   $('#<%=txtSuperficieRu.ClientID%>').keypress(function () {
-                   if ($('input:radio[name=radioName]').not(':checked')) {
-                     
-                       alert('seleccione');
-                   }
-               });--%>
+    <script type="text/javascript">
+        <%-- $(document).ready(function () {
 
-         
-  });
-       </script>
+            $("input[name=radioName]").click(function () {
+                if ($('input:radio[name=radioName]:checked').val() === 'm') {
+                    $('#<%=txtSuperficieRu.ClientID%>').mask("000000000.00");
+                 } else {
+                     $('#<%=txtSuperficieRu.ClientID%>').mask("000-000-000.00");
+                    function onlyNumbersSuperficie(evt) {
+                        // code is the decimal ASCII representation of the pressed key.
+                        var code = (evt.which) ? evt.which : evt.keyCode;
+
+                        if (code == 8 || code == 46 || code == 44) { // backspace.
+                            return true;
+                        } else if (code >= 48 && code <= 57) { // is a number.
+                            return true;
+                        } else { // other keys.
+                            return false;
+                        }
+                    }
+                 }
+             });
+         });--%>
+
+      
+    </script>
+
+    <script src="js/mask.js"></script>
+   <%-- <script type="text/javascript" src="js/mask.js"></script>--%>
+
      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
 </asp:Content>

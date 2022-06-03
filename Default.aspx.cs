@@ -130,7 +130,7 @@ namespace Cavat
             LoginCavat entrar = new LoginCavat();
             dataUser datauser = new dataUser();
 
-            
+
             if (txtUser.Text != "")
             {
                 if (txtPass.Text != "")
@@ -345,7 +345,7 @@ namespace Cavat
         {
             if (checkTerminos.Checked == true)
             {
-                
+
                 btnSendSolicitud.Enabled = true;
             }
             else

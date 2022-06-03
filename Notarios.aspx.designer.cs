@@ -114,15 +114,6 @@ namespace Cavat
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
 
         /// <summary>
-        /// Control ddlTipoPredio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoPredio;
-
-        /// <summary>
         /// Control ddlMunicipio.
         /// </summary>
         /// <remarks>
@@ -130,6 +121,15 @@ namespace Cavat
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMunicipio;
+
+        /// <summary>
+        /// Control ddlTipoPredio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoPredio;
 
         /// <summary>
         /// Control ddlLocalidad.
@@ -256,6 +256,15 @@ namespace Cavat
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSuperficieRu;
+
+        /// <summary>
+        /// Control RBUDMSuperficie.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList RBUDMSuperficie;
 
         /// <summary>
         /// Control ddlUsoSueloRustico.
@@ -636,6 +645,15 @@ namespace Cavat
         protected global::System.Web.UI.WebControls.CheckBox chekMap;
 
         /// <summary>
+        /// Control FOLIOTRAMITE.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FOLIOTRAMITE;
+
+        /// <summary>
         /// Control lblFOLIOT.
         /// </summary>
         /// <remarks>
@@ -751,5 +769,14 @@ namespace Cavat
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton btnManzaneroo;
+
+        /// <summary>
+        /// Control lblLetreroSuccess.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLetreroSuccess;
     }
 }

@@ -107,7 +107,9 @@
     <Content Include="css\Admin.css" />
     <Content Include="css\notarios.css" />
     <Content Include="Default.aspx" />
+    <Content Include="img\add.png" />
     <Content Include="img\ask.png" />
+    <Content Include="img\backspace.png" />
     <Content Include="img\btn\datosCasa.png" />
     <Content Include="img\btn\DatosTerreno.png" />
     <Content Include="img\btn\factorConstr.png" />
@@ -147,7 +149,7 @@
     <Content Include="img\predio\rustico\agricola.png" />
     <Content Include="img\predio\rustico\bosqueMontaña.png" />
     <Content Include="img\predio\rustico\cantera.png" />
-    <Content Include="img\predio\rustico\distanciaPredio.PNG" />
+    <Content Include="img\predio\rustico\distanciaPredio.png" />
     <Content Include="img\predio\rustico\eriazo.png" />
     <Content Include="img\predio\rustico\escarpado.png" />
     <Content Include="img\predio\rustico\extraccion.png" />
@@ -158,6 +160,7 @@
     <Content Include="img\predio\rustico\lomerioSuave.png" />
     <Content Include="img\predio\rustico\mina.png" />
     <Content Include="img\predio\rustico\montañoso.jpg" />
+    <Content Include="img\predio\rustico\monte.png" />
     <Content Include="img\predio\rustico\monteAlto.png" />
     <Content Include="img\predio\rustico\monteBajo.png" />
     <Content Include="img\predio\rustico\riego.png" />
@@ -165,6 +168,16 @@
     <Content Include="img\predio\rustico\temporal2a.png" />
     <Content Include="img\predio\Suburbano.JPG" />
     <Content Include="img\predio\urbano.png" />
+    <Content Include="img\predio\urbano\fondo1.png" />
+    <Content Include="img\predio\urbano\fondo2.png" />
+    <Content Include="img\predio\urbano\fondo3.png" />
+    <Content Include="img\predio\urbano\frente1.png" />
+    <Content Include="img\predio\urbano\frente2.png" />
+    <Content Include="img\predio\urbano\frente3.png" />
+    <Content Include="img\predio\urbano\muyElevado.png" />
+    <Content Include="img\predio\urbano\muyHundido.png" />
+    <Content Include="img\predio\urbano\pocoElevado.png" />
+    <Content Include="img\predio\urbano\pocoHundido.png" />
     <Content Include="img\relieve\Elevada.png" />
     <Content Include="img\relieve\Hundida.png" />
     <Content Include="img\relieve\Nivel.png" />
@@ -179,6 +192,11 @@
     <Content Include="img\ubiMan\btnManzanero.png" />
     <Content Include="img\ubiMan\cabeManzana.png" />
     <Content Include="img\ubiMan\UbicacionManzana.png" />
+    <Content Include="img\ubiRu\CaminoRuralconEstructuradeTerraceriaTransitableTAno.jpg" />
+    <Content Include="img\ubiRu\caminovecinalTransitable.png" />
+    <Content Include="img\ubiRu\carretera[Pavimentada.png" />
+    <Content Include="img\ubiRu\PredioInterDerechoPiso.png" />
+    <Content Include="img\ubiRu\PredioInterSNDerechoPiso.png" />
     <Content Include="jquery.maskedinput-master\.gitignore" />
     <Content Include="jquery.maskedinput-master\demo\datepicker.html" />
     <Content Include="jquery.maskedinput-master\demo\index.html" />

@@ -37,3 +37,18 @@ function alphaNum(evt) {
         return false;
     }
 }
+
+
+function onlyNumbersSuperficie(evt) {
+    // code is the decimal ASCII representation of the pressed key.
+    var code = (evt.which) ? evt.which : evt.keyCode;
+
+    if (code == 8 || code ==46 || code==44) { // backspace.
+        return true;
+    } else if (code >= 48 && code <= 57) { // is a number.
+        return true;
+    } else { // other keys.
+        return false;
+    }
+}
+

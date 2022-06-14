@@ -38,35 +38,43 @@
                     </div>
             </asp:ContentPlaceHolder>
 
-            <asp:ContentPlaceHolder ID="Body" runat="server">
+            <asp:ContentPlaceHolder ID="Body" runat="server"  >
 
             </asp:ContentPlaceHolder>
 
 
             <asp:ContentPlaceHolder ID="Footer" runat="server">
-                 <footer style="position:relative; bottom:0; background:rgb(47 46 46); width:100%; text-align:center;" class="vh-100">
+                 <footer style="position:relative; bottom:0px; background:rgb(47 46 46); width:100%; text-align:center; " class="vh-25">  <%--margin-top:5rem;"--%>
                      <div class="container text-white mx-auto my-auto" >
                          <div class="row">
-                             <div class="col-md-6" style="padding:2em; ">
-                                 <img src="img/IRCEP%20transparente.png" style="width:10rem; height:auto;" draggable="false"/>
-                                 <h5 class="p-3">Instituto Registral y Catastral del Estado de Puebla</h5>
-                                 <h6>11 Oriente 2003 Col. Azcárate<br />
+                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6  text-center" style="padding:2em;">
+                                 <div class="row text-center">
+                                       <img src="img/IRCEP%20transparente.png" style="width:8em; height:auto; margin-left:auto; margin-right:auto; display:block;" draggable="false"/>
+                                 </div>
+                                 <div class="row">
+                                     <h5 class="p-3" style="font-size:0.8em;" >Instituto Registral y Catastral del Estado de Puebla
+                                        11 Oriente 2003 Col. Azcárate<br />
                                      <br />Oficinas Centrales.<br />
                                      <br />Dirección de Catastro: (222) 213 75 00 ext: 135.<br />
-                                     <br />Dirección de Registro Público de la Propiedad: (22) 213 75 00 ext: 105 </h6>
+                                     <br />Dirección de Registro Público de la Propiedad: (22) 213 75 00 ext: 105 </h5>
+                                 </div>
+                               
                              </div>
-
-                             <div class="col-md-6" style="padding:2em; ">
-                                 <img src="img/lgo.png" style="width:18rem; height:auto;" draggable="false"/>
-                                 <h5 class="p-3"> 
+                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="padding:2em;">                                  
+                                   <div class="row">
+                                       <img src="img/lgo.png" style="width:15em; height:auto; margin-left:auto; margin-right:auto; display:block;" draggable="false"/>
+                                 </div>
+                                 <div class="row">
+                                     <h5 class="p-3" style="font-size:0.8em;" > 
                                      <a href="http://www.ircep.gob.mx/directorio.html">Directorio.</a> <br /><br />
                                      <a href="http://www.ircep.gob.mx/portada_quejas.html"  >Quejas y Sugerencias.</a> <br /><br />                              
                                      <a href="#"   data-bs-toggle="modal" data-bs-target="#ModalAvisoPrivacidad">Aviso de Privacidad.</a><br /><br />
                                      <a href="#"  data-bs-toggle="modal" data-bs-target="#ModalLeyTransparencia">Ley de Transparencia y Acceso a la información.</a><br />
-                                 </h5>
+                                     </h5>
+                                 </div>
                              </div>
                          </div>
-                     </div>
+                         </div>
                  </footer>
             </asp:ContentPlaceHolder>
 
@@ -164,7 +172,8 @@
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <%--SWEETALERT--%>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+        <script src="js/mensajes.js"></script>
+       
     </form>
 </body>
 </html>

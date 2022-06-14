@@ -196,6 +196,45 @@ namespace Cavat.data
         }
 
 
+        //public DataTable CatClaidadObra(int opc, string calidad)
+        //{
+        //    DataTable catCalidad = new DataTable();
+
+        //    int nresp = 0;
+        //    using (var connection = GetConnection())
+        //    {
+        //        try
+        //        {
+        //            connection.Open();
+        //            SqlCommand cmd = new SqlCommand("Catalogos", connection); //Nombre del procedimiento almacenado
+        //            cmd.CommandType = CommandType.StoredProcedure; //extra
+        //            SqlParameter returno = new SqlParameter();//extra
+        //            returno.Direction = ParameterDirection.ReturnValue;
+        //            cmd.Parameters.Add(returno);
+        //            cmd.Parameters.AddWithValue("@opcion", opc);
+        //            cmd.Parameters.AddWithValue("@obrasCom", calidad);
+
+        //            object result = cmd.ExecuteScalar();
+        //            connection.Close();
+        //            mnsg.mensaje = (int)returno.Value;
+        //            nresp = mnsg.mensaje;
+        //            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+        //            adapter.Fill(catCalidad);//para llenar una tabla 
+        //            adapter.Dispose();
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            throw e;
+        //        }
+        //        finally
+        //        {
+        //            connection.Close();
+        //        }
+        //    }
+        //    return catCalidad;
+        //}
+
+
 
     }
 }

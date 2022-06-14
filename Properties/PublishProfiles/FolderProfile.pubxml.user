@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>C:\inetpub\wwwroot\Cavat</_PublishTargetUrl>
-    <History>True|2022-05-31T15:04:39.1184523Z;True|2022-05-17T16:48:18.4303105-05:00;True|2022-05-17T16:17:49.5670514-05:00;True|2022-05-17T09:46:06.2052931-05:00;True|2022-05-17T09:44:26.8707029-05:00;True|2022-05-17T09:43:41.7372025-05:00;True|2022-05-17T09:37:38.9879823-05:00;True|2022-05-17T09:37:13.1044586-05:00;True|2022-05-17T09:36:16.9755806-05:00;</History>
+    <History>True|2022-06-14T14:21:03.7400114Z;True|2022-05-31T10:04:39.1184523-05:00;True|2022-05-17T16:48:18.4303105-05:00;True|2022-05-17T16:17:49.5670514-05:00;True|2022-05-17T09:46:06.2052931-05:00;True|2022-05-17T09:44:26.8707029-05:00;True|2022-05-17T09:43:41.7372025-05:00;True|2022-05-17T09:37:38.9879823-05:00;True|2022-05-17T09:37:13.1044586-05:00;True|2022-05-17T09:36:16.9755806-05:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Admin.aspx">
@@ -15,16 +15,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/09/2018 09:56:26</publishTime>
     </File>
     <File Include="bin/Cavat.dll">
-      <publishTime>05/31/2022 10:04:29</publishTime>
+      <publishTime>06/14/2022 09:20:53</publishTime>
     </File>
     <File Include="bin/Cavat.pdb">
-      <publishTime>05/31/2022 10:04:29</publishTime>
+      <publishTime>06/14/2022 09:20:53</publishTime>
     </File>
     <File Include="bin/InfoUsuarios.dll">
-      <publishTime>05/31/2022 10:04:28</publishTime>
+      <publishTime>06/14/2022 09:20:53</publishTime>
     </File>
     <File Include="bin/InfoUsuarios.pdb">
-      <publishTime>05/31/2022 10:04:28</publishTime>
+      <publishTime>06/14/2022 09:20:53</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>05/17/2022 16:54:53</publishTime>
@@ -249,7 +249,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/17/2022 16:54:53</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>05/17/2022 16:54:53</publishTime>
+      <publishTime>06/02/2022 13:15:03</publishTime>
     </File>
     <File Include="fonts/JosefinSans-Bold.ttf">
       <publishTime>05/17/2022 16:54:53</publishTime>
@@ -299,8 +299,14 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="fonts/JosefinSans-VariableFont_wght.ttf">
       <publishTime>05/17/2022 16:54:53</publishTime>
     </File>
+    <File Include="img/add.png">
+      <publishTime>06/07/2022 15:09:49</publishTime>
+    </File>
     <File Include="img/ask.png">
       <publishTime>05/17/2022 16:54:53</publishTime>
+    </File>
+    <File Include="img/backspace.png">
+      <publishTime>06/07/2022 15:45:04</publishTime>
     </File>
     <File Include="img/btn/datosCasa.png">
       <publishTime>05/17/2022 16:54:53</publishTime>
@@ -420,7 +426,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/23/2022 15:45:50</publishTime>
     </File>
     <File Include="img/predio/rustico/distanciaPredio.PNG">
-      <publishTime>05/23/2022 17:38:20</publishTime>
+      <publishTime>06/08/2022 10:28:01</publishTime>
     </File>
     <File Include="img/predio/rustico/eriazo.png">
       <publishTime>05/23/2022 12:51:37</publishTime>
@@ -473,6 +479,24 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="img/predio/urbano.png">
       <publishTime>05/17/2022 16:54:53</publishTime>
     </File>
+    <File Include="img/predio/urbano/fondo1.png">
+      <publishTime>06/08/2022 11:06:51</publishTime>
+    </File>
+    <File Include="img/predio/urbano/fondo2.png">
+      <publishTime>06/08/2022 11:06:51</publishTime>
+    </File>
+    <File Include="img/predio/urbano/fondo3.png">
+      <publishTime>06/08/2022 11:06:51</publishTime>
+    </File>
+    <File Include="img/predio/urbano/frente1.png">
+      <publishTime>06/08/2022 11:05:22</publishTime>
+    </File>
+    <File Include="img/predio/urbano/frente2.png">
+      <publishTime>06/08/2022 10:59:29</publishTime>
+    </File>
+    <File Include="img/predio/urbano/frente3.png">
+      <publishTime>06/08/2022 10:59:29</publishTime>
+    </File>
     <File Include="img/relieve/Elevada.png">
       <publishTime>05/17/2022 16:54:53</publishTime>
     </File>
@@ -489,31 +513,46 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/17/2022 16:54:53</publishTime>
     </File>
     <File Include="img/ubiMan/btnCabeceraManzana.png">
-      <publishTime>05/30/2022 16:41:12</publishTime>
+      <publishTime>06/01/2022 09:30:27</publishTime>
     </File>
     <File Include="img/ubiMan/btnCNAccesoPropio.png">
-      <publishTime>05/30/2022 16:41:12</publishTime>
+      <publishTime>06/01/2022 09:42:38</publishTime>
     </File>
     <File Include="img/ubiMan/btnEsquina.png">
-      <publishTime>05/30/2022 16:41:12</publishTime>
+      <publishTime>06/01/2022 09:30:27</publishTime>
     </File>
     <File Include="img/ubiMan/btnInteriorSNAccesoPropio.png">
-      <publishTime>05/30/2022 16:41:12</publishTime>
+      <publishTime>06/01/2022 09:30:27</publishTime>
     </File>
     <File Include="img/ubiMan/btnIntermedio2Frentes.png">
-      <publishTime>05/30/2022 16:41:12</publishTime>
+      <publishTime>06/01/2022 09:30:27</publishTime>
     </File>
     <File Include="img/ubiMan/btnIntermedioReg.png">
-      <publishTime>05/30/2022 16:41:12</publishTime>
+      <publishTime>06/01/2022 09:30:27</publishTime>
     </File>
     <File Include="img/ubiMan/btnManzanero.png">
-      <publishTime>05/30/2022 16:41:12</publishTime>
+      <publishTime>06/01/2022 09:30:27</publishTime>
     </File>
     <File Include="img/ubiMan/cabeManzana.png">
       <publishTime>05/30/2022 18:06:39</publishTime>
     </File>
     <File Include="img/ubiMan/UbicacionManzana.png">
       <publishTime>05/17/2022 16:54:53</publishTime>
+    </File>
+    <File Include="img/ubiRu/CaminoRuralconEstructuradeTerraceriaTransitableTAno.jpg">
+      <publishTime>06/07/2022 18:00:26</publishTime>
+    </File>
+    <File Include="img/ubiRu/caminovecinalTransitable.png">
+      <publishTime>06/07/2022 18:00:26</publishTime>
+    </File>
+    <File Include="img/ubiRu/carretera[Pavimentada.png">
+      <publishTime>06/07/2022 18:00:26</publishTime>
+    </File>
+    <File Include="img/ubiRu/PredioInterDerechoPiso.png">
+      <publishTime>06/07/2022 18:00:26</publishTime>
+    </File>
+    <File Include="img/ubiRu/PredioInterSNDerechoPiso.png">
+      <publishTime>06/07/2022 18:00:26</publishTime>
     </File>
     <File Include="jquery.maskedinput-master/.gitignore">
       <publishTime>05/25/2022 11:01:37</publishTime>
@@ -641,20 +680,23 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="jquery.maskedinput-master/src/jquery.maskedinput.js">
       <publishTime>05/25/2022 11:01:37</publishTime>
     </File>
+    <File Include="js/mensajes.js">
+      <publishTime>06/03/2022 10:54:23</publishTime>
+    </File>
     <File Include="js/Modals.js">
       <publishTime>05/17/2022 16:54:53</publishTime>
     </File>
     <File Include="js/Valida.js">
-      <publishTime>05/17/2022 16:54:53</publishTime>
+      <publishTime>06/03/2022 11:01:16</publishTime>
     </File>
     <File Include="Master.Master">
-      <publishTime>05/25/2022 12:49:53</publishTime>
+      <publishTime>06/03/2022 10:41:40</publishTime>
     </File>
     <File Include="Notarios.aspx">
-      <publishTime>05/31/2022 09:57:34</publishTime>
+      <publishTime>06/13/2022 17:26:25</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>05/31/2022 10:04:30</publishTime>
+      <publishTime>06/14/2022 09:20:55</publishTime>
     </File>
     <File Include="Web.config">
       <publishTime>05/31/2022 10:04:29</publishTime>

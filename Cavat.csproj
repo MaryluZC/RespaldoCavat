@@ -106,6 +106,7 @@
     </None>
     <Content Include="css\Admin.css" />
     <Content Include="css\notarios.css" />
+    <Content Include="css\styleLoader.css" />
     <Content Include="Default.aspx" />
     <Content Include="img\add.png" />
     <Content Include="img\ask.png" />
@@ -124,18 +125,12 @@
     <Content Include="img\conservacion\estadoRegular.jpg" />
     <Content Include="img\conservacion\mala.JPG" />
     <Content Include="img\fnd.png" />
-    <Content Include="img\fondo.png" />
-    <Content Include="img\fondo1.png" />
     <Content Include="img\fondo2.png" />
     <Content Include="img\IRCEP transparente.png" />
     <Content Include="img\lgo.png" />
-    <Content Include="img\logo.png" />
-    <Content Include="img\logo1.png" />
-    <Content Include="img\logo2.png" />
     <Content Include="img\logoCavat.png" />
     <Content Include="img\logoCAVAT1.png" />
     <Content Include="img\logoGOBSNF.png" />
-    <Content Include="img\logoSivaluc.png" />
     <Content Include="img\mapa.tif" />
     <Content Include="img\mundo.gif" />
     <Content Include="img\mundo1.gif" />
@@ -183,6 +178,7 @@
     <Content Include="img\relieve\Nivel.png" />
     <Content Include="img\sali1.png" />
     <Content Include="img\salir.png" />
+    <Content Include="img\terminar.png" />
     <Content Include="img\ubiMan\btnCabeceraManzana.png" />
     <Content Include="img\ubiMan\btnCNAccesoPropio.png" />
     <Content Include="img\ubiMan\btnEsquina.png" />
@@ -229,6 +225,7 @@
     <Content Include="jquery.maskedinput-master\spec\Setup.Spec.js" />
     <Content Include="jquery.maskedinput-master\spec\Typing.Spec.js" />
     <Content Include="jquery.maskedinput-master\src\jquery.maskedinput.js" />
+    <Content Include="js\Loader.js" />
     <Content Include="js\mensajes.js" />
     <Content Include="js\Modals.js" />
     <Content Include="js\Valida.js" />

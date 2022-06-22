@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Cavat.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
-    <div class="container-fluid d-flex" style="background-image: url(img/fnd.png); background-repeat: no-repeat; background-position: center center; background-size: cover; height: 100vh;">
+    <div class="container-fluid d-flex hidden" style="background-image: url(img/fnd.png); background-repeat: no-repeat; background-position: center center; background-size: cover; height: 100vh;">
         <div class="container-fluid d-flex" > 
             <div class="row align-items-center justify-content-center m-5" >
                 <div class="col-6 col-sm-4 col-md-4">
@@ -148,7 +148,7 @@
     </div>
 
     <%--MODAL TERMINOS Y CONDICIONES--%>
-    <div class="modal fade" id="ModalTerminosCondiciones" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabe3" aria-hidden="true">
+    <div class="modal fade hidden" id="ModalTerminosCondiciones" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabe3" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header text-white" style="background: rgb(86,75,75);">
@@ -157,7 +157,6 @@
                 </div>
                 <div class="modal-body">
                     <div class="row align-content-center text-align-justify" style="padding:3rem;">
-
                        <div  class="rounded mx-auto d-block" style="width:90%; background:rgba(212, 203, 198 ,0.7); padding:1rem; align-content:center;">
                             “Términos y Condiciones” es el documento que rige la relación contractual entre el proveedor de un servicio y el usuario. En la web, este documento a menudo también se denomina “Condiciones de servicio” (ToS), “Condiciones de uso”, EULA (“Acuerdo de licencia de usuario final”), “Condiciones generales” o “Notas legales”.
                             Los Términos y Condiciones no son más que un contrato en el que el titular aclara las condiciones de uso de su servicio. Algunos ejemplos son el uso del contenido (derechos de autor), las reglas que los usuarios deben seguir mientras interactúan entre sí en el sitio web/app, las reglas relacionadas con la cancelación o suspensión de la cuenta de un usuario, etc.

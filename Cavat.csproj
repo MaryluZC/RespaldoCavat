@@ -98,6 +98,8 @@
     <Content Include="Connected Services\ServiceCavat\Cavat.ServiceCavat.wRespuesta.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Comprobantes\CONSTANCIA_000042.pdf" />
+    <Content Include="Comprobantes\TutorialPython2.pdf" />
     <None Include="Connected Services\ServiceCavat\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceCavat\configuration.svcinfo" />
     <None Include="Connected Services\ServiceCavat\Reference.svcmap">
@@ -191,6 +193,7 @@
     <Content Include="img\ubiRu\CaminoRuralconEstructuradeTerraceriaTransitableTAno.jpg" />
     <Content Include="img\ubiRu\caminovecinalTransitable.png" />
     <Content Include="img\ubiRu\carretera[Pavimentada.png" />
+    <Content Include="img\pdf.png" />
     <Content Include="img\ubiRu\PredioInterDerechoPiso.png" />
     <Content Include="img\ubiRu\PredioInterSNDerechoPiso.png" />
     <Content Include="jquery.maskedinput-master\.gitignore" />
@@ -250,6 +253,7 @@
     <Compile Include="data\LoginCavat.cs" />
     <Compile Include="data\SenMail.cs" />
     <Compile Include="data\UserDAo.cs" />
+    <Compile Include="datos.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -355,6 +359,12 @@
       <Project>{94ecd536-eba6-4573-8bfb-c9b4e08f4353}</Project>
       <Name>InfoUsuarios</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Reportes\reporteCavat.rdlc" />
+    <EmbeddedResource Include="Reportes\reporteCavatUrbano.rdlc" />
+    <EmbeddedResource Include="Reportes\reporteRustico.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

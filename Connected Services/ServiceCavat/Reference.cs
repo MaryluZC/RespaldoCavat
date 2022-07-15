@@ -436,6 +436,12 @@ namespace Cavat.ServiceCavat {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/ResgistroUser", ReplyAction="http://tempuri.org/IServiceCavat/ResgistroUserResponse")]
         System.Threading.Tasks.Task<int> ResgistroUserAsync(Cavat.ServiceCavat.Registro reg);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatalogo", ReplyAction="http://tempuri.org/IServiceCavat/VerCatalogoResponse")]
+        Cavat.ServiceCavat.wRespuesta VerCatalogo(int opc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatalogo", ReplyAction="http://tempuri.org/IServiceCavat/VerCatalogoResponse")]
+        System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatalogoAsync(int opc);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -479,6 +485,14 @@ namespace Cavat.ServiceCavat {
         
         public System.Threading.Tasks.Task<int> ResgistroUserAsync(Cavat.ServiceCavat.Registro reg) {
             return base.Channel.ResgistroUserAsync(reg);
+        }
+        
+        public Cavat.ServiceCavat.wRespuesta VerCatalogo(int opc) {
+            return base.Channel.VerCatalogo(opc);
+        }
+        
+        public System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatalogoAsync(int opc) {
+            return base.Channel.VerCatalogoAsync(opc);
         }
     }
 }

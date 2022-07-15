@@ -55,9 +55,9 @@
 
 
             <asp:ContentPlaceHolder ID="Footer" runat="server">
-                <footer style="position: relative; bottom: 0px; background: rgb(47 46 46); width: 100%; text-align: center;" class="vh-25 hidden">
+                <footer style="position: relative; bottom: 0px; background: rgb(47 46 46); width: 100%; text-align: center;" class="vh-25">
                     <%--margin-top:5rem;"--%>
-                    <div class="container text-white mx-auto my-auto">
+                    <div class="container text-white mx-auto my-auto hidden">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6  text-center" style="padding: 2em;">
                                 <div class="row text-center">
@@ -195,6 +195,7 @@
         <%--SWEETALERT--%>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script src="js/mensajes.js"></script>
+        <script src="js/Modals.js"></script>
         <script src="js/Loader.js"></script>
     </form>
 </body>

@@ -18,7 +18,7 @@ namespace Cavat.data
             mail.Body = motivo;
 
             SmtpClient smtp = new SmtpClient();
-
+            // var smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com");
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.UseDefaultCredentials = false;//----
@@ -26,13 +26,13 @@ namespace Cavat.data
             smtp.EnableSsl = true;
             try
             {
-                smtp.Send(mail);
+                smtp.Send(mail);               
                 return 1;
             }
             catch (Exception ex)
             {
                 throw new Exception("No se ha podido enviar el email", ex.InnerException);
-                return -1;
+                //return -1;
             }
             finally
             {

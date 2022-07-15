@@ -1,4 +1,5 @@
-﻿using InfoUsuarios;
+﻿using Cavat.ServiceCavat;
+using InfoUsuarios;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -7,41 +8,16 @@ namespace Cavat.data
 {
     public class catalogos : ConnectionToString
     {
-        public DataTable Catalogo(int opc)
+        ServiceCavatClient swCavat = new ServiceCavatClient();
+        wRespuesta res = new wRespuesta();
+        resultado rs = new resultado();
+
+        public resultado Cataloggo(int opc)
         {
-            DataTable catPregunta = new DataTable();
-
-            int nresp = 0;
-            using (var connection = GetConnection())
-            {
-                try
-                {
-                    connection.Open();
-                    SqlCommand cmd = new SqlCommand("Catalogos", connection); //extra
-                    cmd.CommandType = CommandType.StoredProcedure; //extra
-                    SqlParameter returno = new SqlParameter();//extra
-                    returno.Direction = ParameterDirection.ReturnValue;
-                    cmd.Parameters.Add(returno);
-                    cmd.Parameters.AddWithValue("@opcion", opc);
-
-                    object result = cmd.ExecuteScalar();
-                    connection.Close();
-                    mnsg.mensaje = (int)returno.Value;
-                    nresp = mnsg.mensaje;
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    adapter.Fill(catPregunta);//para llenar una tabla 
-                    adapter.Dispose();
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
-                finally
-                {
-                    connection.Close();
-                }
-            }
-            return catPregunta;
+            res = swCavat.VerCatalogo(opc);//CONSUMO DE SERVICIO WEB
+            rs.mensaje = res.mensaje;
+            rs.elDataSet = res.elDataSet;
+            return rs;
         }
 
         public DataTable CatLocalidad(int opc, int idMun)
@@ -119,7 +95,7 @@ namespace Cavat.data
             }
             return catPregunta;
         }
-        public DataTable CatClaseConstrucion(int opc, int id, string calidad)
+        public DataTable CatClaseConstrucion(int opc, string calidad, int id)
         {
             DataTable catPregunta = new DataTable();
 
@@ -136,7 +112,7 @@ namespace Cavat.data
                     cmd.Parameters.Add(returno);
                     cmd.Parameters.AddWithValue("@opcion", opc);
                     cmd.Parameters.AddWithValue("@clasificacion", id);
-                    cmd.Parameters.AddWithValue("@tipoPre", calidad);
+                    cmd.Parameters.AddWithValue("@tipoConstriccion", calidad);
 
                     object result = cmd.ExecuteScalar();
                     connection.Close();

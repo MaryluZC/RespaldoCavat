@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 namespace Cavat
 {
     public partial class Admin : System.Web.UI.Page
@@ -13,28 +14,29 @@ namespace Cavat
         dataUser ifus = new dataUser();
         UserDAo user = new UserDAo();
         SenMail mail = new SenMail();
+        Catalogos catt = new Catalogos();//CAPA COMUN
+        Color colorVinoClaro = Color.FromArgb(171, 68, 104);
+        Color colorVinoOscuro = Color.FromArgb(89, 4, 34);
+        Color colorCafeClaro = Color.FromArgb(169, 150, 150);
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (ifus.user != string.Empty || ifus.user != null)
-            {
-                if (!IsPostBack)
-                {
-                    llenaRegistrosA();
-                    llenaSolReg();
-                    llenaSolCambioPsw();
-                    lnkHome.ForeColor = Color.FromArgb(171, 68, 104);
-                    lnkUserRegistrados.ForeColor = Color.FromArgb(89, 4, 34);
-                    lnkCambioPsw.ForeColor = Color.FromArgb(89, 4, 34);
-                    lblLetterOption.Text = "Solicitudes de Registro";
-                    lblUserAdm.Text = "Usuario: " + UserLoginCache.tipoUser;///Coloca el nombre del Usuario
-                    lblNombre.Text = "Nombre: " + UserLoginCache.nombre + " " + UserLoginCache.ape1 + " " + UserLoginCache.ape2;
-
-                }
-            }
-            else
+            if (UserLoginCache.nombre == string.Empty || UserLoginCache.nombre == null)
             {
                 Response.Redirect("Default.aspx");
             }
+            else
+            {
+                llenaRegistrosA();
+                llenaSolReg();
+                llenaSolCambioPsw();
+                lnkHome.ForeColor = colorVinoClaro;
+                lnkUserRegistrados.ForeColor = colorVinoOscuro;
+                lnkCambioPsw.ForeColor = colorVinoOscuro;
+                lblLetterOption.Text = "SOLICITUDES DE REGISTRO";
+                lblUserAdm.Text = "USUARIO: " + UserLoginCache.tipoUser;///Coloca el nombre del Usuario
+                lblNombre.Text = "NOMBRE: " + UserLoginCache.nombre + " " + UserLoginCache.ape1 + " " + UserLoginCache.ape2;
+            }
+
         }
         public void llenaRegistrosA()
         {
@@ -60,52 +62,55 @@ namespace Cavat
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            lnkHome.ForeColor = Color.FromArgb(171, 68, 104);
-            lnkUserRegistrados.ForeColor = Color.FromArgb(89, 4, 34);
-            lnkCambioPsw.ForeColor = Color.FromArgb(89, 4, 34);
-            lblLetterOption.Text = "Solicitudes de Registro";
+            lnkHome.ForeColor = colorVinoClaro;
+            lnkUserRegistrados.ForeColor = colorVinoOscuro;
+            lnkCambioPsw.ForeColor = colorVinoOscuro;
+            lblLetterOption.Text = "SOLICITUDES DE REGISTRO";
 
             GVSolicitudes.Visible = true;
             GVRegistrados.Visible = false;
             GVCambioPss.Visible = false;
             CambioPsw.Visible = false;
             ContenRegNewNotario.Visible = true;
+            CleanRegNuevNota();
         }
 
         protected void lnkUserRegistrados_Click(object sender, EventArgs e)
         {
-            lnkHome.ForeColor = Color.FromArgb(89, 4, 34);
-            lnkUserRegistrados.ForeColor = Color.FromArgb(171, 68, 104);
-            lnkCambioPsw.ForeColor = Color.FromArgb(89, 4, 34);
-            lblLetterOption.Text = "Usuarios Registrados";
+            lnkHome.ForeColor = colorVinoOscuro;
+            lnkUserRegistrados.ForeColor = colorVinoClaro;
+            lnkCambioPsw.ForeColor = colorVinoOscuro;
+            lblLetterOption.Text = "USUARIOS REGISTRADOS";
 
             GVSolicitudes.Visible = false;
             GVRegistrados.Visible = true;
             GVCambioPss.Visible = false;
             CambioPsw.Visible = false;
             ContenRegNewNotario.Visible = true;
+            CleanRegNuevNota();
         }
 
         protected void lnkCambioPsw_Click(object sender, EventArgs e)
         {
-            lnkHome.ForeColor = Color.FromArgb(89, 4, 34);
-            lnkUserRegistrados.ForeColor = Color.FromArgb(89, 4, 34);
-            lnkCambioPsw.ForeColor = Color.FromArgb(171, 68, 104);
-            lblLetterOption.Text = "Solicitudes de Cambio de Contraseña";
+            lnkHome.ForeColor = colorVinoOscuro;
+            lnkUserRegistrados.ForeColor = colorVinoOscuro;
+            lnkCambioPsw.ForeColor = colorVinoClaro;
+            lblLetterOption.Text = "SOLICITUDES DE CAMBIO DE CONTRASEÑA";
 
             GVSolicitudes.Visible = false;
             GVRegistrados.Visible = false;
             GVCambioPss.Visible = true;
             CambioPsw.Visible = true;
             ContenRegNewNotario.Visible = false;
+            CleanRegNuevNota();
         }
 
-        protected void btnAgregar_Click(object sender, EventArgs e)
+        protected void btnAgregar_Click(object sender, EventArgs e) ///Aprobar usuario 
         {
             if (txtNewUser.Text == String.Empty || txtNewPsw.Text == String.Empty)
             {
-                lblMsgAviso.Text = "Genere un usuario y contraseña para poder enviar el correo.";
-                lblMsgAviso.ForeColor = Color.FromArgb(169, 150, 150);
+                lblMsgAviso.Text = "GENERE UN USUARIO Y CONTRASEÑA PARA PODER ENVIAR EL CORREO DE APROBACIÓN.";
+                lblMsgAviso.ForeColor = colorCafeClaro;
             }
             else
             {
@@ -118,8 +123,8 @@ namespace Cavat
         {
             if (txtcorreo.Text == String.Empty || txtNewUser.Text == String.Empty)
             {
-                lblMsgAviso.Text = "(*) Verifique el el campo correo, usuario y contraseña no se encuentren vacios";
-                lblMsgAviso.ForeColor = Color.FromArgb(169, 150, 150);
+                lblMsgAviso.Text = "(*) VERIFIQUE QUE EL CAMPO; CORREO, USUARIO Y CONTRASEÑA NO ESTEN VACIOS.";
+                lblMsgAviso.ForeColor = colorCafeClaro;
             }
             else
             {
@@ -170,20 +175,19 @@ namespace Cavat
             {
                 if (txtMailCPSW.Text == String.Empty || txtUserCPSW.Text == String.Empty || txtNewCPSW.Text == String.Empty)
                 {
-                    lblMsgCPW.Text = "(*) Verifique que el campo correo, usuario o nueva contraseña no se encuentren vacios";
-                    lblMsgCPW.ForeColor = Color.FromArgb(169, 150, 150);
+                    lblMsgCPW.Text = "(*) VERIFIQUE QUE EL CAMPO; CORREO, USUARIO Y CONTRASEÑA NO ESTEN VACIOS.";
+                    lblMsgCPW.ForeColor = colorCafeClaro;
                 }
                 else
                 {
                     lblMsgCPW.Text = "";
-                    string body = "Su contraseña fue restaurada <br><br>" +
-                      "<b>Nueva Contraseña: </b>" + txtNewCPSW.Text;
-                    int val = mail.SendMail(txtMailCPSW.Text, body, "Contraseña Nueva CAVAT");
+                    string body = "SU CONTRASEÑA SE RESTAURO CON EXITO<br><br>" +
+                      "<b>NUEVA CONTRASEÑA: " + txtNewCPSW.Text;
+                    int val = mail.SendMail(txtMailCPSW.Text, body, "RESTAURACIÓN DE CONTRASEÑA SISTEMA CAVAT");
                     string mensaje = "";
                     if (val == 1)
                     {
                         int v = user.ChangePass(txtNewCPSW.Text, 7, txtUserCPSW.Text); //debe la contraseña.
-
                         if (v == 7)
                         {
                             CleanRegNuevNota();//Limpia las cajas de texto
@@ -242,6 +246,22 @@ namespace Cavat
                     txtNotaria.Text = GVSolicitudes.Rows[ind].Cells[11].Text;
                     txtTipoUser.Text = GVSolicitudes.Rows[ind].Cells[15].Text;
                     txtComprobante.Text = GVSolicitudes.Rows[ind].Cells[16].Text;
+                }
+                else if (e.CommandName == "viewPdf")
+                {
+                    int ind = int.Parse(e.CommandArgument.ToString());
+                    string cedula = GVSolicitudes.Rows[ind].Cells[7].Text;
+                    DataTable dt = new DataTable();
+                    dt = catt.nombreDocumento(8, cedula);
+                    string nombreSoc = dt.Rows[0][0].ToString();
+                    if (nombreSoc != "No Aplica")
+                    {
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenModalViewPdf('" + nombreSoc + "')", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','EL USUARIO NO CUENTA CON DOCUMENTO')", true);
+                    }
 
                 }
             }
@@ -261,25 +281,27 @@ namespace Cavat
 
         protected void GVRegistrados_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            try
+            if (IsPostBack)
             {
-                //asignacion de los parametros,obtenidos de la variable e qe es argumento del método.
-                string nombre = e.NewValues[0].ToString();
-                string ape1 = e.NewValues[1].ToString();
-                string ape2 = e.NewValues[2].ToString();
-                string correo = e.NewValues[3].ToString();
-                string Pss = e.NewValues[5].ToString();
-                string cedula = e.NewValues[6].ToString();
-                string telcel = e.NewValues[7].ToString();
-                //    string telcel = GVRegistrados.Rows[ind].Cells[10].Text;
-                //Sellama al SP para editar la informacion 
-                int v = user.ChangeInfoUserr(nombre, ape1, ape2, correo, Pss, cedula, telcel, 1);
-                GVRegistrados.EditIndex = -1;
-                llenaRegistrosA();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    //asignacion de los parametros,obtenidos de la variable e qe es argumento del método.
+                    string nombre = e.NewValues[0].ToString();
+                    string ape1 = e.NewValues[1].ToString();
+                    string ape2 = e.NewValues[2].ToString();
+                    string correo = e.NewValues[3].ToString();
+                    string Pss = e.NewValues[5].ToString();
+                    string cedula = e.NewValues[6].ToString();
+                    string telcel = e.NewValues[7].ToString();
+                    //Sellama al SP para editar la informacion 
+                    int v = user.ChangeInfoUserr(nombre, ape1, ape2, correo, Pss, cedula, telcel, 1);
+                    GVRegistrados.EditIndex = -1;
+                    llenaRegistrosA();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 
@@ -316,24 +338,24 @@ namespace Cavat
             string mensaje = "";
             if (txtCausaRechazo.Text == string.Empty)
             {
-                mensaje = "El motivo de causa de rechazo no debe estar vacío. Intente Nuevamente";
+                mensaje = "EL MOTIVO DE CAUSA DE RECHAZO NO DEBE IR EN BLANCO, INTENTELO NUEVAMENTE.";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
                 CleanRegNuevNota();//Limpia las cajas de texto
             }
             else
             {
 
-                mail.SendMail(txtcorreo.Text, txtCausaRechazo.Text, "Rechazo de Solicitud Portal Notarial Cavat");
+                mail.SendMail(txtcorreo.Text, txtCausaRechazo.Text, "RECHAZO DE SOLICITUD PORTAL NOTARIAL CAVAT");
                 int v1 = user.DeleteUserr(txtCedulaP.Text, 5);
                 if (v1 == 8)
                 {
-                    mensaje = "Se Elimino la Solicitud";
+                    mensaje = "SE ELIMINO LA SOLICITUD";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
                     CleanRegNuevNota();//Limpia las cajas de texto
                 }
                 else
                 {
-                    mensaje = "No Puedo Eliminar la Solicitud";
+                    mensaje = "NO SE PUDO ELIMINAR LA SOLICITUD, INTENTELO MÁS TARDE.";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
                     CleanRegNuevNota();//Limpia las cajas de texto
                 }
@@ -349,8 +371,8 @@ namespace Cavat
             var r1 = random.Next(1, 999);
             if (txtNombre.Text == String.Empty || txtApe1.Text == String.Empty)
             {
-                lblMsgAviso.Text = "No se puede generar el usuario. Selecciona fila de la tabla";
-                lblMsgAviso.ForeColor = Color.FromArgb(169, 150, 150);
+                lblMsgAviso.Text = "NO SE PUEDE GENERAR EL USUARIO. SELECCIONE UN REGISTRO DE LA TABLA";
+                lblMsgAviso.ForeColor = colorCafeClaro;
             }
             else
             {
@@ -372,14 +394,12 @@ namespace Cavat
             string sig = "%$#@&/.";
             char letra;
             string contAle = string.Empty;
-
             for (int i = 0; contAle.Length < 6; i++)
             {
                 letra = cad[random.Next(cad.Length)];
                 var k = sig[random.Next(sig.Length)];
                 contAle += letra.ToString() + k.ToString();
             }
-
             return contAle;
         }
 
@@ -397,20 +417,20 @@ namespace Cavat
 
                     if (v == 9)
                     {
-                        mensaje = "Correo Enviado";
+                        mensaje = "CORREO ENVIADO";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
                         CleanRegNuevNota();//Limpia las cajas de texto
                     }
                     else
                     {
-                        mensaje = "No Puedo Enviar el Correo";
+                        mensaje = "NO SE PUDO ENVIAR EL CORREO";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
                         CleanRegNuevNota();//Limpia las cajas de texto
                     }
                 }
                 else
                 {
-                    mensaje = "No Puedo Enviar el Correo";
+                    mensaje = "NO SE PUDO ENVIAR EL CORREO";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
                     CleanRegNuevNota();//Limpia las cajas de texto
                 }
@@ -421,6 +441,12 @@ namespace Cavat
             }
         }
 
-
+        protected void btnCPSW_Click(object sender, EventArgs e)
+        {
+            if (txtNombreCPSW.Text == string.Empty || txtMailCPSW.Text == string.Empty || txtApe1CPSW.Text == string.Empty || txtUserCPSW.Text == string.Empty)
+                lblMsgCPW.Text = "(*) VERIFIQUE QUE EL CAMPO; CORREO, USUARIO Y CONTRASEÑA NO ESTEN VACIOS.";
+            lblMsgCPW.ForeColor = colorCafeClaro;
+            txtNewCPSW.Text = GeneraPsw();
+        }
     }
 }

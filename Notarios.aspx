@@ -26,7 +26,7 @@
                         <div class="row mx-3 border-top-0" style="background: rgb(214 215 213 / 0.50); text-align: right; border: inset; border-top: none; border-bottom: none;">
                             <div class="col my-auto">
                                 <h5 style="font-weight: bold; color: white; text-align: center;">
-                                    <asp:Label ID="lblValorFactorTerreno" runat="server" Text="0"></asp:Label>
+                                    <asp:Label ID="lblValorFactorTerreno" runat="server" Text="$ 0"></asp:Label>
                                 </h5>
                             </div>
                             <div class="col my-auto " style="text-align: center;">
@@ -34,7 +34,7 @@
                             </div>
                             <div class="col my-auto" style="text-align: center;">
                                 <h5 style="font-weight: bold; color: white; text-align: center;">
-                                    <asp:Label ID="lblValorFactorconstruccion" runat="server" Text="0"></asp:Label>
+                                    <asp:Label ID="lblValorFactorconstruccion" runat="server" Text="$ 0"></asp:Label>
                                 </h5>
                             </div>
                             <div class="col my-auto " style="text-align: center;">
@@ -42,14 +42,18 @@
                             </div>
                             <div class="col my-auto" style="text-align: center;">
                                 <h5 style="font-weight: bold; color: white; text-align: center;">
-                                    <asp:Label ID="lblValorFactorObraCom" runat="server" Text="0"></asp:Label>
+                                    <asp:Label ID="lblValorFactorObraCom" runat="server" Text="$ 0"></asp:Label>
                                 </h5>
                             </div>
                         </div>
 
                         <div class="row rounded-bottom mx-3" style="background: rgb(214 215 213 / 0.50); text-align: right; border: inset; border-top: none;">
                             <hr style="background: white; width: 100%; height: 0.1rem; margin-bottom: 1rem; text-align: center;" />
-                            <p style="font-weight: bold; color: white; text-align: right;">TOTAL: </p>
+                             <asp:UpdatePanel runat="server" ID="UpdatePanel10" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                            <p style="font-weight: bold; color: white; text-align: right;">TOTAL  <asp:Label ID="lblVALORTOTAL" runat="server" Text="$ 0.00"></asp:Label></p>  
+                             </ContentTemplate>
+                                </asp:UpdatePanel>
                         </div>
 
                         <div class="row border-bottom-0 border border-2 rounded-2 m-5" style="border: red 3px inset;">
@@ -71,11 +75,14 @@
                                 <p style="font-size: 1rem; color: gray; font-weight: bold; text-align: center;">Factor Construcción</p>
                             </div>
                             <div class="col  mx-auto" style="padding: 1rem; text-align: center; align-content: center;">
-                                <asp:UpdatePanel runat="server" ID="UpdatePanel3" UpdateMode="Conditional">
-                                    <ContentTemplate>
-                                        <asp:Button ID="btnTerminar" Enabled="false" CssClass="btn " Style="background: #590422; width: 6em; height: 6em; color: white;" runat="server" Text="CALCULAR" /><%-- --%>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
+                             <%--   <asp:UpdatePanel runat="server" ID="UpdatePanel3" UpdateMode="Conditional">
+                                    <ContentTemplate>--%>
+                                        <asp:Button ID="btnTerminar" Enabled="false" CssClass="btn " Style="background: #590422; width: 6em; height: 6em; color: white;" runat="server" Text="CALCULAR" OnClick="btnTerminar_Click" /><%-- --%>
+                                 <%--   </ContentTemplate>
+                                    <Triggers>
+                                        <asp:PostBackTrigger ControlID="btnTerminar" />
+                                    </Triggers>
+                                </asp:UpdatePanel>--%>
                             </div>
                         </div>
                         <div class="row ">
@@ -229,7 +236,7 @@
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
                                             <div class="input-group mb-2">
                                                 <h6 style="font-size: 0.8em; text-align: left;">TIPO TERRENO</h6>
-                                                <asp:DropDownList ID="ddlTipoSRustico" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Style="display: inline-block; text-align: left;" AutoPostBack="true">
+                                                <asp:DropDownList ID="ddlTipoSRustico" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Style="display: inline-block; text-align: left;" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoSRustico_SelectedIndexChanged">
                                                     <%--OnSelectedIndexChanged="ddlTipoSRustico_SelectedIndexChanged"--%>
                                                 </asp:DropDownList>
                                                 <div class="input-group-prepend">
@@ -257,25 +264,27 @@
                                         </div>
                                     </div>
                                     <div class="row justify-content p-4">
+                                        
                                         <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-4 p-1">
                                             <h6 style="font-size: 0.8em; text-align: left;">DISTANCIA AL PREDIO</h6>
                                             <div class="input-group mb-2">
-                                                <asp:TextBox ID="txtDistanciaRustico" runat="server" CssClass="form-control w-50" Font-Size="Small" PlaceHolder="Distancia" ToolTip="Se refiere a la cercanía del predio que se está valuando con la infraestructura urbana y mercado de productos." onkeypress="return onlyNumbers(event);" Visible="true" OnTextChanged="txtDistanciaRustico_TextChanged"></asp:TextBox>
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text bg-transparent border-0">
-                                                        <asp:DropDownList ID="ddlDistanciaUDM" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split" Style="text-align: left;">
-                                                        </asp:DropDownList>
-                                                        <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalDisanciaRustico" style="display: inline-block; width: 1em; height: auto; border: none; background: none;">
-                                                            <img src="img/ask.png" style="width: 100%; height: auto;" />
-                                                        </button>
+                                                <asp:TextBox ID="txtDistanciaRustico" runat="server" CssClass="form-control w-50" Font-Size="Small" PlaceHolder="Distancia" ToolTip="Se refiere a la cercanía del predio que se está valuando con la infraestructura urbana y mercado de productos." onkeypress="return onlyDecimalNumber(event);" Visible="true" OnTextChanged="txtDistanciaRustico_TextChanged" AutoPostBack="true"></asp:TextBox>
+                                               <div class="input-group-prepend ">
+                                                    <div class="input-group-text" style="font-size: 0.8em;">
+                                                        <asp:RadioButtonList ID="RDBDistanciaPredio" runat="server" OnSelectedIndexChanged="RDBDistanciaPredio_SelectedIndexChanged" AutoPostBack="true" Font-Size="Small" RepeatLayout="Flow" Style="display: flex;">
+                                                            <asp:ListItem>m</asp:ListItem>
+                                                            <asp:ListItem>km</asp:ListItem>
+                                                        </asp:RadioButtonList>
                                                     </div>
-                                                </div>
+                                                    </div>
                                             </div>
                                         </div>
+
+
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
                                             <h6 style="font-size: 0.8em; text-align: left;">UBICACIÓN</h6>
                                             <div class="input-group mb-2">
-                                                <asp:DropDownList ID="ddlUbicaciónRustico" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Style="display: inline-block; text-align: left;" OnSelectedIndexChanged="ddlUbicaciónRustico_SelectedIndexChanged">
+                                                <asp:DropDownList ID="ddlUbicaciónRustico" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Style="display: inline-block; text-align: left;" OnSelectedIndexChanged="ddlUbicaciónRustico_SelectedIndexChanged" AutoPostBack="true">
                                                 </asp:DropDownList>
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text bg-transparent border-0">
@@ -293,119 +302,144 @@
                         </asp:UpdatePanel>
                         <%--CONTENEDOR PREDIOS URBANOS--%>
                         <div id="ContentUrbano" visible="false" runat="server">
-                            <div class="row justify-content p-4">
-                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1 ">
-                                    <h6 style="font-size: 0.8em; text-align: left;">USO DE SUELO</h6>
-                                    <div class="input-group mb-2">
-                                        <asp:DropDownList ID="ddlUsoSueloUrbano" runat="server" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Font-Size="Small" Style="text-align: left;" OnTextChanged="ddlUsoSueloUrbano_TextChanged"></asp:DropDownList>
-                                        <div class="input-group-prepend ">
-                                            <div class="input-group-text bg-transparent border-0">
-                                                <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalUsoSueloUrbano" font-size="Small" style="width: 1em; height: auto; border: none; background: none;">
-                                                    <img src="img/ask.png" style="width: 100%; height: auto;" />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1" style="display: inline-block;">
-                                    <h6 style="font-size: 0.8em; text-align: left;">SUPERFICIE</h6>
-                                    <div class="input-group mb-2">
-                                        <asp:TextBox ID="txtSuperficieUrbano" runat="server" CssClass="form-control" PlaceHolder="Superficie" Font-Size="Small" ToolTip="Se refiere a la cercanía del predio que se está valuando con la infraestructura urbana y mercado de productos." onkeypress="return onlyNumbers(event);" Style="display: inline-block" Visible="true" OnTextChanged="txtSuperficieUrbano_TextChanged"></asp:TextBox>
-                                        <div class="input-group-prepend ">
-                                            <div class="input-group-text bg-transparent border-0">
-                                                <label>m²</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1" style="display: block;">
-                                    <h6 style="font-size: 0.8em; text-align: left;">FRENTE</h6>
-                                    <div class="input-group mb-2">
-                                        <asp:TextBox ID="txtFrenterustico" runat="server" CssClass="form-control" PlaceHolder="Frente" Font-Size="Small" Style="display: inline-block" OnTextChanged="txtFrenterustico_TextChanged" AutoPostBack="true"></asp:TextBox>
-                                        <div class="input-group-prepend ">
-                                            <div class="input-group-text bg-transparent border-0">
-                                                <label>m</label>
-                                                <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalFRNETE" style="width: 1em; height: auto; border: none; background: none;">
-                                                    <img src="img/ask.png" style="width: 100%; height: auto;" />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>                              
-                            </div>                           
 
-                            <div class="row justify-content p-4" runat="server">                                   
-                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1" style="display: block; text-align:center;">
-                                    <h6 style="font-size: 0.8em; text-align: left;">¿PERTENECE A FRACCIONAMIENTO?</h6>
-                                    <asp:DropDownList ID="ddlPreguntaFraccionamiento" Enabled="false" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Style="display:flex; text-align:left;" AutoPostBack="true" OnTextChanged="ddlPreguntaFraccionamiento_TextChanged"></asp:DropDownList>
-                                </div>
-                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1" style="display: block;">
-                                    <h6 style="font-size: 0.8em; text-align: left;">PROFUNDIDAD</h6>
-                                    <div class="input-group mb-2">
-                                        <asp:TextBox ID="txtProfundidad" runat="server" CssClass="form-control form-control-sm w-50" PlaceHolder="Profundidad" Font-Size="Small" onkeypress="return onlyNumbers(event);" Style="display:inline-block" Visible="true" OnTextChanged="txtProfundidad_TextChanged"></asp:TextBox>
-                                        <div class="input-group-prepend ">
-                                            <div class="input-group-text bg-transparent border-0">
-                                                <label>m </label>
-                                                <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalFONDO" style="width: 1em; height: auto; border: none; background: none;">
-                                                    <img src="img/ask.png" style="width: 100%; height: auto;" />
-                                                </button>
+                            <asp:UpdatePanel runat="server" ID="UpdatePanel3" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <div class="row justify-content p-4">
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1 ">
+                                            <h6 style="font-size: 0.8em; text-align: left;">USO DE SUELO</h6>
+                                            <div class="input-group mb-2">
+                                                <asp:DropDownList ID="ddlUsoSueloUrbano" runat="server" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Font-Size="Small" Style="text-align: left;" OnTextChanged="ddlUsoSueloUrbano_TextChanged"></asp:DropDownList>
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text bg-transparent border-0">
+                                                        <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalUsoSueloUrbano" font-size="Small" style="width: 1em; height: auto; border: none; background: none;">
+                                                            <img src="img/ask.png" style="width: 100%; height: auto;" />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1" style="display: inline-block;">
+                                            <h6 style="font-size: 0.8em; text-align: left;">SUPERFICIE</h6>
+                                            <div class="input-group mb-2">
+                                                <asp:TextBox ID="txtSuperficieUrbano" runat="server" CssClass="form-control" PlaceHolder="Superficie" Font-Size="Small" ToolTip="Se refiere a la cercanía del predio que se está valuando con la infraestructura urbana y mercado de productos." onkeypress="return onlyDecimalNumber(event);" Style="display: inline-block" Visible="true" OnTextChanged="txtSuperficieUrbano_TextChanged"></asp:TextBox>
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text bg-transparent border-0">
+                                                        <label>m²</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1" style="display: block;">
+                                            <h6 style="font-size: 0.8em; text-align: left;">FRENTE</h6>
+                                            <div class="input-group mb-2">
+                                                <asp:TextBox ID="txtFrenterustico" runat="server" CssClass="form-control" PlaceHolder="Frente" Font-Size="Small" onkeypress="return onlyDecimalNumber(event);" Style="display: inline-block" OnTextChanged="txtFrenterustico_TextChanged" AutoPostBack="true"></asp:TextBox>
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text bg-transparent border-0">
+                                                        <label>m</label>
+                                                        <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalFRNETE" style="width: 1em; height: auto; border: none; background: none;">
+                                                            <img src="img/ask.png" style="width: 100%; height: auto;" />
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
-                                    <h6 style="font-size: 0.8em; text-align: left;">DESNIVEL</h6>
-                                    <asp:DropDownList ID="ddlDesnivelUrbano" runat="server" CssClass="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split w-75" Font-Size="Small" Style="display:flex; text-align: left;" OnSelectedIndexChanged="ddlDesnivelUrbano_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                </div>                                
-                            </div>
-                            <div class="row justify-content p-4"> 
-                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
-                                    <h6 style="font-size: 0.8em; text-align: left;">TIPO DESNIVEL</h6>
-                                    <div class="input-group mb-2">
-                                        <asp:DropDownList ID="ddlTipoDesnivelUrbano" Enabled="false" Font-Size="Small" runat="server" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Style="text-align: left;" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoDesnivelUrbano_SelectedIndexChanged"></asp:DropDownList>
-                                        <div class="input-group-prepend ">
-                                            <div class="input-group-text bg-transparent border-0">
-                                                <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalTipoDesnivelUrbano" style="width: 1em; height: auto; border: none; background: none;">
-                                                    <img src="img/ask.png" style="width: 100%; height: auto;" />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
-                                    <h6 style="font-size: 0.8em; text-align: left;">UBICACION EN MANZANA</h6>
-                                    <div class="input-group mb-2">
-                                        <asp:DropDownList ID="ddlUbicacionManzana" runat="server" CssClass="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split w-75" Font-Size="Small" Style="text-align: left;" OnSelectedIndexChanged="ddlUbicacionManzana_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                        <div class="input-group-prepend ">
-                                            <div class="input-group-text bg-transparent border-0">
-                                                <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalUbicaManzana" style="width: 1em; height: auto; border: none; background: none;">
-                                                    <img src="img/ask.png" style="width: 100%; height: auto;" />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
-                                    <h6 style="font-size: 0.8em; text-align: left;">VIALIDADES COLINDANTES</h6>
-                                    <asp:DropDownList ID="ddlTipoVialidad" Enabled="false" runat="server" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Font-Size="Small" Style="display:flex; text-align: left;" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoVialidad_SelectedIndexChanged"></asp:DropDownList>
-                                </div>
-                            </div>    
 
-                            <div class="row justify-content p-4">
-                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1" >
-                                    <h6 style="font-size: 0.8em; text-align: left;">ESQINAS TOTALES</h6>
-                                    <asp:TextBox ID="txtNoTotalEsquinas" Enabled="false" runat="server" CssClass="form-control w-75" Font-Size="Small" PlaceHolder="No de Esquinas totales" ToolTip="debe ingresar el numero de esquinas que rodea el predio" onkeypress="return onlyNumbers(event);" Visible="true" OnTextChanged="txtNoTotalEsquinas_TextChanged"></asp:TextBox>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1" >
-                                    <h6 style="font-size: 0.8em; text-align: left;">ANGULO ESQINAS</h6>
-                                    <asp:TextBox ID="txtAnguloEsquinas" Enabled="false" runat="server" CssClass="form-control w-75" Font-Size="Small" PlaceHolder="Ándulo de las esquinas" ToolTip="debe ingresar el numero de esquinas que rodea el predio" onkeypress="return onlyNumbers(event);" Visible="true" OnTextChanged="txtAnguloEsquinas_TextChanged"></asp:TextBox>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1" >
-                                    <h6 style="font-size: 0.8em; text-align: left;">ESQUINAS COLINDANTES CON VIALIDAD</h6>
-                                    <asp:TextBox ID="txtNoEsquinasColinVialidad" Enabled="false" runat="server" CssClass="form-control w-75" PlaceHolder="Cuantas esquinas colindan con el tipo  de vialidad seleccionado" Font-Size="Small" ToolTip="debe ingresar el numero de esquinas que rodea el predio" onkeypress="return onlyNumbers(event);" Visible="true" OnTextChanged="txtNoEsquinasColinVialidad_TextChanged"></asp:TextBox>
-                                </div>
-                            </div>
+                                    <div class="row justify-content p-4" runat="server">
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1" style="display: block; text-align: center;">
+                                            <h6 style="font-size: 0.8em; text-align: left;">¿PERTENECE A FRACCIONAMIENTO?</h6>
+                                            <asp:DropDownList ID="ddlPreguntaFraccionamiento" Enabled="false" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Style="display: flex; text-align: left;" AutoPostBack="true" OnTextChanged="ddlPreguntaFraccionamiento_TextChanged"></asp:DropDownList>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1" style="display: block;">
+                                            <h6 style="font-size: 0.8em; text-align: left;">PROFUNDIDAD</h6>
+                                            <div class="input-group mb-2">
+                                                <asp:TextBox ID="txtProfundidad" runat="server" CssClass="form-control form-control-sm w-50" PlaceHolder="Profundidad" Font-Size="Small" onkeypress="return onlyDecimalNumber(event);" Style="display: inline-block" Visible="true" OnTextChanged="txtProfundidad_TextChanged"></asp:TextBox>
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text bg-transparent border-0">
+                                                        <label>m </label>
+                                                        <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalFONDO" style="width: 1em; height: auto; border: none; background: none;">
+                                                            <img src="img/ask.png" style="width: 100%; height: auto;" />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
+                                            <h6 style="font-size: 0.8em; text-align: left;">DESNIVEL</h6>
+                                            <asp:DropDownList ID="ddlDesnivelUrbano" runat="server" CssClass="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split w-75" Font-Size="Small" Style="display: flex; text-align: left;" OnSelectedIndexChanged="ddlDesnivelUrbano_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row justify-content p-4">
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
+                                            <h6 style="font-size: 0.8em; text-align: left;">TIPO DESNIVEL</h6>
+                                            <div class="input-group mb-2">
+                                                <asp:DropDownList ID="ddlTipoDesnivelUrbano" Enabled="false" Font-Size="Small" runat="server" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Style="text-align: left;" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoDesnivelUrbano_SelectedIndexChanged"></asp:DropDownList>
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text bg-transparent border-0">
+                                                        <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalTipoDesnivelUrbano" style="width: 1em; height: auto; border: none; background: none;">
+                                                            <img src="img/ask.png" style="width: 100%; height: auto;" />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
+                                            <h6 style="font-size: 0.8em; text-align: left;">UBICACION EN MANZANA</h6>
+                                            <div class="input-group mb-2">
+                                                <asp:DropDownList ID="ddlUbicacionManzana" runat="server" CssClass="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split w-75" Font-Size="Small" Style="text-align: left;" OnSelectedIndexChanged="ddlUbicacionManzana_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text bg-transparent border-0">
+                                                        <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalUbicaManzana" style="width: 1em; height: auto; border: none; background: none;">
+                                                            <img src="img/ask.png" style="width: 100%; height: auto;" />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
+                                            <h6 style="font-size: 0.8em; text-align: left;">VIALIDADES COLINDANTES</h6>
+                                            <asp:DropDownList ID="ddlTipoVialidad" Enabled="false" runat="server" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Font-Size="Small" Style="display: flex; text-align: left;" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoVialidad_SelectedIndexChanged"></asp:DropDownList>
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content p-4">
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
+                                            <h6 style="font-size: 0.8em; text-align: left;">ESQUINAS TOTALES</h6>
+                                            <asp:TextBox ID="txtNoTotalEsquinas" Enabled="false" runat="server" CssClass="form-control w-75" Font-Size="Small" PlaceHolder="No de Esquinas totales" ToolTip="debe ingresar el numero de esquinas que rodea el predio" onkeypress="return onlyNumbers(event);" Visible="true" OnTextChanged="txtNoTotalEsquinas_TextChanged"></asp:TextBox>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
+                                            <h6 style="font-size: 0.8em; text-align: left;">ANGULO ESQUINAS</h6>
+                                            <asp:TextBox ID="txtAnguloEsquinas" Enabled="false" runat="server" CssClass="form-control w-75" Font-Size="Small" PlaceHolder="Ándulo de las esquinas" ToolTip="debe ingresar el numero de esquinas que rodea el predio" onkeypress="return onlyNumbers(event);" Visible="true" OnTextChanged="txtAnguloEsquinas_TextChanged"></asp:TextBox>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
+                                            <h6 style="font-size: 0.8em; text-align: left;">ESQUINAS COLINDANTES CON VIALIDAD</h6>
+                                            <asp:TextBox ID="txtNoEsquinasColinVialidad" Enabled="false" runat="server" CssClass="form-control w-75" PlaceHolder="Cuantas esquinas colindan con el tipo  de vialidad seleccionado" Font-Size="Small" ToolTip="debe ingresar el numero de esquinas que rodea el predio" onkeypress="return onlyNumbers(event);" Visible="true" OnTextChanged="txtNoEsquinasColinVialidad_TextChanged"></asp:TextBox>
+                                        </div>
+                                    </div>
+
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="ddlUsoSueloUrbano" />
+                                    <asp:AsyncPostBackTrigger ControlID="txtSuperficieUrbano" />
+                                    <asp:AsyncPostBackTrigger ControlID="txtFrenterustico" />
+                                    <asp:AsyncPostBackTrigger ControlID="ddlPreguntaFraccionamiento" />
+                                    <asp:AsyncPostBackTrigger ControlID="ddlDesnivelUrbano" />
+                                    <asp:AsyncPostBackTrigger ControlID="ddlTipoDesnivelUrbano" />
+                                    <asp:AsyncPostBackTrigger ControlID="ddlUbicacionManzana" />
+                                    <asp:AsyncPostBackTrigger ControlID="ddlTipoVialidad" />
+                                    <asp:AsyncPostBackTrigger ControlID="txtNoTotalEsquinas" />
+                                    <asp:AsyncPostBackTrigger ControlID="txtAnguloEsquinas" />
+                                    <asp:AsyncPostBackTrigger ControlID="txtNoEsquinasColinVialidad" />
+                                </Triggers>
+                            </asp:UpdatePanel>
+
+
+
                         </div>
                         <%-- *************** PREGUNTA SI TIENE CONSTRUCCION *****************--%>
                         <div class="row bg-in" style="padding-top: 1rem;">
@@ -451,15 +485,15 @@
 
                     <%-- TERMINA CONTENEDOR FACTOR TERREBO--%>
                     <%-- *************** FACTORES CONSTRUCCIÓN *****************--%>
-                    <div class="container rounded" style="background: #D6D7D5; margin-right: 1rem; padding: 2rem; height: 40rem; overflow-y: auto; overflow-x: hidden;" id="FactorConstruccion" visible="false" runat="server">
+                    <div class="container rounded" style="background: #D6D7D5; margin-right: 1rem; padding: 2rem; height: 40rem; overflow-y: auto; " id="FactorConstruccion" visible="false" runat="server">
                         <h4>FACTOR CONSTRUCCIÓN</h4>
                         <%--    <hr style="background: rgb(128 128 128); width: 100%; height: 0.1rem; margin-top: 1rem;" />--%>
                         <hr style="background: #A71A35; width: 100%; height: 0.2rem; margin-top: 1rem;" />
                         <div class="container">                           
-                            <div class="row bg-danger" style="padding: 1.5rem;">
+                            <div class="row bg-danger" >
                                 <asp:UpdatePanel runat="server" ID="UpdatePanel5" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:GridView ID="GVConstrucciones" runat="server" DataKeyNames="AvanceObra" EmptyDataText="No elementos para mostrar." HeaderStyle-Font-Size="Small" EditRowStyle-Font-Size="Smaller" BorderColor="#CCCCCC" BorderStyle="None" CaptionAlign="Top" CssClass="table table-responsive" AutoGenerateColumns="False" AllowPaging="True" Font-Size="X-Small" PagerStyle-BackColor="White" Width="100%" OnRowCommand="GVConstrucciones_RowCommand">
+                                        <asp:GridView ID="GVConstrucciones" runat="server" Style="width:100%;" DataKeyNames="AvanceObra" EmptyDataText="No elementos para mostrar." HeaderStyle-Font-Size="Small" EditRowStyle-Font-Size="Smaller" BorderColor="#CCCCCC" BorderStyle="None" CaptionAlign="Top" CssClass="table table-responsive" AutoGenerateColumns="False" AllowPaging="True" Font-Size="X-Small" PagerStyle-BackColor="White" Width="100%" OnRowCommand="GVConstrucciones_RowCommand">
                                             <AlternatingRowStyle BackColor="#F2E7EB" />
                                             <Columns>
                                                 <asp:ButtonField ButtonType="Image" CommandName="eliminar" ImageUrl="~/img/backspace.png">
@@ -645,14 +679,22 @@
                                             <asp:AsyncPostBackTrigger ControlID="RadBtnCondominio" />
                                         </Triggers>
                                     </asp:UpdatePanel>
-                                    <div class="row" style="padding: 1.5rem;">
-                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1"></div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-1"></div>
-                                        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 p-1 text-left">
-                                            <asp:Button ID="btnAddList" runat="server" CssClass="btn btn-sm" Style="background: #570E25; color: white;" Text="AGREGAR REGISTRO" OnClick="btnAddList_Click" />
-                                        </div>
-                                    </div>
 
+                                    <asp:UpdatePanel runat="server" ID="UpdatePanel6" UpdateMode="Conditional">
+                                        <ContentTemplate>
+                                            <div class="row" style="padding: 1.5rem;">
+
+                                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1"></div>
+                                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-1"></div>
+                                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 p-1 text-left">
+                                                    <asp:Button ID="btnAddList" runat="server" CssClass="btn btn-sm" Style="background: #570E25; color: white;" Text="AGREGAR REGISTRO" OnClick="btnAddList_Click" />
+                                                </div>
+                                            </div>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:PostBackTrigger ControlID="btnAddList" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
 
                                 </div>
 
@@ -948,56 +990,88 @@
                     <div class="row">
                         <div class="row" style="padding: 1rem;">
                             <div class="col-md-6">
-                                <img src="img/predio/rustico/agricola.png" class="muestaImg" style="width: 70%; height: auto;" />
+                                <img src="img/predio/urbano/habitacional.png" class="muestaImg" style="width: 70%; height: auto;" />
                             </div>
                             <div class="col-md-6">
                                 <h5>Habitacional</h5>
-                                <p>WQEASASDASFSFDGFASDASDASDASDSADASDASDASDASDSADASDASDSADa</p>
+                                <p>Lugar en donde se agrupan casas o edificios de departamentos listos para ocuparse por una o varias familias.
+                                    Dependiendo del tipo de construcción.
+                                </p>
                             </div>
                         </div>
                         <div class="row" style="padding: 1rem;">
                             <div class="col-md-6">
-                                <img src="img/predio/rustico/ganadero.png" class="muestaImg" style="width: 70%; height: auto;" />
+                                <img src="img/predio/urbano/comercialAlta.png" class="muestaImg" style="width: 70%; height: auto;" />
                             </div>
                             <div class="col-md-6">
                                 <h5>Comercial Alta (Subsuelos Urbanos o Centros Comerciales) </h5>
-                                <p>WQEASASDASFSFDGFASDASDASDASDSADASDASDASDASDSADASDASDSADa</p>
+                                <p>Grandes edificios horizontales realizados con estructura metálica o de concreto armado, diseñados para alojar 
+                                    gran cantidad de locales comerciales y dos tiendas ancla, en los cuales la estructura y en general el sistema
+                                    constructivo son de lo más novedoso y los acabados de primera calidad. Los sistemas constructivos interiores 
+                                    por lo regular son prefabricados, de rápido montaje y limpieza total en acabados.</p>
                             </div>
                         </div>
                         <div class="row" style="padding: 1rem;">
                             <div class="col-md-6">
-                                <img src="img/predio/rustico/forestal.png" class="muestaImg" style="width: 70%; height: auto;" />
+                                <img src="img/predio/urbano/comercialMedia.png" class="muestaImg" style="width: 70%; height: auto;" />
                             </div>
                             <div class="col-md-6">
                                 <h5>Comercial Media </h5>
-                                <p>WQEASASDASFSFDGFASDASDASDASDSADASDASDASDASDSADASDASDSADa</p>
+                                <p>Son inmuebles destinados a la venta de productos como ropa, calzado y accesorios, aunque también estos centros
+                                    comerciales cuentan con tiendas de autoservicio (supermercados). La estructura por lo regular es de concreto
+                                    armado, combinada en algunas partes con estructura metálica. Los acabados son de buena calidad, aunque sin 
+                                    llegar al lujo. Las instalaciones especiales permiten crear ambientes agradables. Regularmente la luz se capta
+                                    cenitalmente o con luz artificial. Entre la obras complementarias encontramos los estacionamientos que se 
+                                    realizan anexos al inmueble, los cuales se evalúan de acuerdo a sus propias características. Este tipo de
+                                    inmuebles se ubica principalmente sobre vialidades primarias con comercialidad.</p>
                             </div>
                         </div>
                         <div class="row" style="padding: 1rem;">
                             <div class="col-md-6">
-                                <img src="img/predio/rustico/extraccion.png" class="muestaImg" style="width: 70%; height: auto;" />
+                                <img src="img/predio/urbano/comercialBaja.png" class="muestaImg" style="width: 70%; height: auto;" />
                             </div>
                             <div class="col-md-6">
                                 <h5>Comercial Baja (Comercio de Barrio) </h5>
-                                <p>WQEASASDASFSFDGFASDASDASDASDSADASDASDASDASDSADASDASDSADa</p>
+                                <p>Edificios de forma horizontal con interiores amplios y espacios destinados a la compra venta de productos
+                                    al mayoreo pero principalmente al menudeo, su característica principal es la estructura de armadura metálica
+                                    para soportar la cubierta, que cubre grandes claros, sin muros interiores y sin instalaciones especiales de
+                                    alto costo. En interiores los muros son únicamente divisorios aunque pueden ser reforzados con cadenas
+                                    y castillos o muretes sin refuerzo. Las instalaciones son básicas y en algunos casos improvisadas conforme 
+                                    van surgiendo las necesidades. Los acabados realizados son económicos y de fácil mantenimiento. Otra variable
+                                    en este tipo son las pequeñas tiendas de autoservicio, construidas de forma rápida con materiales prefabricados
+                                    y estructuras ligeras.</p>
                             </div>
                         </div>
                         <div class="row" style="padding: 1rem;">
                             <div class="col-md-6">
-                                <img src="img/predio/rustico/eriazo.png" class="muestaImg" style="width: 70%; height: auto;" />
+                                <img src="img/predio/urbano/Historica.png" class="muestaImg" style="width: 70%; height: auto;" />
                             </div>
                             <div class="col-md-6">
                                 <h5>Historica </h5>
-                                <p>WQEASASDASFSFDGFASDASDASDASDSADASDASDASDASDSADASDASDSADa</p>
+                                <p>Inmuebles construidos entre los siglos XVI al XIX.Su principal característica es que son casonas o palacios de grandes dimensiones y de aspecto robusto. </p>
                             </div>
                         </div>
                         <div class="row" style="padding: 1rem;">
                             <div class="col-md-6">
-                                <img src="img/predio/rustico/eriazo.png" class="muestaImg" style="width: 70%; height: auto;" />
+                                <img src="img/predio/urbano/industrial.png" class="muestaImg" style="width: 70%; height: auto;" />
                             </div>
                             <div class="col-md-6">
                                 <h5>Industrial </h5>
-                                <p>WQEASASDASFSFDGFASDASDASDASDSADASDASDASDASDSADASDASDSADa</p>
+                                <p>
+                                    Es un espacio territorial en el cual se agrupan una serie de actividades industriales, que pueden o no estar relacionadas 
+                                    entre sí que se encuentra en una zona favorable, que generalmente presenta las siguientes características:<br />
+                                </p>
+                                <ul style="text-align:left;">
+                                    <li>Fuentes de energía.</li>
+                                    <li>Transporte y mano de obra.</li>
+                                    <li>Ubicación y magnitud de los mercados o áreas de servicio.</li>
+                                    <li>Impuestos y aranceles. y la disponibilidad de los servicios públicos y otros de apoyo que son esenciales para la operación exitosa de una planta.</li>
+                                </ul>
+                                <p>
+                                    Los parques industriales tienen la particularidad de contar con una serie de servicios, como pueden ser:
+                                    <b>abastecimiento de energía eléctrica, abastecimiento de agua con diversos tipos de tratamiento, en función
+                                    del uso que se le quiera dar, como, por ejemplo, para uso potable, para calderas, o para enfriamiento, etc.</b>
+                                </p>
                             </div>
                         </div>
                     </div>

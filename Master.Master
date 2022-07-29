@@ -23,7 +23,7 @@
         <div id="boddy" class="hidden">
             <div class="centrado" id="onload">
                 <div class="loading">
-                    <img src="img/logoCavat.png" alt="" style="width: 10em; height: auto;"   draggable="false">             <br />      
+                    <img src="img/logoCavat.png" alt="" style="width: 10em; height: auto;"  draggable="false">             <br />      
                     <span></span>
                     <span></span>
                     <span></span>
@@ -192,6 +192,7 @@
         <%--Leaflet--%>
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
         <%--SWEETALERT--%>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script src="js/mensajes.js"></script>

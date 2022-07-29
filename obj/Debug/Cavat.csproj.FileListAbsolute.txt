@@ -36,6 +36,10 @@ C:\Users\ml.sosa\Documents\Cavat\obj\Debug\Cavat.csproj.CoreCompileInputs.cache
 C:\Users\ml.sosa\Documents\Cavat\obj\Debug\Cavat.csproj.CopyComplete
 C:\Users\ml.sosa\Documents\Cavat\obj\Debug\Cavat.dll
 C:\Users\ml.sosa\Documents\Cavat\obj\Debug\Cavat.pdb
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\SqlServerTypes\x64\msvcr120.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\SqlServerTypes\x86\msvcr120.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\Cavat.dll.config
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\Cavat.dll
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\Cavat.pdb
@@ -68,6 +72,7 @@ C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\rosly
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\AjaxControlToolkit.dll
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\InfoUsuarios.dll
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\Microsoft.SqlServer.Types.dll
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\InfoUsuarios.pdb
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\Cavat.csproj.AssemblyReference.cache

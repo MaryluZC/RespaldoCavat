@@ -16,21 +16,28 @@ namespace Cavat
         LoginCavat entrar = new LoginCavat();
         dataUser datauser = new dataUser();
         catalogos catalog = new catalogos();//SERVICIO WEB
+        TestConexion ts = new TestConexion();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Response.Cache.SetCacheability(HttpCacheability.NoCache); //Response.Cache.SetExpires(DateTime.Now.AddDays(-1));  //Response.Cache.SetNoStore();
-            if (!IsPostBack)
+            if (ts.VerificarConexionURL("http://localhost:65007/ServiceCavat.svc?wsdl"))//CAMBIAR LA RUTA DEL SERVICIO A LA PUBLICADA
             {
-                SolicitudReg.Visible = false;
-                RecuperacionPsw.Visible = false;
-                lnkRecuperaPsw.Visible = false;
+                //Response.Cache.SetCacheability(HttpCacheability.NoCache); //Response.Cache.SetExpires(DateTime.Now.AddDays(-1));  //Response.Cache.SetNoStore();
+                if (!IsPostBack)
+                {
+                    SolicitudReg.Visible = false;
+                    RecuperacionPsw.Visible = false;
+                    lnkRecuperaPsw.Visible = false;
 
-                ddlTipoDocumento();
-                ddlTipoUser();
-                llenarCatalgos(1, "Pregunta", ddlPreguntaR, "PREGUNTA DE SEGURIDAD");//
-                llenarCatalgos(1, "Pregunta", ddlPregRecPsw, "PREGUNTA DE SEGURIDAD");//
+                    ddlTipoDocumento();
+                    ddlTipoUser();
+                    llenarCatalgos(1, "Pregunta", ddlPreguntaR, "PREGUNTA DE SEGURIDAD");//
+                    llenarCatalgos(1, "Pregunta", ddlPregRecPsw, "PREGUNTA DE SEGURIDAD");//
+                }
             }
-
+            else
+            {
+                Response.Redirect("404.aspx");
+            }
         }
 
         public void llenarCatalgos(int opc, string columna, DropDownList lista, string titulo)

@@ -3,6 +3,7 @@ using InfoUsuarios;
 using InfoUsuarios.cache;
 using InfoUsuarios.infoPredio;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
@@ -20,6 +21,7 @@ namespace Cavat
         catalogos catalog = new catalogos();// servicio WEB 
         DataSet dsaux = new DataSet();
         private static DataTable tabla = new DataTable();
+        private static DataTable tablaObras = new DataTable();
         private NumberStyles style;
         CultureInfo culture;
 
@@ -27,11 +29,12 @@ namespace Cavat
         {
             if (!Page.IsPostBack)//lo que solo se ejeuta una vez
             {
-                crearTablaC();//Crea la tabla inicial para poder alamcenar informacion temporal
+                crearTablaObras();//Crea la tabla inicial para poder alamcenar informacion temporal OBRAS COMPLEMENTARIAS
+                crearTablaC();//Crea la tabla inicial para poder alamcenar informacion temporal               
             }
             if (UserLoginCache.nombre == string.Empty || UserLoginCache.nombre == null)
             {
-                Response.Redirect("Default.aspx");                
+                Response.Redirect("Default.aspx");
             }
             else
             {
@@ -41,6 +44,9 @@ namespace Cavat
                     llenarCatalgos(10, "clasificacionConstruccion", ddlClasPred, "CLASIFICACIÓN DE CONSTRUCCIÓN");
                     llenarCatalgos(19, "estadoConservacion", ddlCoservacion, "ESTADO DE CONSERVACIÓN");
                     ddlEdadConstruc();
+
+
+
                     //limpiar campos
                 }
                 else
@@ -58,12 +64,12 @@ namespace Cavat
                 try
                 {
                     ddlEdadConstruccion.Items.Insert(0, new ListItem("EDAD"));
-                    ddlEdadConstruccion.Items.Insert(1, new ListItem("1 - 10 AÑOS"));
-                    ddlEdadConstruccion.Items.Insert(2, new ListItem("11 - 20 AÑOS"));
-                    ddlEdadConstruccion.Items.Insert(3, new ListItem("21 - 30 AÑOS"));
-                    ddlEdadConstruccion.Items.Insert(4, new ListItem("31 - 40 AÑOS"));
-                    ddlEdadConstruccion.Items.Insert(5, new ListItem("41 - 50 AÑOS"));
-                    ddlEdadConstruccion.Items.Insert(6, new ListItem("51 - EN ADELANTE"));
+                    ddlEdadConstruccion.Items.Insert(1, new ListItem("01-10"));
+                    ddlEdadConstruccion.Items.Insert(2, new ListItem("11-20"));
+                    ddlEdadConstruccion.Items.Insert(3, new ListItem("21-30"));
+                    ddlEdadConstruccion.Items.Insert(4, new ListItem("31-40"));
+                    ddlEdadConstruccion.Items.Insert(5, new ListItem("41-50"));
+                    ddlEdadConstruccion.Items.Insert(6, new ListItem("51-EN ADELANTE"));
 
                 }
                 catch (Exception ex)
@@ -348,7 +354,7 @@ namespace Cavat
             }
         }
 
-        public void verZonaValor(int opc, int idmun, char tipoPredio, string annio, DropDownList ddlzona,string titulo)
+        public void verZonaValor(int opc, int idmun, char tipoPredio, string annio, DropDownList ddlzona, string titulo)
         {
             if (IsPostBack)
             {
@@ -418,7 +424,7 @@ namespace Cavat
                 Response.Write(ex);
             }
         }
-       
+
         protected void ddlClasPred_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (IsPostBack)
@@ -492,7 +498,7 @@ namespace Cavat
                     ddlCalidadConstruccion.DataSource = ddt;
                     ddlCalidadConstruccion.DataValueField = "calidad";
                     ddlCalidadConstruccion.DataBind();
-                    ddlCalidadConstruccion.Items.Insert(0, new ListItem("CALIDAD DE LA CONSTRUCIÓN"));
+                    ddlCalidadConstruccion.Items.Insert(0, new ListItem("CALIDAD DE LA CONSTRUCCIÓN"));
                 }
                 catch (Exception ex)
                 {
@@ -523,7 +529,7 @@ namespace Cavat
 
             if (valor1 == 1)//sI
             {
-                ddlTipoDesnivelUrbano.Enabled = true;               
+                ddlTipoDesnivelUrbano.Enabled = true;
             }
             else//No
             {
@@ -542,14 +548,14 @@ namespace Cavat
             {
                 case "CABECERA DE MANZANA":
                     try
-                    {                     
+                    {
 
                         ddlTipoVialidad.Enabled = true;
                         txtAnguloEsquinas.Enabled = false;
                         txtNoTotalEsquinas.Enabled = true;
                         txtNoEsquinasColinVialidad.Enabled = false;
                         //predUrbano.anguloEsquinas = "NO APLICA";
-                        predUrbano.noEsquinasColinadantes = "NO APLICA";                     
+                        predUrbano.noEsquinasColinadantes = "NO APLICA";
                     }
                     catch (Exception ex)
                     {
@@ -560,7 +566,7 @@ namespace Cavat
                     txtNoTotalEsquinas.Enabled = true;
                     ddlTipoVialidad.Enabled = true;
                     txtAnguloEsquinas.Enabled = true;
-                    txtNoEsquinasColinVialidad.Enabled = false;                                      
+                    txtNoEsquinasColinVialidad.Enabled = false;
                     break;
                 case "LOTE MANZANERO":
                     txtNoTotalEsquinas.Enabled = true;
@@ -588,7 +594,7 @@ namespace Cavat
                 case "LOTE INTERIOR SIN ACCESO PROPIO":
                     predUrbano.factorEsquina = 1.0;
                     //MADO EL  FACTOR UBICACION EN 0.5
-                    predUrbano.factorUbicacion = 0.5;                    
+                    predUrbano.factorUbicacion = 0.5;
                     ddlTipoVialidad.Enabled = false;
                     txtNoTotalEsquinas.Enabled = false;
                     txtAnguloEsquinas.Enabled = false;
@@ -667,7 +673,7 @@ namespace Cavat
             }
             else
             {
-                predUrbano.fraccionamiento = "SI PERTENECE";             
+                predUrbano.fraccionamiento = "SI PERTENECE";
                 predUrbano.factorFrente = 1;   //factor a 1
             }
         }
@@ -678,7 +684,7 @@ namespace Cavat
             if (predUrbano.tamprofundidad < 10.0)
             {
                 //Aplica demerito
-                predUrbano.factorProfundidad= factorPredio.factorProfundidad(predUrbano.tamfrente, predUrbano.tamprofundidad);
+                predUrbano.factorProfundidad = factorPredio.factorProfundidad(predUrbano.tamfrente, predUrbano.tamprofundidad);
             }
             else//el tamaño de la profundidad es mayor a 10, por tanto el Factor de Profundidad es 1
             {
@@ -712,15 +718,15 @@ namespace Cavat
                         btnTerminar.Enabled = false;
                         break;
                 }
-                   
-                if (predios.tipoPredio=="RÚSTICO")
+
+                if (predios.tipoPredio == "RÚSTICO")
                 {
                     predRustico.factorResultanteTR = factorPredio.FactoResultanteTerrenoRustico(predRustico.fatorSuperficieR, predRustico.factorTopografia, predRustico.fatorDistanciaPredio, predRustico.factorUbicacion);
                     double valorM2 = predRustico.ValorTerrenoM2 / 10000;//valor por metro cuadrado
                     predios.ValorCatastralTerreno = factorPredio.ValorCatastralPredio(valorM2, predRustico.factorResultanteTR, predRustico.SuperficieR);
                     lblValorFactorTerreno.Text = predios.ValorCatastralTerreno.ToString("C", new CultureInfo("es-MX"));
                 }
-                else if(predios.tipoPredio == "URBANO")
+                else if (predios.tipoPredio == "URBANO")
                 {
                     predUrbano.factorResultanteTERRENO = factorPredio.FactoResultanteTerreno(predUrbano.factorFrente, predUrbano.factorProfundidad, predUrbano.factorTopografia, predUrbano.factorUbicacion, predios.factorSuperficie, predUrbano.factorEsquina);
                     predios.ValorCatastralTerreno = factorPredio.ValorCatastralPredio(Convert.ToDouble(predUrbano.zonaValor), predUrbano.factorResultanteTERRENO, predios.superficie);
@@ -738,7 +744,7 @@ namespace Cavat
                 btnFactorTerreno.BorderColor = Color.LimeGreen;
                 checkFactorTerreno.Checked = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -865,10 +871,10 @@ namespace Cavat
             {
                 case "m²":
                     txtSuperficieRu.Text = Conversiones.converMetrosM(txtSuperficieRu.Text);
-                     predios.superficie = Convert.ToDouble(txtSuperficieRu.Text);
+                    predios.superficie = Convert.ToDouble(txtSuperficieRu.Text);
                     break;
                 case "ha":
-                    txtSuperficieRu.Text = Conversiones.converHA(txtSuperficieRu.Text);              
+                    txtSuperficieRu.Text = Conversiones.converHA(txtSuperficieRu.Text);
                     predios.superficie = Convert.ToDouble(Conversiones.converMetrosM(txtSuperficieRu.Text));
                     break;
                 default: //NO HABILITA NADA                   
@@ -890,7 +896,7 @@ namespace Cavat
                     {
                         RBUDMSuperficie.SelectedValue = "m²";
                         predRustico.fatorSuperficieR = 1.00;
-                     }
+                    }
                     else
                     {
                         RBUDMSuperficie.SelectedValue = "ha";
@@ -912,7 +918,8 @@ namespace Cavat
                                 if (comparar >= 40001.00 && comparar <= 60000.00)
                                 {
                                     predRustico.fatorSuperficieR = 0.85;
-                                }else if (comparar >= 60001.00 && comparar <= 100000.00)
+                                }
+                                else if (comparar >= 60001.00 && comparar <= 100000.00)
                                 {
                                     predRustico.fatorSuperficieR = 0.80;
                                 }
@@ -937,41 +944,26 @@ namespace Cavat
         {
             tabla.Columns.Clear();
             tabla.Rows.Clear();
-            DataColumn c0 = new DataColumn("AvanceObra");
-            DataColumn c1 = new DataColumn("Habitada");
-            DataColumn c2 = new DataColumn("Superficie");
-            DataColumn c3 = new DataColumn("Clasificacion");
-            DataColumn c4 = new DataColumn("Tipo");
-            DataColumn c5 = new DataColumn("Calidad");
-            DataColumn c6 = new DataColumn("Conservacion");
-            DataColumn c7 = new DataColumn("Edad");
-            DataColumn c8 = new DataColumn("Condominio");
-            DataColumn c9 = new DataColumn("SupPriv");
-            DataColumn c10 = new DataColumn("SupInd");
-            DataColumn c11 = new DataColumn("ObrasComp");
-            DataColumn c12 = new DataColumn("ObraCM");
-            DataColumn c13 = new DataColumn("CalidadObra");
-
-            //for (int i =0; i < 11; i++)
-            //{
-            //    tabla.Columns.Add(c+i);
-            //}
-            tabla.Columns.Add(c0);
-            tabla.Columns.Add(c1);
-            tabla.Columns.Add(c2);
-            tabla.Columns.Add(c3);
-            tabla.Columns.Add(c4);
-            tabla.Columns.Add(c5);
-            tabla.Columns.Add(c6);
-            tabla.Columns.Add(c7);
-            tabla.Columns.Add(c8);
-            tabla.Columns.Add(c9);
-            tabla.Columns.Add(c10);
-            tabla.Columns.Add(c11);
-            tabla.Columns.Add(c12);
-            tabla.Columns.Add(c13);
+            List<string> listCostriccion = new List<string>() { "AvanceObra", "Habitada", "Superficie", "Clasificacion", "Tipo", "Calidad", "Conservacion", "Edad", "Condominio", "SupPriv", "SupInd", "ObrasComp", "ObraCM", "CalidadObra" };
+            var c = new DataColumn[listCostriccion.Count];
+            for (int i = 0; i < listCostriccion.Count; i++)
+            {
+                c[i] = new DataColumn(listCostriccion[i]);
+                tabla.Columns.Add(c[i]);
+            }
         }
-
+        public void crearTablaObras()
+        {
+            tablaObras.Columns.Clear();
+            tablaObras.Rows.Clear();
+            List<string> listObras = new List<string>() { "OBRA COM", "CALIDAD" };
+            var c = new DataColumn[listObras.Count];
+            for (int i = 0; i < listObras.Count; i++)
+            {
+                c[i] = new DataColumn(listObras[i]);
+                tablaObras.Columns.Add(c[i]);
+            }
+        }
         protected void ddlObraComplementaria_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (IsPostBack)
@@ -1056,7 +1048,7 @@ namespace Cavat
                         int rowIndex = int.Parse(e.CommandArgument.ToString());
                         string user = (string)this.GVConstrucciones.DataKeys[rowIndex]["AvanceObra"];
                         Response.Write("<script>alert('Borro la opción: " + rowIndex + " usuario: " + user + "')</script>");
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','Esta re')", true);
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','Borro la opción: " + rowIndex + "')", true);
                         tabla.Rows[rowIndex].Delete();
                         GVConstrucciones.DataSource = tabla;
                         GVConstrucciones.DataBind();
@@ -1077,8 +1069,8 @@ namespace Cavat
 
         protected void ddlTopografiaRustico_SelectedIndexChanged(object sender, EventArgs e)
         {
-       //     predios.topoReliev = ddlTopografiaRustico.SelectedValue.ToString();// Verificar si va a ir comoletrero si no pues no tomarlo ne cuenta 
-             
+            //     predios.topoReliev = ddlTopografiaRustico.SelectedValue.ToString();// Verificar si va a ir comoletrero si no pues no tomarlo ne cuenta 
+
             if (ddlTopografiaRustico.SelectedIndex == 0)
             {
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','DEBE SELECCIONAR UN TIPO DE TOPOGRAFIA.')", true);
@@ -1127,7 +1119,7 @@ namespace Cavat
                 {
                     dt = catt.CatUsoSuelo(9, 2);
                 }
-                else 
+                else
                 {
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','NO SE PUEDE OBTENER INFORMACION DE LA UBICACION DE UN TERRENO" +
                         "RUSTICO CON UN TIPO DISTINTO A UN RÚSTICO.')", true);
@@ -1156,9 +1148,11 @@ namespace Cavat
                 {
                     RDBDistanciaPredio.SelectedValue = "m";
 
-                    if (Convert.ToDouble(txtDistanciaRustico.Text)>=1.00 && Convert.ToDouble(txtDistanciaRustico.Text)<=500.00) {
+                    if (Convert.ToDouble(txtDistanciaRustico.Text) >= 1.00 && Convert.ToDouble(txtDistanciaRustico.Text) <= 500.00)
+                    {
                         predRustico.fatorDistanciaPredio = 1.40;
-                    }else if (Convert.ToDouble(txtDistanciaRustico.Text) >= 501.00 && Convert.ToDouble(txtDistanciaRustico.Text) <1000.00)
+                    }
+                    else if (Convert.ToDouble(txtDistanciaRustico.Text) >= 501.00 && Convert.ToDouble(txtDistanciaRustico.Text) < 1000.00)
                     {
                         predRustico.fatorDistanciaPredio = 1.20;
                     }
@@ -1170,7 +1164,7 @@ namespace Cavat
                     double comparar = Convert.ToDouble(Conversiones.converMetrosM(txtSuperficieRu.Text));
                     if (comparar >= 1000.00 && comparar <= 1500.00)
                     {
-                        predRustico.fatorDistanciaPredio = 1.20; 
+                        predRustico.fatorDistanciaPredio = 1.20;
                     }
                     else
                     {
@@ -1178,7 +1172,7 @@ namespace Cavat
                     }
 
                     predRustico.distanciaPredio = txtDistanciaRustico.Text + " " + RDBDistanciaPredio.SelectedValue;
-                 }
+                }
             }
             catch (Exception ex)
             {
@@ -1205,7 +1199,7 @@ namespace Cavat
         //DATOS PARA PREDIO  URBANO 
         protected void txtSuperficieUrbano_TextChanged(object sender, EventArgs e)
         {
-            predios.superficie =Convert.ToDouble(txtSuperficieUrbano.Text);
+            predios.superficie = Convert.ToDouble(txtSuperficieUrbano.Text);
             if (predios.superficie < 1.0)
             {
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','LA SUPERFICIE NO PUEDE SER MENOR A 1.0 m²')", true);
@@ -1249,7 +1243,7 @@ namespace Cavat
         protected void ddlTipoDesnivelUrbano_SelectedIndexChanged(object sender, EventArgs e)
         {
             predUrbano.tipoDesnivel = ddlTipoDesnivelUrbano.SelectedValue.ToString();
-            if (predUrbano.tipoDesnivel=="TIPO DESNIVEL")
+            if (predUrbano.tipoDesnivel == "TIPO DESNIVEL")
             {
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','SELECCIONE UN TIPO DE DESNIVEL.')", true);
             }
@@ -1283,7 +1277,7 @@ namespace Cavat
         {
             int categoria;
             predUrbano.noesquinas = txtNoTotalEsquinas.Text;
-            if (predUrbano.vialidad=="OTROS")
+            if (predUrbano.vialidad == "OTROS")
             {
                 categoria = 0;
 
@@ -1296,11 +1290,11 @@ namespace Cavat
             switch (predios.usoSuelo)
             {
                 case "HABITACIONAL":
-                   predUrbano.factorUbicacion =factorPredio.factorCabeceroManza(predios.superficie, categoria, 1, int.Parse(predUrbano.noesquinas));
+                    predUrbano.factorUbicacion = factorPredio.factorCabeceroManza(predios.superficie, categoria, 1, int.Parse(predUrbano.noesquinas));
                     break;
                 case "COMERCIAL MEDIA":
                 case "COMERCIAL BAJA (COMERCIO DE BARRIO)":
-                    predUrbano.factorUbicacion=factorPredio.factorCabeceroManza(predios.superficie, categoria, 2, int.Parse(predUrbano.noesquinas));
+                    predUrbano.factorUbicacion = factorPredio.factorCabeceroManza(predios.superficie, categoria, 2, int.Parse(predUrbano.noesquinas));
                     break;
                 case "COMERCIAL ALTA (SUBSUELOS URBANOS O CENTROS COMERCIALES)":
                     predUrbano.factorUbicacion = factorPredio.factorCabeceroManza(predios.superficie, categoria, 3, int.Parse(predUrbano.noesquinas));
@@ -1343,88 +1337,91 @@ namespace Cavat
 
         protected void btnAddList_Click(object sender, EventArgs e)
         {
-            try
+            if (IsPostBack)
             {
-                if (ddlAvanceConstruccion.SelectedIndex == 0 || txtSuperficieObra.Text == "" || ddlClasPred.SelectedIndex == 0 || ddlTipoConstruccion.SelectedIndex == 0
-               || ddlCalidadConstruccion.SelectedIndex == 0)
+                try
                 {
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','DEBE SELECCIONAR/RELLENAR TODOS LOS CAMPOS')", true);
+                    if (txtSuperficieObra.Text == string.Empty || ddlClasPred.SelectedIndex == 0 || ddlTipoConstruccion.SelectedIndex == 0
+                        || ddlCalidadConstruccion.SelectedIndex == 0 || ddlAvanceConstruccion.SelectedIndex == 0)
+                    {
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','PARA PODER CONTINUAR DEBE EXISTIR INFORMACIÓN.')", true);
+                    }
+                    else
+                    {
+                        DataRow fila = tabla.NewRow();
+                        fila["AvanceObra"] = ddlAvanceConstruccion.SelectedValue.ToString();
+                        fila["Superficie"] = txtSuperficieObra.Text;
+                        fila["Clasificacion"] = ddlClasPred.SelectedValue.ToString();
+                        fila["Tipo"] = ddlTipoConstruccion.SelectedValue.ToString();
+                        fila["Calidad"] = ddlCalidadConstruccion.SelectedValue.ToString();
+                        fila["Condominio"] = RadBtnCondominio.SelectedValue.ToString();
+                        fila["ObrasComp"] = RBObrasComplementarias.SelectedValue.ToString();
+                        if (RadBtnCondominio.SelectedValue.ToString() == "SI")
+                        {
+                            fila["SupPriv"] = txtSupPriv.Text;
+                            fila["SupInd"] = txtSubInd.Text;
+                        }
+                        else
+                        {
+                            fila["SupPriv"] = "NO APLICA";
+                            fila["SupInd"] = "NO APLICA";
+                        }
+                        if (RBObrasComplementarias.SelectedValue.ToString() == "SI")
+                        {
+                            fila["ObraCM"] = ddlObraComplementaria.SelectedValue.ToString();
+                            fila["CalidadObra"] = ddlCalidadObra.SelectedValue.ToString();
+                        }
+                        else
+                        {
+                            fila["ObraCM"] = "NO APLICA";
+                            fila["CalidadObra"] = "NO APLICA";
+                        }
+                        if (ddlCoservacion.SelectedIndex == 0)
+                        {
+                            fila["Conservacion"] = "NO APLICA";
+                        }
+                        else
+                        {
+                            fila["Conservacion"] = ddlCoservacion.SelectedValue.ToString();
+                        }
+                        if (ddlEdadConstruccion.SelectedIndex == 0)
+                        {
+                            fila["Edad"] = "NO APLICA";
+                        }
+                        else
+                        {
+                            fila["Edad"] = ddlEdadConstruccion.SelectedValue.ToString();
+                        }
+
+                        tabla.Rows.Add(fila);
+                        //Limpiar todo lo seleccionado
+                        ddlAvanceConstruccion.ClearSelection();
+                        txtSuperficieObra.Text = "";
+                        ddlClasPred.ClearSelection();
+                        ddlTipoConstruccion.ClearSelection();
+                        ddlCalidadConstruccion.ClearSelection();
+                        ddlCoservacion.ClearSelection();
+                        ddlEdadConstruccion.ClearSelection();
+                        txtSupPriv.Text = "";
+                        txtSubInd.Text = "";
+                        ddlObraComplementaria.ClearSelection();
+                        ddlCalidadObra.ClearSelection();
+                    }
+                    //llena el gridview nuevamente
+                    GVConstrucciones.DataSource = tabla;
+                    GVConstrucciones.DataBind();
+                    //ContentAgregarConstruccion.Visible = false;
                 }
-                else
+                catch (Exception ex)
                 {
-                    DataRow fila = tabla.NewRow();
-                    fila["AvanceObra"] = ddlAvanceConstruccion.SelectedValue.ToString();
-                    fila["Superficie"] = txtSuperficieObra.Text;
-                    fila["Clasificacion"] = ddlClasPred.SelectedValue.ToString();
-                    fila["Tipo"] = ddlTipoConstruccion.SelectedValue.ToString();
-                    fila["Calidad"] = ddlCalidadConstruccion.SelectedValue.ToString();
-                    fila["Condominio"] = RadBtnCondominio.SelectedValue.ToString();
-                    fila["ObrasComp"] = RBObrasComplementarias.SelectedValue.ToString();
-                    if (RadBtnCondominio.SelectedValue.ToString() == "SI")
-                    {
-                        fila["SupPriv"] = txtSupPriv.Text;
-                        fila["SupInd"] = txtSubInd.Text;
-                    }
-                    else
-                    {
-                        fila["SupPriv"] = "NO APLICA";
-                        fila["SupInd"] = "NO APLICA";
-                    }
-                    if (RBObrasComplementarias.SelectedValue.ToString() == "SI")
-                    {
-                        fila["ObraCM"] = ddlObraComplementaria.SelectedValue.ToString();
-                        fila["CalidadObra"] = ddlCalidadObra.SelectedValue.ToString();
-                    }
-                    else
-                    {
-                        fila["ObraCM"] = "NO APLICA";
-                        fila["CalidadObra"] = "NO APLICA";
-                    }
-                    if (ddlCoservacion.SelectedIndex == 0)
-                    {
-                        fila["Conservacion"] = "NO APLICA";
-                    }
-                    else
-                    {
-                        fila["Conservacion"] = ddlCoservacion.SelectedValue.ToString();
-                    }
-                    if (ddlEdadConstruccion.SelectedIndex == 0)
-                    {
-                        fila["Edad"] = "NO APLICA";
-                    }
-                    else
-                    {
-                        fila["Edad"] = ddlEdadConstruccion.SelectedValue.ToString();
-                    }
-
-                    tabla.Rows.Add(fila);
-
+                    throw ex;
                 }
-                //Limpiar todo lo seleccionado
-                ddlAvanceConstruccion.ClearSelection();
-                txtSuperficieObra.Text = "";
-                ddlClasPred.ClearSelection();
-                ddlTipoConstruccion.ClearSelection();
-                ddlCalidadConstruccion.ClearSelection();
-                ddlCoservacion.ClearSelection();
-                ddlEdadConstruccion.ClearSelection();
-                txtSupPriv.Text = "";
-                txtSubInd.Text = "";
-                ddlObraComplementaria.ClearSelection();
-                ddlCalidadObra.ClearSelection();
-                //llena el gridview nuevamente
-                GVConstrucciones.DataSource = tabla;
-                GVConstrucciones.DataBind();
-                //      ContentAgregarConstruccion.Visible = false;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
 
         protected void ddlZonaValor_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             if (ddlZonaValor.SelectedIndex == 0)
             {
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','DEBE SELECCIONAR UNA ZONA DE VALOR.')", true);
@@ -1437,6 +1434,7 @@ namespace Cavat
                 }
                 else
                 {
+                    predios.ZonaValorTxt = ddlZonaValor.SelectedValue.ToString();
                     Double valorZonza = 0.00;
                     DataTable dt = new DataTable();
 
@@ -1464,7 +1462,7 @@ namespace Cavat
                 }
             }
 
-           
+
 
         }
 
@@ -1520,10 +1518,12 @@ namespace Cavat
         {
             predUrbano.anguloEsquinas = Convert.ToDouble(txtAnguloEsquinas.Text);
 
-            if (predUrbano.anguloEsquinas<45.0 || predUrbano.anguloEsquinas>135.0) {
-               predUrbano.factorEsquina = 1.0;
+            if (predUrbano.anguloEsquinas < 45.0 || predUrbano.anguloEsquinas > 135.0)
+            {
+                predUrbano.factorEsquina = 1.0;
             }
-            else{
+            else
+            {
                 switch (predios.usoSuelo)
                 {
                     case "HABITACIONAL":
@@ -1540,7 +1540,7 @@ namespace Cavat
                         predUrbano.factorEsquina = factorPredio.factorEsquina(predios.superficie, 4);
                         break;
                 }
-            }            
+            }
         }
 
         protected void btnTerminar_Click(object sender, EventArgs e)
@@ -1582,7 +1582,7 @@ namespace Cavat
                     if (predios.tipoPredio == "URBANO")
                     {
                         dt = catt.CatZonasValor(7, ddlMunicipio.SelectedIndex, 'U', "2022");
-                       // verZonaValor(7, ddlMunicipio.SelectedIndex, 'R', "2022", ddlTipoSRustico, "TIPO PREDIO");
+                        // verZonaValor(7, ddlMunicipio.SelectedIndex, 'R', "2022", ddlTipoSRustico, "TIPO PREDIO");
                     }
                     else if (predios.tipoPredio == "RÚSTICO")
                     {
@@ -1606,6 +1606,45 @@ namespace Cavat
 
         }
 
-       
+        protected void GVConstrucciones_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GVConstrucciones.PageIndex = e.NewPageIndex;
+            //llena el gridview nuevamente
+            GVConstrucciones.DataSource = tabla;
+            GVConstrucciones.DataBind();
+        }
+
+
+        protected void btnAddObrasCom_Click(object sender, EventArgs e)
+        {
+            if (IsPostBack)
+            {
+                try
+                {
+                    if (ddlObraComplementaria.SelectedIndex == 0 || ddlCalidadObra.SelectedIndex == 0)
+                    {
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','PARA PODER CONTINUAR DEBE EXISTIR INFORMACIÓN.')", true);
+                    }
+                    else
+                    {
+                        DataRow fila = tablaObras.NewRow();
+                        fila["OBRA COM"] = ddlObraComplementaria.SelectedValue.ToString();
+                        fila["CALIDAD"] = ddlCalidadObra.Text;
+                        tablaObras.Rows.Add(fila);
+                        //Limpiar todo lo seleccionado
+                        ddlObraComplementaria.ClearSelection();
+                        ddlCalidadObra.ClearSelection();
+                    }
+                    //llena el gridview nuevamente
+                    GVObrasComplem.DataSource = tablaObras;
+                    GVObrasComplem.DataBind();
+                    //ContentAgregarConstruccion.Visible = false;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
     }
 }

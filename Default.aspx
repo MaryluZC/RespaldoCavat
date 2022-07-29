@@ -6,7 +6,7 @@
             <div class="row align-items-center justify-content-center m-5">
                 <div class="col-6 col-sm-4 col-md-4">
                     <div class="row" style="align-items: center; justify-content: center;">
-                        <img src="img/logoCavat.png" style="width: 80%" />
+                        <img src="img/logoCavat.png" style="width: 80%"  draggable="false" />
                     </div>
                 </div>
                 <%--login--%>

@@ -292,7 +292,9 @@ namespace Cavat
             }
         }
         protected void ddlMunicipio_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {  
+            try
+                {
             if (IsPostBack)
             {
                 int va = int.Parse(ddlMunicipio.SelectedIndex.ToString());
@@ -300,8 +302,7 @@ namespace Cavat
                 string centralizado = esCentralizado(ddlMunicipio.SelectedValue.ToString());
               
                 Construcciones.dtConstrucciones =VerCatalogoCons(1,va,2022); /// tiene la tabla estatica de los valores de las construcciones dependiendo del municipio Seleccionado              
-                try
-                {
+              
                     int val = int.Parse(ddlTipoPredio.SelectedIndex.ToString());
                     ddlLocalidad.ClearSelection();
                     ddlLocalidad.Items.Clear();
@@ -324,29 +325,29 @@ namespace Cavat
                             break;
                         case "False"://Se maneja la informacion de los descentralizados de la base de datos local
                             infoMunicipio.Descentralizados.dtDescentralizados = GetinfoDescentralizado(1, predios.municipio, "2022");//contiene la tabla con la información de los municipios descentralizados                                                                                                                                                                
-                            infoMunicipio.Descentralizados.dtLocalidades = GetinfoLocalidaDes(3, predios.municipio);
-                            LocalidadesDes(ddlLocalidad, "localidades".ToUpper());
-                            //Seleccionar Zonas de valor y enviarlas
+                            infoMunicipio.Descentralizados.dtLocalidades = GetinfoLocalidaDes(3, predios.municipio);//Se obtine la informacion de las localidades del municipio Descentralizado
+                            LocalidadesDes(ddlLocalidad, "LOCALIDAD");//Llena la lista desplegable de localidades, acorde al municipio seleccionado.
                             if (val == 2)//RUSTICO 
                             {
-                                ZonasValorDes(ddlTipoSRustico, val, "TIPO PREDIO");
+                                ZonasValorDes(ddlTipoSRustico, val, "TIPO PREDIO");//Llena las zonas de valor para los tipos rusticos
                             }
                             else
                             {
                                 if (val == 1 || val == 3)//URBANO Y SUBURBANO
                                 {
 
-                                    ZonasValorDes(ddlZonaValor, val, "ZONA DE VALOR");
+                                    ZonasValorDes(ddlZonaValor, val, "ZONA DE VALOR");//Llena las zonas de valor para los tipos urbanos y suburvbanos
                                 }
                             }
                             break;
-                    }                   
+                    } 
+                }                  
                 }
                 catch (Exception ex)
                 {
                     throw ex;
                 }
-            }
+           
         }
         public void ZonasValorDes(DropDownList listaDestino, int tipoPredio,string titulo)
         {
@@ -377,18 +378,13 @@ namespace Cavat
             try
             {
                 DataTable dtAux = new DataTable();
-                List<string> myList = new List<String>();
                 dtAux = infoMunicipio.Descentralizados.dtLocalidades;
-                foreach (DataRow row in dtAux.Rows)
-                {
-                    myList.Add((string)row[1]);
-                }
-                myList = myList.Distinct().ToList();
-                listaDestino.ClearSelection();
-                listaDestino.DataSource = myList;
+                listaDestino.DataSource = dtAux;
+                listaDestino.DataValueField = "localidad";
                 listaDestino.DataBind();
                 listaDestino.Items.Insert(0, new ListItem(titulo));
-            }catch(Exception e)
+            }
+            catch(Exception e)
             {
                 throw e;
             }
@@ -398,7 +394,7 @@ namespace Cavat
         {
             if (IsPostBack)
             {
-                try
+                try 
                 {
                     DataTable ddt;
                     ddt = cat.CatLocalidad(opc, idmun);//--> Catalogo Municipio

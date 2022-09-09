@@ -43,4 +43,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="VerCatConstruccion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="opc" type="xs:int" />
+        <xs:element minOccurs="0" name="municipio" type="xs:int" />
+        <xs:element minOccurs="0" name="año" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatConstruccionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/wcfComun" minOccurs="0" name="VerCatConstruccionResult" nillable="true" type="q5:wRespuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -10,13 +10,13 @@ namespace Cavat
 {
     public partial class Default : System.Web.UI.Page
     {
-
         resultado rs = new resultado();
         DataSet dsaux = new DataSet();
         LoginCavat entrar = new LoginCavat();
         dataUser datauser = new dataUser();
         catalogos catalog = new catalogos();//SERVICIO WEB
         TestConexion ts = new TestConexion();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (ts.VerificarConexionURL("http://localhost:65007/ServiceCavat.svc?wsdl"))//CAMBIAR LA RUTA DEL SERVICIO A LA PUBLICADA
@@ -142,7 +142,6 @@ namespace Cavat
                     int msgRes = rs.mensaje;
                     dsaux = rs.elDataSet;
                     // Debemos sregresar la tabla y asignar a las variables comunes los valores devueltos y luego continuar con lo de abajo
-
                     switch (msgRes)
                     {
                         case 1:

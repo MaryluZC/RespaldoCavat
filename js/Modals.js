@@ -5,3 +5,6 @@
     $('#docPDF').attr('src', nombreArc);
 }
 
+function OpenReporteUrbano() {
+    $('#modalReporteUrbanos').modal('show'); // abrir
+}

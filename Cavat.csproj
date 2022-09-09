@@ -12,7 +12,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cavat</RootNamespace>
     <AssemblyName>Cavat</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44362</IISExpressSSLPort>
@@ -22,6 +22,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -70,6 +71,8 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -78,16 +81,14 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.aspx" />
@@ -114,11 +115,11 @@
     <Content Include="bootstrap-5.1.3\js\bootstrap.esm.min.js" />
     <Content Include="bootstrap-5.1.3\js\bootstrap.js" />
     <Content Include="bootstrap-5.1.3\js\bootstrap.min.js" />
+    <Content Include="Comprobantes\CONSTANCIA_000042.pdf" />
+    <Content Include="Comprobantes\TutorialPython2.pdf" />
     <Content Include="Connected Services\ServiceCavat\Cavat.ServiceCavat.wRespuesta.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Comprobantes\CONSTANCIA_000042.pdf" />
-    <Content Include="Comprobantes\TutorialPython2.pdf" />
     <None Include="Connected Services\ServiceCavat\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceCavat\configuration.svcinfo" />
     <None Include="Connected Services\ServiceCavat\Reference.svcmap">
@@ -147,6 +148,7 @@
     <Content Include="img\conservacion\buena.JPG" />
     <Content Include="img\conservacion\estadoRegular.jpg" />
     <Content Include="img\conservacion\mala.JPG" />
+    <Content Include="img\exit.png" />
     <Content Include="img\fnd.png" />
     <Content Include="img\fondo2.png" />
     <Content Include="img\IRCEP transparente.png" />
@@ -207,6 +209,8 @@
     <Content Include="img\relieve\Nivel.png" />
     <Content Include="img\sali1.png" />
     <Content Include="img\salir.png" />
+    <Content Include="img\suma.png" />
+    <Content Include="img\suma1.png" />
     <Content Include="img\terminar.png" />
     <Content Include="img\ubiMan\btnCabeceraManzana.png" />
     <Content Include="img\ubiMan\btnCNAccesoPropio.png" />
@@ -366,6 +370,16 @@
     <Content Include="fonts\JosefinSans-ThinItalic.ttf" />
     <Content Include="fonts\JosefinSans-VariableFont_wght.ttf" />
     <Content Include="Master.Master" />
+    <Content Include="jquery.maskedinput-master\.travis.yml" />
+    <Content Include="jquery.maskedinput-master\bower.json" />
+    <Content Include="jquery.maskedinput-master\CONTRIBUTING.md" />
+    <Content Include="jquery.maskedinput-master\jquery.maskedinput.nuspec" />
+    <Content Include="jquery.maskedinput-master\LICENSE" />
+    <Content Include="jquery.maskedinput-master\package.json" />
+    <Content Include="jquery.maskedinput-master\README.md" />
+    <Content Include="jquery.maskedinput-master\spec\lib\jasmine-species\BSD.LICENSE" />
+    <Content Include="jquery.maskedinput-master\spec\lib\jasmine-species\version.json" />
+    <Content Include="jquery.maskedinput-master\spec\lib\jasmine\MIT.LICENSE" />
     <None Include="Connected Services\ServiceCavat\Service1.wsdl" />
     <None Include="Connected Services\ServiceCavat\ServiceCavat.xsd">
       <SubType>Designer</SubType>
@@ -379,16 +393,6 @@
     <None Include="Connected Services\ServiceCavat\ServiceCavat3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="jquery.maskedinput-master\.travis.yml" />
-    <Content Include="jquery.maskedinput-master\bower.json" />
-    <Content Include="jquery.maskedinput-master\CONTRIBUTING.md" />
-    <Content Include="jquery.maskedinput-master\jquery.maskedinput.nuspec" />
-    <Content Include="jquery.maskedinput-master\LICENSE" />
-    <Content Include="jquery.maskedinput-master\package.json" />
-    <Content Include="jquery.maskedinput-master\README.md" />
-    <Content Include="jquery.maskedinput-master\spec\lib\jasmine-species\BSD.LICENSE" />
-    <Content Include="jquery.maskedinput-master\spec\lib\jasmine-species\version.json" />
-    <Content Include="jquery.maskedinput-master\spec\lib\jasmine\MIT.LICENSE" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -401,19 +405,19 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\ServiceCavat\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\InfoUsuarios\InfoUsuarios.csproj">
       <Project>{94ecd536-eba6-4573-8bfb-c9b4e08f4353}</Project>
       <Name>InfoUsuarios</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Reportes\reporteCavat.rdlc" />
     <EmbeddedResource Include="Reportes\reporteCavatUrbano.rdlc" />
     <EmbeddedResource Include="Reportes\reporteRustico.rdlc" />
+    <EmbeddedResource Include="reporteUrbanos.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceCavat\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

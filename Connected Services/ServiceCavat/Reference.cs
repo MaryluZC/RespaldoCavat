@@ -442,6 +442,12 @@ namespace Cavat.ServiceCavat {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatalogo", ReplyAction="http://tempuri.org/IServiceCavat/VerCatalogoResponse")]
         System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatalogoAsync(int opc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatConstruccion", ReplyAction="http://tempuri.org/IServiceCavat/VerCatConstruccionResponse")]
+        Cavat.ServiceCavat.wRespuesta VerCatConstruccion(int opc, int municipio, int año);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatConstruccion", ReplyAction="http://tempuri.org/IServiceCavat/VerCatConstruccionResponse")]
+        System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatConstruccionAsync(int opc, int municipio, int año);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -493,6 +499,14 @@ namespace Cavat.ServiceCavat {
         
         public System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatalogoAsync(int opc) {
             return base.Channel.VerCatalogoAsync(opc);
+        }
+        
+        public Cavat.ServiceCavat.wRespuesta VerCatConstruccion(int opc, int municipio, int año) {
+            return base.Channel.VerCatConstruccion(opc, municipio, año);
+        }
+        
+        public System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatConstruccionAsync(int opc, int municipio, int año) {
+            return base.Channel.VerCatConstruccionAsync(opc, municipio, año);
         }
     }
 }

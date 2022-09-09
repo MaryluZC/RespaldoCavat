@@ -1,105 +1,105 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Notarios.aspx.cs" Inherits="Cavat.Notarios" %>
 
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Body" runat="server">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
-    <div class="container-fluid vh-100 hidden" style="padding-top: 2rem; margin-bottom: 1em; height: 100%;">
-        <div class="row ">
+    <div class="container-fluid vh-100 hidden" style="padding-top: 2rem; margin-bottom: 1em; height: 100%; background:#fff;">
+      <div class="row">
             <%--  MENU o BOTONES--%>
-            <div class="col-12 col-sm-12 col-md-5 hidden">
-                <div class="row rounded-3 mx-3 shadow-lg" style="background: #595A57;">
-                    <div class="container">
-                        <div class="row mx-3 rounded-top border-top-0" style="background: rgb(214 215 213 / 0.50); height: 5em; margin-top: 2em; border: inset; border-bottom: none; font-size: 0.8em;">
-                            <div class="col my-auto">
-                                <p style="font-weight: bold; color: white; text-align: center;">FACTOR TERRENO  </p>
+            <div class="col-12 col-sm-12 col-md-5 hidden ">
+                <div class="row rounded-3 mx-3 shadow-lg" >
+                    <div class="container border-2" style="background:#570E25; padding-bottom:1rem;">
+                        <div class="row mx-3 rounded-top border-top-0" style="background: #fff; height: 5em; margin-top: 2em; border: inset; border-bottom: none; font-size: 0.8em;">
+                            <div class="col-4 my-auto">
+                                <p style="font-weight: bold; color: #585957; text-align: center;">FACTOR TERRENO  </p>
                             </div>
-                            <div class="col my-auto" style="text-align: center;">
-                                <p style="font-weight: bold; color: white; text-align: center;">FACTOR CONSTRUCCIÓN</p>
+                            <div class="col-4 my-auto" style="text-align: center;">
+                                <p style="font-weight: bold; color: #585957; text-align: center;">FACTOR CONSTRUCCIÓN</p>
                             </div>
-                            <div class="col my-auto" style="text-align: center;">
-                                <p style="font-weight: bold; color: white; text-align: center;">OBRA COMPLEMENTARIA  </p>
+                            <div class="col-4 my-auto" style="text-align: center;">
+                                <p style="font-weight: bold; color: #585957; text-align: center;">OBRA COMPLEMENTARIA  </p>
                             </div>
                         </div>
-
-                        <div class="row mx-3 border-top-0" style="background: rgb(214 215 213 / 0.50); text-align: right; border: inset; border-top: none; border-bottom: none;">
-                            <div class="col my-auto">
-                                <h5 style="font-weight: bold; color: white; text-align: center;">
-                                    <asp:Label ID="lblValorFactorTerreno" runat="server" Text="$ 0"></asp:Label>
+                        <div class="row mx-3 border-top-0" style="background: #fff; text-align: right; border: inset; border-top: none; border-bottom: none;">
+                            <div class="col-3 my-auto">
+                                <h5 style="font-weight: bold; color: #585957; text-align: center;">
+                                    <asp:Label ID="lblValorFactorTerreno" runat="server" Text="$ 0.00"></asp:Label>
                                 </h5>
                             </div>
-                            <div class="col my-auto " style="text-align: center;">
-                                <h2 style="font-weight: bold; color: white; text-align: center;">+ </h2>
+                            <div class="col-1 my-auto " style="text-align: center;">
+                                <h2 style="font-weight: bold; color: #585957; text-align: center;">+ </h2>
                             </div>
-                            <div class="col my-auto" style="text-align: center;">
-                                <h5 style="font-weight: bold; color: white; text-align: center;">
-                                    <asp:Label ID="lblValorFactorconstruccion" runat="server" Text="$ 0"></asp:Label>
+                            <div class="col-3 my-auto" style="text-align: center;">
+                                <h5 style="font-weight: bold; color: #585957; text-align: center;">
+                                    <asp:Label ID="lblValorFactorconstruccion" runat="server" Text="$ 0.00"></asp:Label>
                                 </h5>
                             </div>
-                            <div class="col my-auto " style="text-align: center;">
-                                <h2 style="font-weight: bold; color: white; text-align: center;">+ </h2>
+                            <div class="col-1 my-auto " style="text-align: center;">
+                                <h2 style="font-weight: bold; color: #585957; text-align: center;">+ </h2>
                             </div>
-                            <div class="col my-auto" style="text-align: center;">
-                                <h5 style="font-weight: bold; color: white; text-align: center;">
-                                    <asp:Label ID="lblValorFactorObraCom" runat="server" Text="$ 0"></asp:Label>
+                            <div class="col-3 my-auto" style="text-align: center;">
+                                <h5 style="font-weight: bold; color: #585957; text-align: center;">
+                                    <asp:Label ID="lblValorFactorObraCom" runat="server" Text="$ 0.00"></asp:Label>
                                 </h5>
                             </div>
                         </div>
-
-                        <div class="row rounded-bottom mx-3" style="background: rgb(214 215 213 / 0.50); text-align: right; border: inset; border-top: none;">
-                            <hr style="background: white; width: 100%; height: 0.1rem; margin-bottom: 1rem; text-align: center;" />
-                             <asp:UpdatePanel runat="server" ID="UpdatePanel10" UpdateMode="Conditional">
-                                    <ContentTemplate>
-                            <p style="font-weight: bold; color: white; text-align: right;">TOTAL  <asp:Label ID="lblVALORTOTAL" runat="server" Text="$ 0.00"></asp:Label></p>  
-                             </ContentTemplate>
-                                </asp:UpdatePanel>
-                        </div>
-
-                        <div class="row border-bottom-0 border border-2 rounded-2 m-5" style="border: red 3px inset;">
-                            <div class="col mx-auto " style="padding: 1rem; text-align: center;">
-                                <asp:CheckBox ID="checkUbicarPredio" runat="server" AutoPostBack="true" Enabled="false" />
-                                <asp:ImageButton ID="btnUbicaPredio" runat="server" OnClick="btnUbicaPredio_Click" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Ubicar Predio" BackColor="#590422" ImageUrl="img/btn/UbicaPredio.png" CssClass="btn" Style="width: 6em;" draggable="false" />
-                                <p style="font-size: 1rem; color: gray; font-weight: bold; text-align: center;">Ubicar Predio</p>
-                            </div>
-                            <div class="col mx-auto" style="padding: 1rem; text-align: center;">
-                                <asp:CheckBox ID="checkFactorTerreno" runat="server" AutoPostBack="true" Enabled="false" />
-                                <asp:ImageButton ID="btnFactorTerreno" Enabled="false" OnClick="btnFactorTerreno_Click" runat="server"  draggable="false" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Factor del Terreno" ImageUrl="img/btn/FactorTerreno.png" CssClass="btn" BackColor="#5F5E5C" Style="width: 6em;" />
-                                <p style="font-size: 1rem; color: gray; font-weight: bold; text-align: center;">Factor Terreno</p>
-                            </div>
-                        </div>
-                        <div class="row border-top-0 border border-2 m-5 rounded-2">
-                            <div class="col  mx-auto" style="padding: 1rem; text-align: center;">
-                                <asp:CheckBox ID="checkFactorConstruccion" runat="server" AutoPostBack="true" Enabled="false" />
-                                <asp:ImageButton ID="btnFactorConstruccion" runat="server"  draggable="false" Enabled="false" OnClick="btnFactorConstruccion_Click" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Factor de Construcción" BackColor="#A99696" ImageUrl="img/btn/factorConstr.png" CssClass="btn" Style="width: 6em;"/>
-                                <p style="font-size: 1rem; color: gray; font-weight: bold; text-align: center;">Factor Construcción</p>
-                            </div>
-                            <div class="col  mx-auto" style="padding: 1rem; text-align: center; align-content: center;">
-                             <%--   <asp:UpdatePanel runat="server" ID="UpdatePanel3" UpdateMode="Conditional">
-                                    <ContentTemplate>--%>
-                                        <asp:Button ID="btnTerminar" Enabled="false" CssClass="btn " Style="background: #590422; width: 6em; height: 6em; color: white;" runat="server" Text="CALCULAR" OnClick="btnTerminar_Click" /><%-- --%>
-                                 <%--   </ContentTemplate>
-                                    <Triggers>
-                                        <asp:PostBackTrigger ControlID="btnTerminar" />
-                                    </Triggers>
-                                </asp:UpdatePanel>--%>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <div class="col mx-auto" style="padding: 1rem; text-align: center;">
-                                <asp:ImageButton ID="btnGeorreferencia" Visible="false" runat="server" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Georeferencia" BackColor="#F8EFEF" ImageUrl="img/btn/Georreferencia.png" CssClass="btn" Style="width: 6em;" draggable="false" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4"></div>
-                            <div class="col-4"></div>
-                            <div class="col-4">
-                                <asp:Button ID="btnImprimir" runat="server" Text="IMPPRIMIR CALCULO" CssClass="btnEntrar btn" Font-Size="Small" Width="100%" BackColor="#003366" ForeColor="White" />
-                            </div>                            
+                        <div class="row rounded-bottom mx-3" style="background: #fff; text-align: right; border: inset; border-top: none;">
+                            <hr style="background: #570E25; width: 100%; height: 0.1rem; margin-bottom: 1rem; text-align: center;" />
+                            <asp:UpdatePanel runat="server" ID="UpdatePanel10" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <p style="font-weight: bold; color: #585957; text-align: right;">
+                                        TOTAL 
+                                        <asp:Label ID="lblVALORTOTAL" runat="server" Text="$ 0.00"></asp:Label>
+                                    </p>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
                         </div>
                     </div>
-                </div>
-            </div>
+
+                        <div class="container" style="background:#595A57">
+                                <div class="row" style="margin-top: 1rem;">
+                                    <div class="col-8"></div>
+                                    <div class="col-4">
+                                        <asp:Button ID="btnImprimir" runat="server" Text="IMPPRIMIR CALCULO" CssClass="btnEntrar btn" Font-Size="Small"  BackColor="#590422" ForeColor="White" OnClick="btnImprimir_Click" />
+                                    </div>
+                                </div>                        
+                            <div class="row border-bottom-0 border border-2 rounded-2 my-2 mx-5" style="border: red 3px inset;">
+                                <div class="col-6 mx-auto " style="padding: 1rem; text-align: center;">
+                                    <asp:CheckBox ID="checkUbicarPredio" runat="server" AutoPostBack="true" Enabled="false" />
+                                    <asp:ImageButton ID="btnUbicaPredio" runat="server" OnClick="btnUbicaPredio_Click" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Ubicar Predio" BackColor="#590422" ImageUrl="img/btn/UbicaPredio.png" CssClass="btn" Style="width: 6em;" draggable="false" />
+                                    <p style="font-size: 1rem; color: gray; font-weight: bold; text-align: center;">Ubicar Predio</p>
+                                </div>
+                                <div class="col-6 mx-auto" style="padding: 1rem; text-align: center;">
+                                    <asp:CheckBox ID="checkFactorTerreno" runat="server" AutoPostBack="true" Enabled="false" />
+                                    <asp:ImageButton ID="btnFactorTerreno" Enabled="false" OnClick="btnFactorTerreno_Click" runat="server"  draggable="false" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Factor del Terreno" ImageUrl="img/btn/FactorTerreno.png" CssClass="btn" BackColor="#5F5E5C" Style="width: 6em;" />
+                                    <p style="font-size: 1rem; color: gray; font-weight: bold; text-align: center;">Factor Terreno</p>
+                                </div>
+                            
+                            </div>
+                            <div class="row border-top-0 border border-2 m-5 rounded-2">    
+                                <div class="col-6  mx-auto" style="padding: 1rem; text-align: center;">
+                                    <asp:CheckBox ID="checkFactorConstruccion" runat="server" AutoPostBack="true" Enabled="false" />
+                                    <asp:ImageButton ID="btnFactorConstruccion" runat="server"  draggable="false" Enabled="false" OnClick="btnFactorConstruccion_Click" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Factor de Construcción"  ImageUrl="img/btn/factorConstr.png" CssClass="btn" Style="width: 6em;" BackColor="#d6d6d6"/>
+                                    <p style="font-size: 1rem; color: gray; font-weight: bold; text-align: center;">Factor Construcción</p>
+                                </div>
+                            
+                                <div class="col-6  mx-auto" style="padding: 1rem; text-align: center; align-content: center;">                               
+                                    <asp:ImageButton ID="btnGetAvaluo" runat="server" OnClick="btnGetAvaluo_Click"  draggable="false" Enabled="false" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Factor de Construcción"  ImageUrl="img/suma.png" CssClass="btn" Style="width: 6em;" BackColor="#A99696"/>
+                                    <p style="font-size: 1rem; color: gray; font-weight: bold; text-align: center;">Calcular</p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col mx-auto rounded-2" style="padding: 1rem; text-align: center; ">
+                                    <asp:ImageButton ID="btnGeorreferencia" Visible="false" runat="server" data-bs-toggle="tooltip" data-bs-placement="right" ToolTip="Georeferencia" BackColor="#F8EFEF" ImageUrl="img/btn/Georreferencia.png" CssClass="btn" Style="width: 6em;" draggable="false" />
+                                </div>
+                            </div>            
+                        </div>
+                    </div>
+              </div>
+        
             <%--INFORMACION DEPENDIENDO DEL BOTON--%>
             <div class="col-12 col-sm-12 col-md-7 hidden">
                 <div class="container">
@@ -113,9 +113,9 @@
                         </div>
                     </div>
                     <%--************UBICAR PREDIO************************--%>
-                    <div class="rounded" visible="false" style="background: #D6D7D5; margin-right: 1rem; padding: 2rem; height: auto;" id="UbicacionPredio" runat="server">
+                    <div class="rounded shadow-lg" visible="false" style="background: #D6D7D5; margin-right: 1rem; padding: 2rem; height: auto;" id="UbicacionPredio" runat="server">
                         <h4>UBICAR PREDIO</h4>
-                        <hr style="background: #A71A35; width: 100%; height: 0.2rem; margin-top: 1rem;" />
+                        <hr style="background: #570E25; width: 100%; height: 0.1rem; margin-top: 1rem;" />
                         <asp:UpdatePanel runat="server" ID="UpdatePanel2" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <div class="row row-cols-md-4" style="padding: 1.5rem;">
@@ -195,14 +195,11 @@
                                 <asp:AsyncPostBackTrigger ControlID="ddlMunicipio" />
                                 <asp:AsyncPostBackTrigger ControlID="ddlTipoPredio" />
                                 <asp:AsyncPostBackTrigger ControlID="ddlLocalidad" />
-                                <asp:AsyncPostBackTrigger ControlID="ddlZonaValor" />
+                                <asp:PostBackTrigger ControlID="ddlZonaValor" />
                                 <asp:PostBackTrigger ControlID="btnSiguiente1" />
-
                             </Triggers>
                         </asp:UpdatePanel>
                     </div>
-
-
                     <%-- *************** FACTOR TERRENO *****************--%>
                     <div class="container-fluid rounded" style="background: #D6D7D5; margin-right: 1rem; padding: 0.5rem; height: auto;" id="FactorTerreno" visible="false" runat="server">
                         <div class="row">
@@ -299,6 +296,9 @@
                                     </div>
                                 </div>
                             </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="txtSuperficieRu" />
+                            </Triggers>
                         </asp:UpdatePanel>
                         <%--CONTENEDOR PREDIOS URBANOS--%>
                         <div id="ContentUrbano" visible="false" runat="server">
@@ -489,6 +489,7 @@
                         <hr style="background: #A71A35; width: 100%; height: 0.2rem; margin-top: 1rem;" />
                         <div class="container">                           
                             <div class="row" >
+                                <div class="row text-center"><p>CONSTRUCCIONES DEL PREDIO</p> </div>   
                                 <asp:UpdatePanel runat="server" ID="UpdatePanel5" UpdateMode="Conditional">
                                     <ContentTemplate>
                                         <asp:GridView ID="GVConstrucciones" runat="server" DataKeyNames="AvanceObra" EmptyDataText="NO HAY OBRAS REGISTRADAS EN ESTE PREDIO" HeaderStyle-Font-Size="Small" EditRowStyle-Font-Size="Smaller" BorderColor="#CCCCCC" style="width:80%;" BorderStyle="None" CaptionAlign="Top" CssClass="table table-responsive" AutoGenerateColumns="False" AllowPaging="True" Font-Size="X-Small" PagerStyle-BackColor="White" OnRowCommand="GVConstrucciones_RowCommand" PageSize="3" OnPageIndexChanging="GVConstrucciones_PageIndexChanging">
@@ -500,7 +501,7 @@
                                                 <asp:BoundField DataField="AvanceObra" HeaderText="AVANCE OBRA">
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:BoundField>
-                                                <asp:BoundField DataField="Superficie" HeaderText="SUPERFICIE" DataFormatString="{0:d}" HtmlEncode="false">
+                                                <asp:BoundField DataField="Superficie" HeaderText="SUPERFICIE m²" DataFormatString="{0:d}" HtmlEncode="false">
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:BoundField>
                                                 <asp:BoundField DataField="Clasificacion" HeaderText="CLASIFICACION">
@@ -527,13 +528,10 @@
                                                 <asp:BoundField DataField="SupInd" HeaderText="SUP IND" DataFormatString="{0:d}" HtmlEncode="false">
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:BoundField>
-                                                <asp:BoundField DataField="ObrasComp" HeaderText="OBRAS COMP" DataFormatString="{0:d}" HtmlEncode="false">
-                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                </asp:BoundField>
-                                                <asp:BoundField DataField="ObraCM" HeaderText="OBRA COMPL" DataFormatString="{0:d}" HtmlEncode="false">
-                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                </asp:BoundField>
                                                 <asp:BoundField DataField="CalidadObra" HeaderText="CALIDAD OBRA" DataFormatString="{0:d}" HtmlEncode="false">
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:BoundField>
+                                                <asp:BoundField DataField="ValorM2" HeaderText="VALOR m²" DataFormatString="{0:d}" HtmlEncode="false">
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:BoundField>
                                             </Columns>
@@ -547,21 +545,26 @@
                                     <Triggers>   
                                         <asp:PostBackTrigger ControlID="GVConstrucciones" />
                                     </Triggers>
-                                </asp:UpdatePanel>
-                            </div>
-                            <div class="row bg-danger" >
+                                </asp:UpdatePanel>                        
+
+                               </div>
+                            <div class="row ">
+                                <div class="row text-center"><p>OBRAS COMPLEMENTARIAS DE LA CONSTRUCCION</p> </div>
                                 <asp:UpdatePanel runat="server" ID="UpdatePanel11" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:GridView ID="GVObrasComplem" runat="server" EmptyDataText="NO HAY REGISTRO DE OBRAS COMPLEMENTARIAS EN ESTE PREDIO" HeaderStyle-Font-Size="Small" EditRowStyle-Font-Size="Smaller" BorderColor="#CCCCCC" style="width:80%;" BorderStyle="None" CaptionAlign="Top" CssClass="table table-responsive" AutoGenerateColumns="False" AllowPaging="True" Font-Size="X-Small" PagerStyle-BackColor="White" PageSize="3" DataKeyNames="Calidad" >
+                                        <asp:GridView ID="GVObrasComplem" runat="server" EmptyDataText="NO HAY REGISTRO DE OBRAS COMPLEMENTARIAS EN ESTE PREDIO"  HeaderStyle-Font-Size="Small" EditRowStyle-Font-Size="Smaller" BorderColor="#CCCCCC" style="width:80%;" BorderStyle="None" CaptionAlign="Top" CssClass="table table-responsive" AutoGenerateColumns="False" AllowPaging="True" Font-Size="X-Small" PagerStyle-BackColor="White" PageSize="3" >
                                             <AlternatingRowStyle BackColor="#F2E7EB" />
                                             <Columns>
                                                 <asp:ButtonField ButtonType="Image" CommandName="eliminar" ImageUrl="~/img/backspace.png">
                                                     <ControlStyle Height="1em" Width="2em" />
                                                 </asp:ButtonField>
-                                                <asp:BoundField DataField="obraCom" HeaderText="OBRA COMPLEMENTARIA">
+                                                <asp:BoundField DataField="OBRA COM" HeaderText="OBRA COMPLEMENTARIA">
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:BoundField>
                                                 <asp:BoundField DataField="Calidad" HeaderText="CALIDAD DE OBRA" ><%--DataFormatString="{0:d}" HtmlEncode="false">--%>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:BoundField> 
+                                                <asp:BoundField DataField="VALORM2" HeaderText="VALOR m²" ><%--DataFormatString="{0:d}" HtmlEncode="false">--%>
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:BoundField>
                                             </Columns>
@@ -575,75 +578,82 @@
                                         <asp:PostBackTrigger ControlID="GVObrasComplem" />
                                     </Triggers>
                                 </asp:UpdatePanel>
+                          
                             </div>
-
                         </div>
+
                         <asp:UpdatePanel runat="server" ID="UpdatePanel4" UpdateMode="Conditional">
                             <ContentTemplate>
-                                <div class="row">
-                                    <div class="col" style="text-align: right; margin-top:2em;">
-                                        <asp:ImageButton ID="btnAgregaConstruccion" ToolTip="AGREGAR CONSTRUCCIÓN" runat="server" ImageUrl="img/add.png" Style="width: 2.5em;" OnClick="btnAgregaConstruccion_Click" />
-
+                                <div class="container" style="margin-bottom:1em;">
+                                    <div class="row align-content-center">
+                                        <div class="col text-center" style="text-align: right; margin-top: 2em;">
+                                            <asp:Button ID="btnAgregarConstruccion" runat="server" Text="AGREGAR CONSTRUCCIÓNES" CssClass="btn text-white btn-sm" Style="background:#494949;" OnClick="btnAgregarConstruccion_Click"/>
+                                        </div>
+                                        <div class="col text-center" style="text-align: right; margin-top: 2em;">
+                                            <asp:Button ID="btnAgregarObrasComp" runat="server" Text="AGREGAR OBRAS" CssClass="btn text-white btn-sm" Style="background:#494949;" OnClick="btnAgregarObrasComp_Click"/>
+                                        </div>             
+                                        <div class="col text-center" style="text-align: right; margin-top: 2em;">
+                                            <asp:Button ID="btnValConstruccion" runat="server" Text="CALCULAR VALOR" CssClass="btn text-white btn-sm" Style="background:#494949;"/>
+                                        </div>  
                                     </div>
                                 </div>
-                                <div class="container " runat="server" id="ContentAgregarConstruccion" visible="false" >
+
+                                <div class="container" runat="server" id="ContentAgregarConstruccion" visible="false" >
                                    <asp:UpdatePanel runat="server" ID="UpdatePanel7" UpdateMode="Conditional">
                                         <ContentTemplate>
                                     <div class="row" style="padding: 1.5rem; background:#A2A1A1;" >
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
-                                            <asp:TextBox ID="txtSuperficieObra" PlaceHolder="SUPERFICIE" CssClass="form-control form-control-sm" runat="server" onkeypress="return onlyDecimalNumber(event);"></asp:TextBox>
+                                            <asp:TextBox ID="txtSuperficieObra" PlaceHolder="SUPERFICIE" CssClass="form-control form-control-sm" runat="server" onkeypress="return onlyDecimalNumber(event);" OnTextChanged="txtSuperficieObra_TextChanged"></asp:TextBox>
                                         </div>
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
                                             <asp:DropDownList ID="ddlClasPred" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" Style="text-align: left;" OnSelectedIndexChanged="ddlClasPred_SelectedIndexChanged" AutoPostBack="true">
-                                                <asp:ListItem>CLASIFICACION DE CONSTRUCCIÓN</asp:ListItem>
+                                         <%--       <asp:ListItem>CLASIFICACION </asp:ListItem>--%>
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
-                                            <asp:DropDownList ID="ddlTipoConstruccion" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" Style="text-align: left;" OnSelectedIndexChanged="ddlTipoConstruccion_SelectedIndexChanged" AutoPostBack="true">
-                                                <asp:ListItem>TIPO DE CONSTRUCCIÓN</asp:ListItem>
+                                            <asp:DropDownList ID="ddlCalidadConstruccion" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" Style="text-align: left;" AutoPostBack="true">
+                                                <asp:ListItem>CALIDAD</asp:ListItem>
                                             </asp:DropDownList>
-                                        </div>
+                                         </div>
                                     </div>
-                                            <div class="row" style="padding: 1.5rem; background:#A2A1A1;">                                                
-                                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
-                                                    <asp:DropDownList ID="ddlCalidadConstruccion" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" Style="text-align: left;" AutoPostBack="true">
-                                                        <asp:ListItem>CALIDAD DE LA CONSTRUCCIÓN</asp:ListItem>
-                                                    </asp:DropDownList>
-                                                </div>
-                                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
-                                            <asp:DropDownList ID="ddlAvanceConstruccion" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" Style="text-align: left;">
+                                    <div class="row" style="padding: 1.5rem; background: #A2A1A1;">
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
+                                            <asp:DropDownList ID="ddlAvanceConstruccion" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" Style="text-align: left;" OnSelectedIndexChanged="ddlAvanceConstruccion_SelectedIndexChanged">
                                                 <asp:ListItem>AVANCE DE OBRA</asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
-                                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
-                                                    <div class="input-group mb-2">
-                                                        <asp:DropDownList ID="ddlCoservacion" runat="server" Font-Size="Small" CssClass="btn btn-sm btn-light dropdown-toggle dropdown-toggle-split w-75" Style="text-align: left;">
-                                                            <%--     <asp:ListItem>Conservación</asp:ListItem>--%>
-                                                        </asp:DropDownList>
-                                                        <div class="input-group-prepend ">
-                                                            <div class="input-group-text bg-transparent border-0">
-                                                                <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalConservacion" style="width: 1em; height: auto; border: none; background: none;">
-                                                                    <img src="img/ask.png" style="width: 100%; height: auto;" />
-                                                                </button>
-                                                            </div>
-                                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
+                                            <div class="input-group mb-2">
+                                                <asp:DropDownList ID="ddlCoservacion" runat="server" Font-Size="Small" CssClass="btn btn-sm btn-light dropdown-toggle dropdown-toggle-split w-75" Style="text-align: left;">
+                                                    <%--     <asp:ListItem>Conservación</asp:ListItem>--%>
+                                                </asp:DropDownList>
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text bg-transparent border-0">
+                                                        <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalConservacion" style="width: 1em; height: auto; border: none; background: none;">
+                                                            <img src="img/ask.png" style="width: 100%; height: auto;" />
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
+                                            <asp:DropDownList ID="ddlEdadConstruccion" runat="server" Font-Size="Small" CssClass="btn btn-sm btn-light dropdown-toggle dropdown-toggle-split w-100" Style="text-align: left;" OnSelectedIndexChanged="ddlEdadConstruccion_SelectedIndexChanged">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
                                         </ContentTemplate>
                                         <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlClasPred" />
-                                            <asp:AsyncPostBackTrigger ControlID="ddlTipoConstruccion" />
+                                            <asp:PostBackTrigger ControlID="ddlClasPred" />
+                                            <asp:PostBackTrigger ControlID="ddlCalidadConstruccion" />
+                                            <asp:AsyncPostBackTrigger ControlID="ddlAvanceConstruccion" />
+                                            <asp:AsyncPostBackTrigger ControlID="ddlCoservacion" />
+                                            <asp:AsyncPostBackTrigger ControlID="ddlEdadConstruccion" />
                                         </Triggers>
                                     </asp:UpdatePanel>
-
                                     <asp:UpdatePanel runat="server" ID="UpdatePanel8" UpdateMode="Conditional">
-                                        <ContentTemplate>
+                                        <ContentTemplate>                                            
                                             <div class="row" style="padding: 1.5rem; background:#A2A1A1;">
-                                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-1">
-                                                    <asp:DropDownList ID="ddlEdadConstruccion" runat="server" Font-Size="Small" CssClass="btn btn-sm btn-light dropdown-toggle dropdown-toggle-split w-100" Style="text-align: left;">
-                                                    </asp:DropDownList>
-                                                </div>
+                                                
                                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-1" style="text-align: left;">
                                                     <h6>¿LA PROPIEDAD PERTENECE A UN CONDOMINIO?</h6>
                                                 </div>
@@ -653,6 +663,7 @@
                                                         <asp:ListItem>NO</asp:ListItem>
                                                     </asp:RadioButtonList>
                                                 </div>
+                                                 <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-1" style="text-align: left;"></div>
                                             </div>
                                             <div class="row animate__animated animate__fadeInDown" style="padding: 1.5rem; background:#A2A1A1;" runat="server" id="condominio" visible="false">
                                                  <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1"></div>
@@ -664,35 +675,37 @@
                                                 </div>                                               
                                             </div>
                                               <div class="row" style="padding: 1.5rem; background:#A2A1A1;">
-                                                <div class="col-12 col-sm-12 col-md8 col-lg-8 col-xl-8 p-1"></div>
+                                                <div class="col-12 col-sm-12 col-md8 col-lg-4 col-xl-4 p-1"></div>
                                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1 text-left">
-                                                    <asp:Button ID="btnAddList" runat="server" CssClass="btn btn-sm" Style="background: #570E25; color: white;" Text="AGREGAR CONSTRUCCIÓN" OnClick="btnAddList_Click" />
+                                                    <asp:Button ID="btnAddList" runat="server" CssClass="btn btn-sm" Style="background: #570E25; color: white;" Text="GUARDAR CAMBIOS" OnClick="btnAddList_Click" />
+                                                </div>
+                                                <div class="col-12 col-sm-12 col-md8 col-lg-4 col-xl-4 p-1">
+                                                     <asp:Button ID="btnCancelAddConstr" runat="server" CssClass="btn btn-sm" Style="background: #570E25; color: white;" Text="CANCELAR" OnClick="btnCancelAddConstr_Click" />
                                                 </div>
                                             </div>                                         
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="RadBtnCondominio" />
-                                               <asp:PostBackTrigger ControlID="btnAddList" />
+                                            <asp:PostBackTrigger ControlID="btnAddList" />
+                                            <asp:PostBackTrigger ControlID="btnCancelAddConstr" />
                                         </Triggers>
-                                    </asp:UpdatePanel>
-
-
-                                    <asp:UpdatePanel runat="server" ID="UpdatePanel9" UpdateMode="Conditional">
+                                    </asp:UpdatePanel>                                 
+                                </div>
+                                <div runat="server" id="ContentAgregarObraCom" visible="false" class="container">
+                                        <asp:UpdatePanel runat="server" ID="UpdatePanel9" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <div class="row" style="padding: 1.5rem; background:#A2A1A1; margin-top:1rem;">                                                
+                                          <%--  <div class="row" style="padding: 1.5rem; background:#A2A1A1; margin-top:1rem;">                                                
                                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-1">
                                                     <h6 style="text-align: right;">¿CUENTA CON OBRAS COMPLEMENTARIAS?</h6>
                                                 </div>
                                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 p-1 text-left">
-                                                    <asp:RadioButtonList ID="RBObrasComplementarias" runat="server" AutoPostBack="true" Font-Size="Small" OnSelectedIndexChanged="RBObrasComplementarias_SelectedIndexChanged" >
+                                                   <%-- <asp:RadioButtonList ID="RBObrasComplementarias" runat="server" AutoPostBack="true" Font-Size="Small" OnSelectedIndexChanged="RBObrasComplementarias_SelectedIndexChanged" >
                                                         <asp:ListItem>SI</asp:ListItem>
                                                         <asp:ListItem>NO</asp:ListItem>
                                                     </asp:RadioButtonList>
                                                 </div>               
-                                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-1">
-                                                    <asp:Button ID="btnAddObrasCom" runat="server" CssClass="btn btn-sm" Style="background: #570E25; color: white;" Text="AGREGAR OBRA" OnClick="btnAddObrasCom_Click" />
-                                                </div>
-                                            </div>
+                                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-1"></div>
+                                            </div>--%>
                                             <div class="row" style="padding: 1rem; background:#A2A1A1;" runat="server" id="obrasComplementarias" visible="false">
                                                 <%--visible="false"--%>
                                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1"></div>
@@ -702,23 +715,29 @@
                                                 </div>
                                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
                                                     <asp:DropDownList ID="ddlCalidadObra" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" Style="text-align: left;" >
-                                                        <asp:ListItem>CALIDAD DE OBRA</asp:ListItem>
+                                                        <asp:ListItem>CALIDAD</asp:ListItem>
                                                     </asp:DropDownList> 
                                                 </div>
                                             </div>
+                                             <div class="row" style="padding: 1.5rem; background:#A2A1A1;">
+                                                 <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 p-1"></div>
+                                                 <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                                                   <asp:Button ID="btnAddObrasCom" runat="server" CssClass="btn btn-sm" Style="background: #570E25; color: white;" Text="GUARDAR CAMBIOS" OnClick="btnAddObrasCom_Click" />
+                                                </div>
+                                             </div>
                                         </ContentTemplate>
                                         <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="RBObrasComplementarias" />
+                                          <%--  <asp:PostBackTrigger ControlID="RBObrasComplementarias" />--%>
+                                            <asp:AsyncPostBackTrigger ControlID="ddlObraComplementaria" />
+                                            <asp:PostBackTrigger ControlID="btnAddObrasCom" />
                                         </Triggers>
                                     </asp:UpdatePanel>
-
-                                   
-
                                 </div>
 
                             </ContentTemplate>
                             <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="btnAgregaConstruccion" />
+                                <asp:AsyncPostBackTrigger ControlID="btnAgregarObrasComp" /> 
+                                <asp:PostBackTrigger ControlID="btnAgregarConstruccion" /> 
                             </Triggers>
                         </asp:UpdatePanel>
                         <%-- *************** AGREGAR CONSTRUCCION A LA LISTA    *****************--%>
@@ -1616,6 +1635,29 @@
             </div>
         </div>
     </div>
+
+
+     <!-- Modal -->
+        <div class="modal fade" id="modalReporteUrbanos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabedd">REPORTE </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">                
+              
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+
+
     <%--Leaflet--%>
     <%--      <script type="text/javascript">
         //// Initialize the map
@@ -1656,7 +1698,13 @@
 
 
 
-    </script>
+
+
+
+
+
+
+        </script>
     <script src="js/mask.js"></script>
     <%-- <script type="text/javascript" src="js/mask.js"></script>--%>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>

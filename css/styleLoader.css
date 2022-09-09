@@ -3,6 +3,7 @@
  */
 body {
     text-align: center;
+    background: rgb(47 46 46);
 }
 
 #letreroLoad {
@@ -38,7 +39,8 @@ body {
     }
 
     .loading span:nth-of-type(3) {
-        background: #873600;
+       /* background: #873600;*/
+        background: rgb(0 0 0 / 0.35);
         animation-delay: 0.4s;
     }
 

@@ -13,7 +13,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body" runat="server">
-    <div class="container-fluid">
+    <div class="container-fluid bg-white">
       <div class="row">
           <div class="col">
               <img src="img/4040.png" class="w-100" />

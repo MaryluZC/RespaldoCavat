@@ -144,7 +144,7 @@
                                     <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" runat="server" id="tagLocalidad" visible="false">
                                         <h6 style="font-size: 0.8em; text-align: left;">LOCALIDAD</h6>
                                         <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Font-Size="Small" Style="display:flex;text-align: left;" AutoPostBack="true" OnSelectedIndexChanged="ddlLocalidad_SelectedIndexChanged">
-                                            <asp:ListItem>Localidad</asp:ListItem>
+                                            <asp:ListItem>LOCALIDAD</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" runat="server" id="tagParaje" visible="false">

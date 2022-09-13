@@ -26,6 +26,12 @@
   <wsdl:message name="IServiceCavat_VerCatalogo_OutputMessage">
     <wsdl:part name="parameters" element="tns:VerCatalogoResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatConstruccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatConstruccion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatConstruccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatConstruccionResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceCavat">
     <wsdl:operation name="AccesLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceCavat/AccesLogin" message="tns:IServiceCavat_AccesLogin_InputMessage" />
@@ -38,6 +44,10 @@
     <wsdl:operation name="VerCatalogo">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceCavat/VerCatalogo" message="tns:IServiceCavat_VerCatalogo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceCavat/VerCatalogoResponse" message="tns:IServiceCavat_VerCatalogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerCatConstruccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCavat/VerCatConstruccion" message="tns:IServiceCavat_VerCatConstruccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCavat/VerCatConstruccionResponse" message="tns:IServiceCavat_VerCatConstruccion_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceCavat" type="tns:IServiceCavat">
@@ -62,6 +72,15 @@
     </wsdl:operation>
     <wsdl:operation name="VerCatalogo">
       <soap:operation soapAction="http://tempuri.org/IServiceCavat/VerCatalogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerCatConstruccion">
+      <soap:operation soapAction="http://tempuri.org/IServiceCavat/VerCatConstruccion" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

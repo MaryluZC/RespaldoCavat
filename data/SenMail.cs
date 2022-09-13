@@ -26,7 +26,7 @@ namespace Cavat.data
             smtp.EnableSsl = true;
             try
             {
-                smtp.Send(mail);               
+                smtp.Send(mail);
                 return 1;
             }
             catch (Exception ex)

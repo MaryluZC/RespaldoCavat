@@ -39,7 +39,7 @@ function alphaNum(evt) {
 }
 
 
-function onlyNumbersSuperficie(evt) {
+function onlyDecimalNumber(evt) {
     // code is the decimal ASCII representation of the pressed key.
     var code = (evt.which) ? evt.which : evt.keyCode;
 

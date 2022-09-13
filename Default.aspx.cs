@@ -10,27 +10,34 @@ namespace Cavat
 {
     public partial class Default : System.Web.UI.Page
     {
-
         resultado rs = new resultado();
         DataSet dsaux = new DataSet();
         LoginCavat entrar = new LoginCavat();
         dataUser datauser = new dataUser();
         catalogos catalog = new catalogos();//SERVICIO WEB
+        TestConexion ts = new TestConexion();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Response.Cache.SetCacheability(HttpCacheability.NoCache); //Response.Cache.SetExpires(DateTime.Now.AddDays(-1));  //Response.Cache.SetNoStore();
-            if (!IsPostBack)
+            if (ts.VerificarConexionURL("http://localhost:65007/ServiceCavat.svc?wsdl"))//CAMBIAR LA RUTA DEL SERVICIO A LA PUBLICADA
             {
-                SolicitudReg.Visible = false;
-                RecuperacionPsw.Visible = false;
-                lnkRecuperaPsw.Visible = false;
+                //Response.Cache.SetCacheability(HttpCacheability.NoCache); //Response.Cache.SetExpires(DateTime.Now.AddDays(-1));  //Response.Cache.SetNoStore();
+                if (!IsPostBack)
+                {
+                    SolicitudReg.Visible = false;
+                    RecuperacionPsw.Visible = false;
+                    lnkRecuperaPsw.Visible = false;
 
-                ddlTipoDocumento();
-                ddlTipoUser();
-                llenarCatalgos(1, "Pregunta", ddlPreguntaR, "PREGUNTA DE SEGURIDAD");//
-                llenarCatalgos(1, "Pregunta", ddlPregRecPsw, "PREGUNTA DE SEGURIDAD");//
+                    ddlTipoDocumento();
+                    ddlTipoUser();
+                    llenarCatalgos(1, "Pregunta", ddlPreguntaR, "PREGUNTA DE SEGURIDAD");//
+                    llenarCatalgos(1, "Pregunta", ddlPregRecPsw, "PREGUNTA DE SEGURIDAD");//
+                }
             }
-
+            else
+            {
+                Response.Redirect("404.aspx");
+            }
         }
 
         public void llenarCatalgos(int opc, string columna, DropDownList lista, string titulo)
@@ -135,7 +142,6 @@ namespace Cavat
                     int msgRes = rs.mensaje;
                     dsaux = rs.elDataSet;
                     // Debemos sregresar la tabla y asignar a las variables comunes los valores devueltos y luego continuar con lo de abajo
-
                     switch (msgRes)
                     {
                         case 1:

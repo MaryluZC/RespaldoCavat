@@ -42,6 +42,33 @@ namespace Cavat
         protected global::System.Web.UI.WebControls.Label lblValorFactorObraCom;
 
         /// <summary>
+        /// Control UpdatePanel10.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel10;
+
+        /// <summary>
+        /// Control lblVALORTOTAL.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVALORTOTAL;
+
+        /// <summary>
+        /// Control btnImprimir.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnImprimir;
+
+        /// <summary>
         /// Control checkUbicarPredio.
         /// </summary>
         /// <remarks>
@@ -96,22 +123,13 @@ namespace Cavat
         protected global::System.Web.UI.WebControls.ImageButton btnFactorConstruccion;
 
         /// <summary>
-        /// Control UpdatePanel3.
+        /// Control btnGetAvaluo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
-
-        /// <summary>
-        /// Control btnTerminar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTerminar;
+        protected global::System.Web.UI.WebControls.ImageButton btnGetAvaluo;
 
         /// <summary>
         /// Control btnGeorreferencia.
@@ -121,15 +139,6 @@ namespace Cavat
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton btnGeorreferencia;
-
-        /// <summary>
-        /// Control btnImprimir.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnImprimir;
 
         /// <summary>
         /// Control Presentacion.
@@ -384,13 +393,13 @@ namespace Cavat
         protected global::System.Web.UI.WebControls.TextBox txtDistanciaRustico;
 
         /// <summary>
-        /// Control ddlDistanciaUDM.
+        /// Control RDBDistanciaPredio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDistanciaUDM;
+        protected global::System.Web.UI.WebControls.RadioButtonList RDBDistanciaPredio;
 
         /// <summary>
         /// Control ddlUbicaciónRustico.
@@ -409,6 +418,15 @@ namespace Cavat
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ContentUrbano;
+
+        /// <summary>
+        /// Control UpdatePanel3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
 
         /// <summary>
         /// Control ddlUsoSueloUrbano.
@@ -582,6 +600,24 @@ namespace Cavat
         protected global::System.Web.UI.WebControls.GridView GVConstrucciones;
 
         /// <summary>
+        /// Control UpdatePanel11.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel11;
+
+        /// <summary>
+        /// Control GVObrasComplem.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GVObrasComplem;
+
+        /// <summary>
         /// Control UpdatePanel4.
         /// </summary>
         /// <remarks>
@@ -591,13 +627,31 @@ namespace Cavat
         protected global::System.Web.UI.UpdatePanel UpdatePanel4;
 
         /// <summary>
-        /// Control btnAgregaConstruccion.
+        /// Control btnAgregarConstruccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnAgregaConstruccion;
+        protected global::System.Web.UI.WebControls.Button btnAgregarConstruccion;
+
+        /// <summary>
+        /// Control btnAgregarObrasComp.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarObrasComp;
+
+        /// <summary>
+        /// Control btnValConstruccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnValConstruccion;
 
         /// <summary>
         /// Control ContentAgregarConstruccion.
@@ -609,6 +663,15 @@ namespace Cavat
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ContentAgregarConstruccion;
 
         /// <summary>
+        /// Control UpdatePanel7.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel7;
+
+        /// <summary>
         /// Control txtSuperficieObra.
         /// </summary>
         /// <remarks>
@@ -616,15 +679,6 @@ namespace Cavat
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSuperficieObra;
-
-        /// <summary>
-        /// Control ddlAvanceConstruccion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAvanceConstruccion;
 
         /// <summary>
         /// Control ddlClasPred.
@@ -636,24 +690,6 @@ namespace Cavat
         protected global::System.Web.UI.WebControls.DropDownList ddlClasPred;
 
         /// <summary>
-        /// Control UpdatePanel7.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel7;
-
-        /// <summary>
-        /// Control ddlTipoConstruccion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoConstruccion;
-
-        /// <summary>
         /// Control ddlCalidadConstruccion.
         /// </summary>
         /// <remarks>
@@ -661,6 +697,15 @@ namespace Cavat
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCalidadConstruccion;
+
+        /// <summary>
+        /// Control ddlAvanceConstruccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAvanceConstruccion;
 
         /// <summary>
         /// Control ddlCoservacion.
@@ -672,15 +717,6 @@ namespace Cavat
         protected global::System.Web.UI.WebControls.DropDownList ddlCoservacion;
 
         /// <summary>
-        /// Control UpdatePanel8.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel8;
-
-        /// <summary>
         /// Control ddlEdadConstruccion.
         /// </summary>
         /// <remarks>
@@ -690,49 +726,13 @@ namespace Cavat
         protected global::System.Web.UI.WebControls.DropDownList ddlEdadConstruccion;
 
         /// <summary>
-        /// Control RBObrasComplementarias.
+        /// Control UpdatePanel8.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RBObrasComplementarias;
-
-        /// <summary>
-        /// Control obrasComplementarias.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl obrasComplementarias;
-
-        /// <summary>
-        /// Control ddlObraComplementaria.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlObraComplementaria;
-
-        /// <summary>
-        /// Control ddlCalidadObra.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCalidadObra;
-
-        /// <summary>
-        /// Control UpdatePanel9.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel9;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel8;
 
         /// <summary>
         /// Control RadBtnCondominio.
@@ -778,6 +778,69 @@ namespace Cavat
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddList;
+
+        /// <summary>
+        /// Control btnCancelAddConstr.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelAddConstr;
+
+        /// <summary>
+        /// Control ContentAgregarObraCom.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ContentAgregarObraCom;
+
+        /// <summary>
+        /// Control UpdatePanel9.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel9;
+
+        /// <summary>
+        /// Control obrasComplementarias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl obrasComplementarias;
+
+        /// <summary>
+        /// Control ddlObraComplementaria.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlObraComplementaria;
+
+        /// <summary>
+        /// Control ddlCalidadObra.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCalidadObra;
+
+        /// <summary>
+        /// Control btnAddObrasCom.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddObrasCom;
 
         /// <summary>
         /// Control Div1.

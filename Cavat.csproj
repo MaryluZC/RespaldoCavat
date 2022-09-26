@@ -299,7 +299,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="data\catalogos.cs" />
+    <Compile Include="data\catalogosSW.cs" />
     <Compile Include="data\ConnectionToString.cs" />
     <Compile Include="data\LoginCavat.cs" />
     <Compile Include="data\SenMail.cs" />

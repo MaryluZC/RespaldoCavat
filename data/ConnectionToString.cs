@@ -1,5 +1,11 @@
 ﻿using System.Data.SqlClient;
-
+/// <summary>
+/// | Autor: Ing. Maria de Lourdes Sosa Cruz
+/// Clase para realizar la conexion con la base de datos local
+/// En la base de datos local solo se contiene la informacion de los usuarios registrados
+/// la informacion de los municipios descentralizados y se agregara la informacion para el control 
+/// de pagos y las veces que el usuario utilice el sistema. 
+/// </summary>
 namespace Cavat.data
 {
     public class ConnectionToString

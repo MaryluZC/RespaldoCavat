@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4e65bd08-7339-4ed0-b779-d983871d2200" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8fbaa561-6af0-47f5-a98b-0268cee33616" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:65007/ServiceCavat.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ServiceCavat.xsd" MetadataType="Schema" ID="896e2221-b954-41bf-a70c-c89a7dab4947" SourceId="1" SourceUrl="http://localhost:65007/ServiceCavat.svc?xsd=xsd3" />
-    <MetadataFile FileName="ServiceCavat1.xsd" MetadataType="Schema" ID="202f1b42-12d5-4307-a922-dfe1f8a00140" SourceId="1" SourceUrl="http://localhost:65007/ServiceCavat.svc?xsd=xsd1" />
-    <MetadataFile FileName="ServiceCavat2.xsd" MetadataType="Schema" ID="304d20b5-0c0b-4853-bd00-ce9ce78b48e9" SourceId="1" SourceUrl="http://localhost:65007/ServiceCavat.svc?xsd=xsd0" />
-    <MetadataFile FileName="ServiceCavat3.xsd" MetadataType="Schema" ID="5b36a104-d451-40cd-afd7-5ba66470e0e0" SourceId="1" SourceUrl="http://localhost:65007/ServiceCavat.svc?xsd=xsd2" />
-    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="140876dd-156d-4efe-80c9-b8c1ee162b28" SourceId="1" SourceUrl="http://localhost:65007/ServiceCavat.svc?wsdl" />
+    <MetadataFile FileName="ServiceCavat.xsd" MetadataType="Schema" ID="70a1fec9-8f68-40c7-ab36-5226b4096492" SourceId="1" SourceUrl="http://localhost:65007/ServiceCavat.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceCavat1.xsd" MetadataType="Schema" ID="47360bef-7a51-4747-b8f8-d2eb3953a8a3" SourceId="1" SourceUrl="http://localhost:65007/ServiceCavat.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceCavat2.xsd" MetadataType="Schema" ID="a26b91ef-ec7d-4f0d-aab3-202dc9de1a98" SourceId="1" SourceUrl="http://localhost:65007/ServiceCavat.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceCavat3.xsd" MetadataType="Schema" ID="3d121137-ea80-4677-893d-8248edccb86f" SourceId="1" SourceUrl="http://localhost:65007/ServiceCavat.svc?xsd=xsd2" />
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="5332f7b2-2ea6-4f53-9874-c9e7d52bac40" SourceId="1" SourceUrl="http://localhost:65007/ServiceCavat.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -152,10 +152,10 @@
                                             <asp:BoundField DataField="nombre" HeaderText="Nombre">
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="ape1" HeaderText="Primer Apellido">
+                                            <asp:BoundField DataField="primerApellido" HeaderText="Primer Apellido">
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="ape2" HeaderText="Segundo Apellido" DataFormatString="{0:d}" HtmlEncode="false">
+                                            <asp:BoundField DataField="segundoApellido" HeaderText="Segundo Apellido" DataFormatString="{0:d}" HtmlEncode="false">
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="correo" HeaderText="Correo">
@@ -164,22 +164,22 @@
                                             <asp:BoundField DataField="usuario" HeaderText="Usuario">
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="passwordd" HeaderText="Password">
+                                            <asp:BoundField DataField="contrasena" HeaderText="Password">
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="cedulaP" HeaderText="Cedula Profesional" DataFormatString="{0:d}" HtmlEncode="false">
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="pregunta" HeaderText="Pregunta">
+                                            <asp:BoundField DataField="Pregunta" HeaderText="Pregunta">
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="respuseta" HeaderText="Respuesta">
+                                            <asp:BoundField DataField="respuesta" HeaderText="Respuesta">
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="telCel" HeaderText="Telefono">
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="numNotaria" HeaderText="No Notaría" DataFormatString="{0:d}" HtmlEncode="false">
+                                            <asp:BoundField DataField="numeroNotaria" HeaderText="No Notaría" DataFormatString="{0:d}" HtmlEncode="false">
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="statusN" HeaderText="Status" > <%--DataFormatString="{0:d}" HtmlEncode="false"--%>
@@ -191,7 +191,7 @@
                                             <asp:BoundField DataField="bloqueado" HeaderText="Bloqueado" >
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="tipoUser" HeaderText="Tipo User">
+                                            <asp:BoundField DataField="Perfil" HeaderText="Tipo User">
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="Documento" HeaderText="Comprobante">
@@ -214,10 +214,10 @@
                                     <asp:BoundField DataField="nombre" HeaderText="Nombre">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="ape1" HeaderText="Primer Apellido">
+                                    <asp:BoundField DataField="primerApellido" HeaderText="Primer Apellido">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="ape2" HeaderText="Segundo Apellido">
+                                    <asp:BoundField DataField="segundoApellido" HeaderText="Segundo Apellido">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
                                     <asp:BoundField DataField="correo" HeaderText="Correo">
@@ -226,7 +226,7 @@
                                     <asp:BoundField DataField="usuario" HeaderText="Usuario">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="passwordd" HeaderText="Password">
+                                    <asp:BoundField DataField="contrasena" HeaderText="Password">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
                                     <asp:BoundField DataField="cedulaP" HeaderText="Cedula Profesional">
@@ -235,7 +235,7 @@
                                     <asp:BoundField DataField="telCel" HeaderText="Telefono">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="tipoUser" HeaderText="Tipo User">
+                                    <asp:BoundField DataField="idPerfil" HeaderText="Tipo User">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />  
                                     </asp:BoundField>
                                     <asp:BoundField DataField="Documento" HeaderText="Comprobante">
@@ -256,10 +256,10 @@
                                         <asp:BoundField DataField="nombre" HeaderText="Nombre">
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="ape1" HeaderText="Primer Apellido">
+                                        <asp:BoundField DataField="primerApellido" HeaderText="Primer Apellido">
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="ape2" HeaderText="Segundo Apellido" >
+                                        <asp:BoundField DataField="segundoApellido" HeaderText="Segundo Apellido" >
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:BoundField>
                                         <asp:BoundField DataField="correo" HeaderText="Correo">
@@ -268,7 +268,7 @@
                                         <asp:BoundField DataField="usuario" HeaderText="Usuario">
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="passwordd" HeaderText="Password">
+                                        <asp:BoundField DataField="contrasena" HeaderText="Password">
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:BoundField>
                                         <asp:BoundField DataField="cedulaP" HeaderText="Cedula Profesional">
@@ -277,7 +277,7 @@
                                         <asp:BoundField DataField="telCel" HeaderText="Telefono">
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="tipoUser" HeaderText="Tipo User">
+                                        <asp:BoundField DataField="Perfil" HeaderText="Tipo User">
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:BoundField>
                                     </Columns>                                   

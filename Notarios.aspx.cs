@@ -11,17 +11,17 @@ using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq;
-
+/*
+ * | Autor: Ing. Maria de Lourdes Sosa Cruz
+ * | Contiene toda la estructura para llevar a cabo el ejercicio de valuacion catastral 
+ */
 namespace Cavat
 {
     public partial class Notarios : System.Web.UI.Page
     {
-
-        catalogos cat = new catalogos();// ELIMINAR UNA VES QUE HAYAN QUEDADO LOS SERVICIOS
         Catalogos catt = new Catalogos();//CAPA COMUN //ELIMINAR UNA VES QUE HAYAN QUEDADO LOS SERVICIO        
         resultado rs = new resultado();
-
-        catalogos catalog = new catalogos();// servicio WEB 
+        catalogosSW catSW = new catalogosSW();// servicio WEB 
         DataSet dsaux = new DataSet();
         DataTable dtaux = new DataTable();
         private static DataTable tabla = new DataTable();
@@ -47,11 +47,7 @@ namespace Cavat
                     if (!IsPostBack)
                     {
                         GVConstrucciones.DataBind();
-                        GVObrasComplem.DataBind();
-                        //    llenarCatalgos(10, "clasificacionConstruccion", ddlClasPred, "CLASIFICACIÓN DE CONSTRUCCIÓN");
-                        llenarCatalgos(19, "estadoConservacion", ddlCoservacion, "ESTADO DE CONSERVACIÓN");
-                        ddlEdadConstruc();
-                        //limpiar campos
+                        GVObrasComplem.DataBind();                        
                     }
                     else
                     {
@@ -60,17 +56,13 @@ namespace Cavat
                         lblFOLIOT.Text = Convert.ToString(r1);
                     }
                 }
-            }catch(Exception ex)
+            } catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-
         public void ddlEdadConstruc()
-        {
-            if (!IsPostBack)
-            {
+        {            
                 try
                 {
                     ddlEdadConstruccion.Items.Insert(0, new ListItem("EDAD"));
@@ -80,15 +72,14 @@ namespace Cavat
                     ddlEdadConstruccion.Items.Insert(4, new ListItem("31-40"));
                     ddlEdadConstruccion.Items.Insert(5, new ListItem("41-50"));
                     ddlEdadConstruccion.Items.Insert(6, new ListItem("51-EN ADELANTE"));
-
                 }
                 catch (Exception ex)
                 {
-                    Response.Write(ex);
-                }
+                Response.Write(ex);
+                Response.Redirect("404.aspx");
             }
+            
         }
-
         public void llenarCatalgos(int opc, string columna, DropDownList lista, string titulo)
         {
             try
@@ -102,23 +93,38 @@ namespace Cavat
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw ex;                
             }
         }
-        public DataSet VerCatalogo(int opc)
+        public DataSet VerCatalogo(int opc)  //Pasar a Clase Catalogos
         {
             try
             {
-                rs = catalog.Cataloggo(opc);
+                rs = catSW.Cataloggo(opc); //CONSUMO SW             
                 int msg = rs.mensaje;
                 dsaux = rs.elDataSet;
                 return dsaux;
-            }catch(Exception ex)
+            } catch (Exception ex)
+            {
+                throw ex;
+                //Response.Redirect("404.aspx");
+            }
+        }
+        public DataTable VerCatUsoGeneral(int opc, string idtipoPredio)  //METODO QUE CONSUME EL SERVICIO WEB LLAMADO DESDE LA CLASE CATALOGOSSW
+        {
+            try
+            {
+                rs = catSW.CatUsoGeneral(opc, idtipoPredio); //LLAMA AL METODO DE LA CLASE CATALOGOSSW QUE ESTA CONSUMIENDO EL SERVICIO WEB           
+                int msg = rs.mensaje;
+                dsaux = rs.elDataSet;
+                dtaux = dsaux.Tables[0];
+                return dtaux; // DEVUELVE LA TABLA CON EL RESULTADO GENERADO
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
         }
-      
         public String esCentralizado(string municipio)//Corregir a Filtrar desde la tabla que ya se tiene
         {
             try
@@ -139,20 +145,42 @@ namespace Cavat
                                                              select fila;
                     DataTable dt1 = query.CopyToDataTable();
                     cent = dt1.Rows[0]["esCentralizado"].ToString();
-
                 }
                 return cent;
-            }catch(Exception ex)
+            } catch (Exception ex)
             {
                 throw ex;
             }
 
         }
-
         protected void btnUbicaPredio_Click(object sender, ImageClickEventArgs e)
         {
             try
             {
+                //limpiar las cajas posteriores 
+                //Limpia lo seleccionado en Ubicar predio
+                ddlLocalidad.ClearSelection();
+                ddlZonaValor.ClearSelection();
+                // *******Limpia lo que se encuentre en el Factor de Terreno *********
+                ddlUsoSueloUrbano.ClearSelection();
+                txtSuperficieUrbano.Text = "";
+                txtFrenterustico.Text = "";
+                ddlPreguntaFraccionamiento.ClearSelection();
+                txtProfundidad.Text = "";
+                ddlDesnivelUrbano.ClearSelection();
+                ddlTipoDesnivelUrbano.ClearSelection();
+                ddlUbicacionManzana.ClearSelection();
+                ddlTipoVialidad.ClearSelection();
+                txtNoTotalEsquinas.Text = "";
+                txtAnguloEsquinas.Text = "";
+                txtNoEsquinasColinVialidad.Text = "";
+                RDBntConstruccion.ClearSelection();
+                /////////
+                ddlObraComplementaria.ClearSelection();
+                ddlCalidadObra.ClearSelection();
+                ContentAgregarObraCom.Visible = false;
+
+                ////dejar asi porque es la primera presentacion es en donde se dan los datos generales del predio
                 UbicacionPredio.Visible = true;
                 Presentacion.Visible = false;
                 FactorTerreno.Visible = false;
@@ -165,12 +193,13 @@ namespace Cavat
                     llenarCatalgos(4, "municipio", ddlMunicipio, "MUNICIPIO");
                     llenarCatalgos(6, "tipoPredio", ddlTipoPredio, "TIPO PREDIO");
                 }
-            }catch(Exception ex)
+
+
+            } catch (Exception ex)
             {
                 throw ex;
             }
         }
-
         protected void btnFactorTerreno_Click(object sender, ImageClickEventArgs e)
         {
             fFactorTerreno();
@@ -195,23 +224,88 @@ namespace Cavat
                     ddlTopografiaRustico.ClearSelection();
                     verCatalogoCompartido(17, "2", ddlTopografiaRustico, "TOPOGRAFIA", "Topografia");//ddlDistanciaUDM.ClearSelection();//ddlDistanciaUDM.Items.Clear();//ddlUDMDistancia();
                     ddlUbicaciónRustico.ClearSelection();
-                    ddlUbicaciónRustico.Items.Clear();//ddlUbicacionRustic();
-                    verCatalogoCompartido(9, "2", ddlUbicaciónRustico, "UBICACIÓN PREDIO", "Ubicacion");//ddlTipoSRustico.ClearSelection();//verCatalogoCompartido(16, 2, ddlTipoSRustico, "TIPO TERRENO", "usoSuelo");//USO DE SUELO URBANO//cuando cambie vaciar los componentes del otro
+                    ddlUbicaciónRustico.ClearSelection();
+                    verCatalogoUbicacion(9, 2, ddlUbicaciónRustico, "UBICACIÓN PREDIO", "Ubicacion");//USO DE SUELO URBANO//cuando cambie vaciar los componentes del otro
                 }
                 else //Tipo de suelo Urbano o Suburbano
                 {
                     lbltipoPredio.Text = usoSuelo.tipoPredio;
                     UbicacionPredio.Visible = ContentRustico.Visible = false; ;
                     FactorTerreno.Visible = ContentUrbano.Visible = true;
-                    verCatalogoCompartido(9, "1", ddlUbicacionManzana, "UBICACIÓN EN MANZANA", "Ubicacion"); //cuando cambie vaciar los componentes del otro
+                   // verCatalogoCompartido(9, "1", ddlUbicacionManzana, "UBICACIÓN EN MANZANA", "Ubicacion"); //cuando cambie vaciar los componentes del otro
+                    verCatalogoUbicacion(9, 1, ddlUbicacionManzana, "UBICACIÓN EN MANZANA", "Ubicacion");
                     ddlUsoSueloUrbano.ClearSelection();
-                    verCatalogoCompartido(16, predios.tipoPredio, ddlUsoSueloUrbano, "USO DE SUELO", "descripcion");//USO DE SUELO URBANO
+
+                    verCatalogoUsoSuelo(16, "U", ddlUsoSueloUrbano, "USO DE SUELO", "descripcion");//USO DE SUELO URBANO// verCatalogoCompartido(16, predios.tipoPredio, ddlUsoSueloUrbano, "USO DE SUELO", "descripcion");//USO DE SUELO URBANO
                     ddlDesnivelUrbano.ClearSelection();
                     VerDesnivelUrbano();
                 }
-            }catch(Exception ex)
+            } catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public DataTable VerCatUsoSuelo(int opc, string Predio)  //METODO QUE CONSUME EL SERVICIO WEB LLAMADO DESDE LA CLASE CATALOGOSSW y devuelve el uso de suelo del terreno
+        {
+            try
+            {
+                rs = catSW.CatUsoSuelo(opc,Predio); //LLAMA AL METODO DE LA CLASE CATALOGOSSW QUE ESTA CONSUMIENDO EL SERVICIO WEB           
+                int msg = rs.mensaje;
+                dsaux = rs.elDataSet;
+                dtaux = dsaux.Tables[0];
+                return dtaux; // DEVUELVE LA TABLA CON EL RESULTADO GENERADO
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void verCatalogoUsoSuelo(int opc, string tipoPredio, DropDownList lista, string ubicacion, string columnna)
+        {
+            try
+            {
+                DataTable ddt;
+                ddt = VerCatUsoSuelo(opc, tipoPredio);//catt.CatUsoSuelo(opc, idtipoPredio);//-->  VERIFICAR PROQEUE ES COMPARTIDO
+                lista.DataSource = ddt;
+                lista.DataValueField = columnna;//"Ubicacion";
+                lista.DataBind();
+                lista.Items.Insert(0, new ListItem(ubicacion));
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+                Response.Redirect("404.aspx");
+            }
+        }
+
+
+
+        public void verCatalogoUbicacion(int opc, int idtipoPredio, DropDownList lista, string ubicacion, string columnna)
+        {
+            try
+            {
+                DataTable ddt;
+                DataSet ds;
+                ds = VerCatUbicacion(opc, idtipoPredio);
+                ddt = ds.Tables[0];//catt.CatUsoSuelo(opc, idtipoPredio);//-->  VERIFICAR PROQEUE ES COMPARTIDO
+                if(ubicacion== "UBICACIÓN EN MANZANA")
+                {
+                    infoMunicipio.Centralizado.UbicacionManzana = ddt;
+                }
+                else
+                {
+                    infoMunicipio.Centralizado.UbicacionPredio = ddt;
+                }
+                lista.DataSource = ddt;
+                lista.DataValueField = columnna;//"Ubicacion";
+                lista.DataBind();
+                lista.Items.Insert(0, new ListItem(ubicacion));
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+                Response.Redirect("404.aspx");
             }
         }
 
@@ -220,56 +314,70 @@ namespace Cavat
             try
             {
                 UbicacionPredio.Visible = Presentacion.Visible = VerMapa.Visible = FactorTerreno.Visible = Georreferencia.Visible = ContentUrbano.Visible = false;
-                FactorConstruccion.Visible = true;              
+                FactorConstruccion.Visible = true;
                 ddlAvanceConstruccion.ClearSelection();
                 llenarCatalgos(13, "avance", ddlAvanceConstruccion, "AVANCE DE OBRA");
-                btnGetAvaluo.Enabled = true;            
-            }catch(Exception ex)
+                btnGetAvaluo.Enabled = true;
+            } catch (Exception ex)
             {
                 throw ex;
             }
         }
-        
         public DataSet VerCatalogoCons(int opc, int mun, int anio)
         {
             try
             {
-                rs = catalog.CatConstruccion(opc, mun, anio);
+                rs = catSW.CatConstruccion(opc, mun, anio);//Consumo SERVICIO WEB
                 int msg = rs.mensaje;
                 dsaux = rs.elDataSet;
                 return dsaux;
-            }catch(Exception e)
+            } catch (Exception e)
             {
                 throw e;
             }
         }
-        
-        public DataTable GetinfoDescentralizado(int opc, string mun, string anio)
+        public DataSet GetinfoDescentralizado(int opc, string mun, string anio) //Metodo que obtiene la informacion de los municipios descentralizados desde la clase catalogosSW (Donde se consume el servicio)
         {
             try
             {
-                rs.laDataTable = catt.CatZonasValorDes(opc, mun, anio); //int msg = rs.mensaje;
-                dtaux = rs.laDataTable;
-                return dtaux;
-            }catch(Exception e)
+                rs = catSW.CatZonasValorDesCentralizados(opc, mun, anio);// llama al metodo de la clase catalogosSW
+                int msg = rs.mensaje;
+                dsaux = rs.elDataSet;
+                return dsaux; //Regresa un dataset con toda la informacion
+            }
+            catch (Exception ex)
             {
-                throw e;
+                throw ex;
             }
         }
-        public DataTable GetinfoLocalidaDes(int opc, string mun)
+        public void ZonasValorDes(DropDownList listaDestino, int tipoPredio, string titulo) //Metodo que rellenea el dropdown list filtrando los datos que correspondan al tipo de predio seleccionado
         {
             try
             {
-                rs.laDataTable = catt.CatLocalidades(opc, mun); //int msg = rs.mensaje;
-                dtaux = rs.laDataTable;
-                return dtaux;
-            }catch(Exception e)
+                DataTable dtAux = infoMunicipio.Descentralizados.dtDescentralizados; //DataTable en donde se aloja la informacion que se obtuvo del servicio de los municipios descentralizados
+                List<string> myList = new List<String>(); //lista auxiliar en donde se almacenaran los datos filtadros
+                myList.Add("ZONA DE VALOR");
+                foreach (DataRow row in dtAux.Rows)  //se recorre el datatable 
+                {
+                    if ((int)row[5] == tipoPredio) // si la dila 5 (tipoPredio) es igual al tipo de predio que se selecciono (variable comun de almacenamiento)
+                    {
+                        myList.Add((string)row["nombreZona"]); //almacena en la lista los datos de la zona de valor
+                    }
+                }
+                myList = myList.Distinct().ToList(); // Se limpian los duplicados de la lista
+                foreach (string elemento in myList)//Se agregan los elementos de la lista en el Dropdown List
+                {
+                    listaDestino.Items.Add(elemento);//llenar el dropdown list con los elementos que estan en la lista
+                }
+            }
+            catch (Exception e)
             {
                 throw e;
             }
         }
+
         protected void ddlMunicipio_SelectedIndexChanged(object sender, EventArgs e)
-        {  
+        {
             try
             {
                 if (IsPostBack)
@@ -277,17 +385,17 @@ namespace Cavat
                     int va = int.Parse(ddlMunicipio.SelectedIndex.ToString());//obtiene el id del municipio seleccionado 
                     int val = int.Parse(ddlTipoPredio.SelectedIndex.ToString());//Obtiene el id del tipo de predio que se esta seleccionando
                     predios.municipio = ddlMunicipio.SelectedValue.ToString();//Envia a la variable el valor del municipio
-                    predios.centralizado = esCentralizado(ddlMunicipio.SelectedValue.ToString()); //Indica si el municipio es centralizado o descentralizado
-                    Construcciones.dtConstrucciones =VerCatalogoCons(1,va,2022); /// tiene la tabla estatica de los valores de las construcciones dependiendo del municipio Seleccionado                   
+                    predios.centralizado = esCentralizado(ddlMunicipio.SelectedValue.ToString()); //Indica si el municipio es centralizado o descentralizado                                 
                     switch (predios.centralizado)
                     {
                         case "True"://Se maneja la informacion de serverBox
                             ddlLocalidad.ClearSelection();//limpia la lista desplegable para poder llenar con los valores nuevos que se envian                   
                             ddlLocalidadCentralizado(8, va);//obtiene los nuevos valos para la lista desplegable de localidades para municipios Centralizados
+                            Construcciones.dtConstrucciones = VerCatalogoCons(1, va, 2022); /// tiene la tabla estatica de los valores de las construcciones dependiendo del municipio Seleccionado   
                             if (val == 2)//RUSTICO
                             {
                                 verZonaValor(7, ddlMunicipio.SelectedIndex, 'R', "2022", ddlTipoSRustico, "TIPO PREDIO");
-                            }                           
+                            }
                             else//Suburbano [pasar val==3 para que ya queden las condiciones bien definidas]
                             {
                                 if (val == 1 || val == 3)//URBANO Y SUBURBANO
@@ -297,75 +405,120 @@ namespace Cavat
                             }
                             break;
                         case "False"://Se maneja la informacion de los descentralizados de la base de datos local
-                            infoMunicipio.Descentralizados.dtDescentralizados = GetinfoDescentralizado(1, predios.municipio, "2022");//contiene la tabla con la información de los municipios descentralizados                                                                                                                                                                
-                            infoMunicipio.Descentralizados.dtLocalidades = GetinfoLocalidaDes(3, predios.municipio);//Se obtine la informacion de las localidades del municipio Descentralizado
+                            DataSet ds = new DataSet(); DataSet ds1 = new DataSet();
+                            ds = GetinfoDescentralizado(1, predios.municipio, "2022");
+                            infoMunicipio.Descentralizados.dtDescentralizados = ds.Tables[0];  // GetinfoDescentralizado(1, predios.municipio, "2022");//contiene la tabla con la información de los municipios descentralizados                                                                                                                                                                
+                            ds1 = GetinfoLocalidaDes(3, predios.municipio);
+                            infoMunicipio.Descentralizados.dtLocalidades = ds1.Tables[0];//Se obtine la informacion de las localidades del municipio Descentralizado
                             LocalidadesDes(ddlLocalidad, "LOCALIDAD");//Llena la lista desplegable de localidades, acorde al municipio seleccionado.
+                            //CATALODO DE DESCENTRALIZADOS
+                            Construcciones.dtConstrucciones = VerCatalogoCons(2,va, 2021); /// tiene la tabla estatica de los valores de las construcciones dependiendo del municipio Seleccionado   
                             if (val == 2)//RUSTICO 
                             {
+                                ddlTipoSRustico.ClearSelection(); //Vacia para volver a llenar
                                 ZonasValorDes(ddlTipoSRustico, val, "TIPO PREDIO");//Llena las zonas de valor para los tipos rusticos
                             }
                             else
                             {
                                 if (val == 1 || val == 3)//URBANO Y SUBURBANO
                                 {
-
+                                    ddlZonaValor.ClearSelection(); //Vacia para volver a llenar
                                     ZonasValorDes(ddlZonaValor, val, "ZONA DE VALOR");//Llena las zonas de valor para los tipos urbanos y suburvbanos
                                 }
                             }
                             break;
-                    } 
-                }                  
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }           
-        }
-        public void ZonasValorDes(DropDownList listaDestino, int tipoPredio,string titulo)
-        {
-            try
-            {          
-                DataTable dtAux  = infoMunicipio.Descentralizados.dtDescentralizados;              
-                List<string> myList = new List<String>();
-                foreach (DataRow row in dtAux.Rows)
-                {
-                    if ((int)row[5] == tipoPredio)
-                    {
-                        myList.Add((string)row["nombreZona"]);
                     }
                 }
-                myList = myList.Distinct().ToList();
-                listaDestino.DataSource = myList;
-                listaDestino.DataBind();
-                listaDestino.Items.Insert(0, new ListItem(titulo));
             }
-            catch(Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw ex;
             }
         }
-        public void LocalidadesDes(DropDownList listaDestino,string titulo)
+
+        public DataSet VerCatZonasValorCentralizados(int opc, int idmun, char tipoPredio, string anio)  //METODO QUE CONSUME EL SERVICIO WEB LLAMADO DESDE LA CLASE CATALOGOSSW
+        {
+            try
+            {
+                rs = catSW.CatZonasValorCentralizados(opc, idmun, tipoPredio, anio);// catalog.Cataloggo(opc);
+                int msg = rs.mensaje;
+                dsaux = rs.elDataSet;
+                return dsaux;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void verZonaValor(int opc, int idmun, char tipoPredio, string annio, DropDownList ddlzona, string titulo)//Zona de Valor Centralizados 
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = VerCatZonasValorCentralizados(opc, idmun, tipoPredio, annio); //VerCatalogo(opc);
+                infoMunicipio.Centralizado.ZonasValor = ds.Tables[0];
+                ddlzona.DataSource = ds.Tables[0];
+                ddlzona.DataValueField = "nombreZona";// columna;
+                ddlzona.DataBind();
+                ddlzona.Items.Insert(0, new ListItem(titulo));
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+                Response.Redirect("404.aspx");
+            }
+        }
+        public DataSet GetinfoLocalidaDes(int opc, string mun) //Metodo que obtiene la informacion de las localidades del municipio que es descentralizado
+        {
+            try
+            {
+                rs = catSW.CatLocalidadesDesCentralizados(opc, mun); //LLAMA AL METODO DE LA CLASE CATALOGOSSW QUE ESTA CONSUMIENDO EL SERVICIO WEB           
+                int msg = rs.mensaje;
+                dsaux = rs.elDataSet;
+                return dsaux; // DEVUELVE LA TABLA CON EL RESULTADO GENERADO
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void LocalidadesDes(DropDownList listaDestino, string titulo)//Metodo que llena el dropdownList de las locaclidades de los municipios descentralizados
         {
             try
             {
                 DataTable dtAux = new DataTable();
-                dtAux = infoMunicipio.Descentralizados.dtLocalidades;
+                dtAux = infoMunicipio.Descentralizados.dtLocalidades;//Informacion almacenada en clase infoMunicipio.
                 listaDestino.DataSource = dtAux;
                 listaDestino.DataValueField = "localidad";
                 listaDestino.DataBind();
                 listaDestino.Items.Insert(0, new ListItem(titulo));
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
         }
-
-        public void ddlLocalidadCentralizado(int opc, int idmun)//Metodo que llena la lista de las localidades de los municipios Centralizados
+        public DataSet VerCatLocalidadescentralizados(int opc, int mun)  //2) METODO QUE CONSUME EL SERVICIO WEB LLAMADO DESDE LA CLASE CATALOGOSSW
         {
             try
             {
-                DataTable ddt = cat.CatLocalidad(opc, idmun);//--> Catalogo Municipio
+                rs = catSW.CatLocalidadesCentralizados(opc, mun); //LLAMA AL METODO DE LA CLASE CATALOGOSSW QUE ESTA CONSUMIENDO EL SERVICIO WEB           
+                int msg = rs.mensaje;
+                dsaux = rs.elDataSet;
+                return dsaux; // DEVUELVE LA TABLA CON EL RESULTADO GENERADO
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void ddlLocalidadCentralizado(int opc, int idmun)//1) Metodo que llena la lista de las localidades de los municipios Centralizados
+        {
+            try
+            {
+                DataTable ddt = new DataTable();
+                DataSet ds = VerCatLocalidadescentralizados(opc, idmun);// catSW.CatLocalidad(opc, idmun);//--> Catalogo Municipio  CONSUMO SW
+                ddt = ds.Tables[0];
                 ddlLocalidad.DataSource = ddt;
                 ddlLocalidad.DataValueField = "localidad";
                 ddlLocalidad.DataBind();
@@ -374,21 +527,38 @@ namespace Cavat
             catch (Exception ex)
             {
                 Response.Write(ex);
+                Response.Redirect("404.aspx");
             }
-            
-        }
-
-        protected void txtCP_TextChanged(object sender, EventArgs e)
+        }       
+        public DataSet VerCatUbicacion(int opc, int idtipoPredio)  //2) METODO QUE CONSUME EL SERVICIO WEB LLAMADO DESDE LA CLASE CATALOGOSSW
         {
-            predUrbano.cp = txtCP.Text;
-            if (true)
+            try
             {
-                btnUbicaPredio.BorderColor = Color.Aquamarine;
-                btnUbicaPredio.BorderStyle = BorderStyle.Solid;
-                Response.Write("<script>alert('" + ddlMunicipio.SelectedIndex + "')</script>");
+                rs = catSW.CatUbicacionPredio(opc, idtipoPredio); //LLAMA AL METODO DE LA CLASE CATALOGOSSW QUE ESTA CONSUMIENDO EL SERVICIO WEB           
+                int msg = rs.mensaje;
+                dsaux = rs.elDataSet;
+                return dsaux; // DEVUELVE LA TABLA CON EL RESULTADO GENERADO
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        } 
+        protected void txtCP_TextChanged(object sender, EventArgs e)
+        {         
+            try
+            {
+                predUrbano.cp = txtCP.Text;
+                if (true)
+                {
+                    btnUbicaPredio.BorderColor = Color.Aquamarine;
+                    btnUbicaPredio.BorderStyle = BorderStyle.Solid;
+                }
+            }catch(Exception ex)
+            {
+                throw ex;
             }
         }
-
         protected void ddlTipoPredio_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlTipoPredio.SelectedIndex != 0)
@@ -440,28 +610,12 @@ namespace Cavat
                 ddlMunicipio.Enabled = false;
             }
         }
-
-        public void verZonaValor(int opc, int idmun, char tipoPredio, string annio, DropDownList ddlzona, string titulo)
-        {
-                try
-                {
-                    DataTable ddt;
-                    ddt = catt.CatZonasValor(opc, idmun, tipoPredio, annio); //--> Catalogo Municipio
-                    ddlzona.DataSource = ddt;
-                    ddlzona.DataValueField = "nombreZona";
-                    ddlzona.DataBind();
-                    ddlzona.Items.Insert(0, new ListItem(titulo));
-                }
-                catch (Exception ex)
-                {
-                    Response.Write(ex);
-                }            
-        }   
+          
         public void VerDesnivelUrbano()
         {
             try
             {
-                ddlDesnivelUrbano.Items.Clear();
+                ddlDesnivelUrbano.ClearSelection();
                 ddlDesnivelUrbano.Items.Insert(0, new ListItem("¿EXISTE DESNIVEL?"));
                 ddlDesnivelUrbano.Items.Insert(1, new ListItem("SI"));
                 ddlDesnivelUrbano.Items.Insert(2, new ListItem("NO"));
@@ -470,6 +624,7 @@ namespace Cavat
             catch (Exception ex)
             {
                 Response.Write(ex);
+                Response.Redirect("404.aspx");
             }
         }
 
@@ -479,7 +634,7 @@ namespace Cavat
             try
             {
                 DataTable ddt;
-                ddt = catt.CatUsoSuelo(opc, idtipoPredio);//--> Catalogo Municipio
+                ddt = VerCatUsoGeneral(opc, idtipoPredio);//catt.CatUsoSuelo(opc, idtipoPredio);//-->  VERIFICAR PROQEUE ES COMPARTIDO
                 lista.DataSource = ddt;
                 lista.DataValueField = columnna;//"Ubicacion";
                 lista.DataBind();
@@ -488,104 +643,64 @@ namespace Cavat
             catch (Exception ex)
             {
                 Response.Write(ex);
+                Response.Redirect("404.aspx");
             }
-        }
+        } 
+        
 
-        protected void ddlClasPred_SelectedIndexChanged(object sender, EventArgs e)
+        public string ValorConstruccion(DropDownList listClasif, DropDownList listCalidad)
         {
             try
             {
-                ddlCalidadConstruccion.ClearSelection();
-            //    ddlTipoCons(11, va);
-                if (ddlClasPred.SelectedIndex.ToString().Contains("Antigu")||ddlClasPred.SelectedIndex.ToString().Contains("ANTIGU")|| ddlClasPred.SelectedIndex.ToString().Contains("antigu"))//ddlClasPred.SelectedValue.ToString() == "ANTIGUO")
+                string valorConsm2 = "";
+                DataTable dtAux = new DataTable();
+                DataSet ds = new DataSet();
+                ds = Construcciones.dtConstrucciones;
+                dtAux = ds.Tables[0];
+                if (predios.centralizado=="True")//si es centralizado
                 {
-                    ddlEdadConstruccion.Enabled = false;
-                    ddlCoservacion.Enabled = true;
+                    foreach (DataRow row in dtAux.Rows)
+                    {
+                        if ((string)row[2] == listClasif.SelectedValue.ToString() && (string)row[4] == listCalidad.SelectedValue.ToString())
+                        {
+                            valorConsm2 = row[6].ToString();
+                        }
+                    }
+                    return valorConsm2;
                 }
-                else if (ddlClasPred.SelectedIndex.ToString().Contains("MODERNO")|| ddlClasPred.SelectedIndex.ToString().Contains("Moderno")|| ddlClasPred.SelectedIndex.ToString().Contains("moderno"))//ddlClasPred.SelectedValue.ToString() == "MODERNO")
+                else//si no es centralizado
                 {
-                    ddlEdadConstruccion.Enabled = true;
-                    ddlCoservacion.Enabled = false;
+                    foreach (DataRow row in dtAux.Rows)
+                    {
+                        if (((string)row[7] == listClasif.SelectedValue.ToString() && (string)row[5] == listCalidad.SelectedValue.ToString()) || ((string)row[6] == listClasif.SelectedValue.ToString() && (string)row[5] == listCalidad.SelectedValue.ToString()))
+                        {
+                            if (ddlCoservacion.SelectedValue == "BUENO")
+                            {
+                                valorConsm2 = row[1].ToString();
+                            }
+                            else
+                            {
+                                if (ddlCoservacion.SelectedValue == "REGULAR")
+                                {
+                                    valorConsm2 = row[2].ToString();
+                                }
+                                else
+                                {
+                                    valorConsm2 = row[3].ToString();
+                                }
+                            }
+                        }
+                    }
+                    return valorConsm2;
                 }
-                catClasificacionConst(ddlClasPred,ddlCalidadConstruccion);
+              
+
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
-            }
-
+            }           
         }
-        public void catClasificacionConst(DropDownList listaSeleccion, DropDownList listaDestino)
-        {
-            DataTable dtAux = new DataTable();
-            DataSet ds = new DataSet();
-            ds = Construcciones.dtConstrucciones;
-            dtAux = ds.Tables[0];
-            List<string> myList = new List<String>();
-            foreach (DataRow row in dtAux.Rows)
-            {
-                if ((string)row[2] == listaSeleccion.SelectedValue.ToString())
-                {
-                    myList.Add((string)row[4]);
-                }
-            }
-            myList = myList.Distinct().ToList();
-            listaDestino.DataSource = myList;
-            listaDestino.DataBind();
-            listaDestino.Items.Insert(0, new ListItem("CALIDAD"));
-        }
-        public string ValorConstruccion(DropDownList listClasif, DropDownList listCalidad)
-        {
-            string valorConsm2="";
-            DataTable dtAux = new DataTable();
-            DataSet ds = new DataSet();
-            ds = Construcciones.dtConstrucciones;
-            dtAux = ds.Tables[0];
-            foreach (DataRow row in dtAux.Rows)
-            {
-                if ((string)row[2] == listClasif.SelectedValue.ToString()&& (string)row[4] == listCalidad.SelectedValue.ToString())
-                {
-                    valorConsm2=row[6].ToString();
-                }
-            }
-           return valorConsm2; 
-        }
-
-        //public void ddlTipoCons(int opc, int idClass) ///Devuelve el catalogo dependiendo de la opcion enviada por ddlClasificacion construccion
-        //{
-        //    if (IsPostBack)
-        //    {
-        //        try
-        //        {
-        //            DataTable ddt;
-        //            ddt = cat.CatTipoPredCons(opc, idClass);//--> Catalogo Municipio
-        //            ddlTipoConstruccion.DataSource = ddt;
-        //            ddlTipoConstruccion.DataValueField = "tipoConstruccion";
-        //            ddlTipoConstruccion.DataBind();
-        //            ddlTipoConstruccion.Items.Insert(0, new ListItem("TIPO DE CONSTRUCCIÓN"));
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Response.Write(ex);
-        //        }
-        //    }
-        //}
-
-        //protected void ddlTipoConstruccion_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-
-        //    string va = ddlTipoConstruccion.SelectedValue.ToString();
-        //    try
-        //    {
-        //        ddlCalidadConstruccion.ClearSelection();
-        //        ddlCalidadPred(12, va, int.Parse(ddlClasPred.SelectedIndex.ToString()));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-
-        //}
 
         public void ddlCalidadPred(int opc, string clv, int idClass) ///Devuelve el catalogo dependiendo de la opcion enviada por ddlClasificacion construccion
         {
@@ -594,7 +709,7 @@ namespace Cavat
                 try
                 {
                     DataTable ddt;
-                    ddt = cat.CatClaseConstrucion(opc, clv, idClass);//--> Catalogo Municipio
+                    ddt = catSW.CatClaseConstrucion(opc, clv, idClass);//--> Catalogo Municipio CONSUMO SW
                     ddlCalidadConstruccion.DataSource = ddt;
                     ddlCalidadConstruccion.DataValueField = "calidad";
                     ddlCalidadConstruccion.DataBind();
@@ -603,6 +718,7 @@ namespace Cavat
                 catch (Exception ex)
                 {
                     Response.Write(ex);
+                    Response.Redirect("404.aspx");
                 }
             }
         }
@@ -754,6 +870,7 @@ namespace Cavat
                 txtFrenterustico.BorderWidth = 0;
                 //llenar ddl               
                 ddlPreguntaFraccionamiento.Enabled = true;
+                //Se pregunta si pertenece a un fraccionamiento y en ese ddl se agrega el factor del frente
             }
             else //Si es mayo a 6 el factor sera 1
             {
@@ -819,23 +936,46 @@ namespace Cavat
                         btnGetAvaluo.Enabled = false;
                         break;
                 }
-
-                if (predios.tipoPredio == "RÚSTICO")
+                switch (predios.centralizado)//Si es Centralizado
                 {
-                    predRustico.factorResultanteTR = factorPredio.FactoResultanteTerrenoRustico(predRustico.fatorSuperficieR, predRustico.factorTopografia, predRustico.fatorDistanciaPredio, predRustico.factorUbicacion);
-                    double valorM2 = predRustico.ValorTerrenoM2 / 10000;//valor por metro cuadrado
-                    predios.ValorCatastralTerreno = factorPredio.ValorCatastralPredio(valorM2, predRustico.factorResultanteTR, predRustico.SuperficieR);
-                    lblValorFactorTerreno.Text = predios.ValorCatastralTerreno.ToString("C", new CultureInfo("es-MX"));
-                }
-                else if (predios.tipoPredio == "URBANO")
-                {
-                    predUrbano.factorResultanteTERRENO = factorPredio.FactoResultanteTerreno(predUrbano.factorFrente, predUrbano.factorProfundidad, predUrbano.factorTopografia, predUrbano.factorUbicacion, predios.factorSuperficie, predUrbano.factorEsquina);
-                    predios.ValorCatastralTerreno = factorPredio.ValorCatastralPredio(Convert.ToDouble(predUrbano.zonaValor), predUrbano.factorResultanteTERRENO, predios.superficie);
-                    lblValorFactorTerreno.Text = predios.ValorCatastralTerreno.ToString("C", new CultureInfo("es-MX"));
-                }
-                else//suburbano
-                {
-                    //quedan pendientes las operaciones
+                    case "True"://Se maneja la informacion de serverBox
+                        if (predios.tipoPredio == "RÚSTICO")
+                        {
+                            predRustico.factorResultanteTR = factorPredio.FactoResultanteTerrenoRustico(predRustico.fatorSuperficieR, predRustico.factorTopografia, predRustico.fatorDistanciaPredio, predRustico.factorUbicacion);
+                            double valorM2 = predRustico.ValorTerrenoM2 / 10000;//valor por metro cuadrado
+                            predios.ValorCatastralTerreno = factorPredio.ValorCatastralPredio(valorM2, predRustico.factorResultanteTR, predRustico.SuperficieR);
+                            lblValorFactorTerreno.Text = predios.ValorCatastralTerreno.ToString("C", new CultureInfo("es-MX"));
+                        }
+                        else if (predios.tipoPredio == "URBANO")
+                        {
+                            predUrbano.factorResultanteTERRENO = factorPredio.FactoResultanteTerreno(predUrbano.factorFrente, predUrbano.factorProfundidad, predUrbano.factorTopografia, predUrbano.factorUbicacion, predios.factorSuperficie, predUrbano.factorEsquina);
+                            predios.ValorCatastralTerreno = factorPredio.ValorCatastralPredio(Convert.ToDouble(predUrbano.zonaValor), predUrbano.factorResultanteTERRENO, predios.superficie);
+                            lblValorFactorTerreno.Text = predios.ValorCatastralTerreno.ToString("C", new CultureInfo("es-MX"));
+                        }
+                        else//suburbano
+                        {
+                            //quedan pendientes las operaciones porque el  proceso sera diferente, dependiendo del proceso que dara El area de Valuacion
+                        }
+                        break;
+                    case "False"://Se maneja la informacion local
+                        if (predios.tipoPredio == "RÚSTICO")
+                        {
+                            predRustico.factorResultanteTR = factorPredio.FactoResultanteTerrenoRustico(predRustico.fatorSuperficieR, predRustico.factorTopografia, predRustico.fatorDistanciaPredio, predRustico.factorUbicacion);
+                            double valorM2 = predRustico.ValorTerrenoM2 / 10000;//valor por metro cuadrado
+                            predios.ValorCatastralTerreno = factorPredio.ValorCatastralPredio(valorM2, predRustico.factorResultanteTR, predRustico.SuperficieR);
+                            lblValorFactorTerreno.Text = predios.ValorCatastralTerreno.ToString("C", new CultureInfo("es-MX"));
+                        }
+                        else if (predios.tipoPredio == "URBANO")
+                        {
+                            predUrbano.factorResultanteTERRENO = factorPredio.FactoResultanteTerreno(predUrbano.factorFrente, predUrbano.factorProfundidad, predUrbano.factorTopografia, predUrbano.factorUbicacion, predios.factorSuperficie, predUrbano.factorEsquina);
+                            predios.ValorCatastralTerreno = factorPredio.ValorCatastralPredio(Convert.ToDouble(predUrbano.zonaValor), predUrbano.factorResultanteTERRENO, predios.superficie);
+                            lblValorFactorTerreno.Text = predios.ValorCatastralTerreno.ToString("C", new CultureInfo("es-MX")); 
+                        }
+                        else//suburbano
+                        {
+                            //quedan pendientes las operaciones porque el  proceso sera diferente, dependiendo del proceso que dara El area de Valuacion
+                        }
+                        break;
                 }
                 //CAMBIAR COLOR DE BOTON FACTOR TERRENO
                 btnFactorTerreno.Width = 10;
@@ -886,8 +1026,7 @@ namespace Cavat
 
         protected void btnSiguiente1_Click(object sender, EventArgs e)
         {
-
-            try
+            try            
             {
                 if (usoSuelo.tipoPredio == "RÚSTICO")
                 {
@@ -949,7 +1088,7 @@ namespace Cavat
                 btnUbicaPredio.Width = 10;
                 btnUbicaPredio.BackColor = Color.Green;
                 btnUbicaPredio.BorderColor = Color.LimeGreen;
-                ddlPreguntaFraccionamiento.Items.Clear();
+                ddlPreguntaFraccionamiento.ClearSelection();
                 ddlPreguntaFraccionamiento.Items.Insert(0, new ListItem("FRACCIONAMIENTO"));
                 ddlPreguntaFraccionamiento.Items.Insert(1, new ListItem("SÍ")); //envio 1
                 ddlPreguntaFraccionamiento.Items.Insert(2, new ListItem("NO")); // envio 0
@@ -961,6 +1100,7 @@ namespace Cavat
             catch (Exception ex)
             {
                 throw ex;
+              
             }
         }
 
@@ -1070,21 +1210,105 @@ namespace Cavat
         }
         protected void ddlObraComplementaria_SelectedIndexChanged(object sender, EventArgs e)
         {
+            infoConstrucciones.obraComplementaria = ddlObraComplementaria.SelectedValue;
             if (IsPostBack)
             {
                 try
                 {
                     ddlLocalidad.ClearSelection();
-                    ddlLocalidad.Items.Clear();
-                    //llenaCalidadObra(15, ddlObraComplementaria.SelectedValue.ToString());
+                    ddlLocalidad.ClearSelection();
                     catClasificacionConst(ddlObraComplementaria, ddlCalidadObra);
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                     throw ex;
                 }
             }
         }
+
+        protected void ddlClasPred_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            infoConstrucciones.ClasificacionConstruccion = ddlClasPred.SelectedValue;// almacena la seleccion
+            try
+            {
+                ddlCalidadConstruccion.ClearSelection();
+                //    ddlTipoCons(11, va);
+                if (ddlClasPred.SelectedIndex.ToString().Contains("Antigu") || ddlClasPred.SelectedIndex.ToString().Contains("ANTIGU") || ddlClasPred.SelectedIndex.ToString().Contains("antigu"))//ddlClasPred.SelectedValue.ToString() == "ANTIGUO")
+                {
+                    ddlEdadConstruccion.Enabled = false;
+                    ddlCoservacion.Enabled = true;
+                }
+                else if (ddlClasPred.SelectedIndex.ToString().Contains("MODERNO") || ddlClasPred.SelectedIndex.ToString().Contains("Moderno") || ddlClasPred.SelectedIndex.ToString().Contains("moderno"))//ddlClasPred.SelectedValue.ToString() == "MODERNO")
+                {
+                    ddlEdadConstruccion.Enabled = true;
+                    ddlCoservacion.Enabled = false;
+                }
+                catClasificacionConst(ddlClasPred, ddlCalidadConstruccion);
+            }
+            catch (Exception ex)
+            {
+              throw ex;
+            }
+
+        }
+        public void catClasificacionConst(DropDownList listaSeleccion, DropDownList listaDestino)
+        {
+            try
+            {
+                DataTable dtAux = new DataTable();
+                DataSet ds = new DataSet();
+                ds = Construcciones.dtConstrucciones;
+                dtAux = ds.Tables[0];
+                List<string> myList = new List<String>();
+                string columnaBuscar = "";
+                string columnaCalidad = "";
+
+                switch (predios.centralizado)//Verifica que se centralizado o no
+                {
+                    case "True":
+                        columnaBuscar = "descripcion";//columna que se va a comparar con la seleccion 
+                        columnaCalidad = "calidad";//columna que se va a agregar a la lista en cuanto la enterior coinsida con lo selecionado                
+                        foreach (DataRow row in dtAux.Rows)
+                        {
+                            if ((string)row[columnaBuscar] == listaSeleccion.SelectedValue.ToString())
+                            {
+                                myList.Add((string)row[columnaCalidad]);
+                            }
+                        }
+                        myList = myList.Distinct().ToList();
+                        listaDestino.DataSource = myList;
+                        listaDestino.DataBind();
+                        listaDestino.Items.Insert(0, new ListItem("CALIDAD"));
+                        break;
+                    case "False":
+                        if (listaSeleccion == ddlClasPred)
+                        {
+                            columnaBuscar = "tipoconstruccion";
+                        }
+                        else if (listaSeleccion == ddlObraComplementaria)
+                        {
+                            columnaBuscar = "obraComplementaria";
+                        }
+                        columnaCalidad = "CalidadObraComplementaria";
+                        foreach (DataRow row in dtAux.Rows)
+                        {
+                            if ((string)row[columnaBuscar] == listaSeleccion.SelectedValue.ToString())
+                            {
+                                myList.Add((string)row[columnaCalidad]);
+                            }
+                        }
+                        myList = myList.Distinct().ToList();
+                        listaDestino.DataSource = myList;
+                        listaDestino.DataBind();
+                        listaDestino.Items.Insert(0, new ListItem("CALIDAD"));
+                        break;
+                }
+            }catch(Exception ex)
+            {
+             throw ex;
+            }
+        }
+
         public void llenaCalidadObra(int opc, string cal)
         {
             if (IsPostBack)
@@ -1106,28 +1330,6 @@ namespace Cavat
             }
         }
 
-        //protected void RBObrasComplementarias_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    btnCancelAddConstr.Visible = true;
-        //    switch (RBObrasComplementarias.SelectedValue.ToString())
-        //    {                
-        //        case "SI":
-        //            obrasComplementarias.Visible = true;
-        //            llenarCatalgos(14, "obrasComplementarias", ddlObraComplementaria, "OBRA COMPLEMENTARIA");
-        //            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','Esta re')", true);
-        //            break;
-        //        case "NO":
-        //            obrasComplementarias.Visible = false;
-        //            ContentAgregarObraCom.Visible = false;
-        //            ddlObraComplementaria.ClearSelection();
-        //            ddlCalidadObra.ClearSelection();
-        //            break;
-        //        default:
-        //            //NO HABILITA NADA
-        //            break;
-        //    }
-        //}
-
         protected void RadBtnCondominio_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (RadBtnCondominio.SelectedValue.ToString())
@@ -1145,7 +1347,6 @@ namespace Cavat
                     break;
             }
         }
-
         protected void GVConstrucciones_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
@@ -1169,13 +1370,10 @@ namespace Cavat
                 Response.Write("<script>alert('" + ex + "')</script>");//Se podria sustiruir por pagina error 404
             }
         }
-
-
         protected void ddlUsoSueloUrbano_TextChanged(object sender, EventArgs e)
         {
             predios.usoSuelo = ddlUsoSueloUrbano.SelectedValue.ToString();
         }
-
         protected void ddlTopografiaRustico_SelectedIndexChanged(object sender, EventArgs e)
         {
             //     predios.topoReliev = ddlTopografiaRustico.SelectedValue.ToString();// Verificar si va a ir comoletrero si no pues no tomarlo ne cuenta 
@@ -1191,15 +1389,15 @@ namespace Cavat
 
                 if (predios.tipoPredio == "URBANO")
                 {
-                    dt = catt.CatUsoSuelo(17, "1");
+                    dt = VerCatUsoGeneral(17, "1");
                 }
                 else if (predios.tipoPredio == "RÚSTICO")
                 {
-                    dt = catt.CatUsoSuelo(17, "2");
+                    dt = VerCatUsoGeneral(17, "2");
                 }
                 else
                 {
-                    dt = catt.CatUsoSuelo(17, "3");
+                    dt = VerCatUsoGeneral(17, "3");
                 }
                 EnumerableRowCollection<DataRow> query = from fila in dt.AsEnumerable()
                                                          where fila.Field<String>("Topografia") == ddlTopografiaRustico.SelectedValue.ToString()
@@ -1222,19 +1420,8 @@ namespace Cavat
             else
             {
                 Double valorUbicacionRustico = 0.00;
-                DataTable dt = new DataTable();
-
-                if (predios.tipoPredio == "RÚSTICO")
-                {
-                    dt = catt.CatUsoSuelo(9, "2");
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','NO SE PUEDE OBTENER INFORMACION DE LA UBICACION DE UN TERRENO" +
-                        "RUSTICO CON UN TIPO DISTINTO A UN RÚSTICO.')", true);
-                }
-                EnumerableRowCollection<DataRow> query = from fila in dt.AsEnumerable()
-                                                         where fila.Field<String>("Ubicacion") == ddlUbicaciónRustico.SelectedValue.ToString()
+                EnumerableRowCollection<DataRow> query = from fila in infoMunicipio.Centralizado.UbicacionPredio.AsEnumerable()// dt.AsEnumerable()
+                                                         where fila.Field<String>("Ubicacion") == predios.ubicacion// ddlUbicaciónRustico.SelectedValue.ToString()
                                                          select fila;
                 DataTable dt1 = query.CopyToDataTable();
                 valorUbicacionRustico = Convert.ToDouble(dt1.Rows[0]["factor"]);
@@ -1311,7 +1498,6 @@ namespace Cavat
                     break;
             }
         }
-
         //DATOS PARA PREDIO  URBANO 
         protected void txtSuperficieUrbano_TextChanged(object sender, EventArgs e)
         {
@@ -1338,8 +1524,6 @@ namespace Cavat
                 }
             }
         }
-
-
         protected void ddlLocalidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             predUrbano.localidad = ddlLocalidad.SelectedValue.ToString();
@@ -1347,16 +1531,15 @@ namespace Cavat
             Double valorZonza = 0.00;
             try
             {
-                switch (predios.centralizado)
+                switch (predios.centralizado)//Si es Centralizado
                 {
                     case "True"://Se maneja la informacion de serverBox
                         ddlZonaValor.Enabled = true;
                         break;
                     case "False"://Se maneja la informacion local
-
                         foreach (ListItem li in ddlZonaValor.Items)
                         {
-                            if (li.Value == ddlLocalidad.SelectedValue)
+                            if (li.Value == predUrbano.localidad)
                             {
                                 ddlZonaValor.SelectedValue = ddlLocalidad.SelectedValue;
                                 ddlZonaValor.Enabled = false;
@@ -1377,16 +1560,26 @@ namespace Cavat
             }
 
         }
-
         protected void txtCalle_TextChanged(object sender, EventArgs e)
         {
-            predUrbano.calle = txtCalle.Text;
+            try
+            {
+                predUrbano.calle = txtCalle.Text;
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
         }
         protected void txtNumero_TextChanged(object sender, EventArgs e)
         {
-            predUrbano.numero = int.Parse(txtNumero.Text);
+            try
+            {
+                predUrbano.numero = txtNumero.Text;
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
         }
-
         protected void ddlTipoDesnivelUrbano_SelectedIndexChanged(object sender, EventArgs e)
         {
             predUrbano.tipoDesnivel = ddlTipoDesnivelUrbano.SelectedValue.ToString();
@@ -1413,13 +1606,10 @@ namespace Cavat
                 }
             }
         }
-
         protected void ddlTipoVialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             predUrbano.vialidad = ddlTipoVialidad.SelectedValue.ToString();
         }
-
-
         protected void txtNoTotalEsquinas_TextChanged(object sender, EventArgs e)
         {
             int categoria;
@@ -1451,8 +1641,6 @@ namespace Cavat
                     break;
             }
         }
-
-
         protected void btnVerificaInfo_Click(object sender, EventArgs e)
         {
             if (predios.tipoPredio == "RÚSTICO")
@@ -1476,8 +1664,6 @@ namespace Cavat
                 "'" + predUrbano.noEsquinasColinadantes + "','" + predUrbano.fraccionamiento + "','" + predios.tieneConst + "')", true);
             }
         }
-
-
         protected void btnAddList_Click(object sender, EventArgs e)
         {           
                 try
@@ -1490,18 +1676,15 @@ namespace Cavat
                     else
                     {
 
-                    infoConstrucciones.VCUS= Convert.ToDouble(ValorConstruccion(ddlClasPred, ddlCalidadConstruccion)); //valor de la construccion 
-
-                     string valreal = infoConsRegular.VCCRegular(infoConstrucciones.VCUS, infoConsRegular.FTR, infoConsRegular.FED, infoConstrucciones.Sc).ToString();
-
-                        DataRow fila = tabla.NewRow();
+                    infoConstrucciones.VCUS= Convert.ToDouble(ValorConstruccion(ddlClasPred, ddlCalidadConstruccion)); //valor de la construccion  publicado 
+                     double valreal = infoConsRegular.VCCRegular(infoConstrucciones.VCUS, infoConsRegular.FTR, infoConsRegular.FED, infoConstrucciones.Sc);//, infoConstrucciones.VCUS                    
+                    DataRow fila = tabla.NewRow();
                         fila["AvanceObra"] = ddlAvanceConstruccion.SelectedValue.ToString();
-                        fila["Superficie"] = txtSuperficieObra.Text;
+                        fila["Superficie"] = txtSuperficieObra.Text; 
                         fila["Clasificacion"] = ddlClasPred.SelectedValue.ToString();
-                     //   fila["Tipo"] = ddlTipoConstruccion.SelectedValue.ToString();
                         fila["Calidad"] = ddlCalidadConstruccion.SelectedValue.ToString();
                         fila["Condominio"] = RadBtnCondominio.SelectedValue.ToString();
-                        fila["ValorM2"] = valreal;
+                        fila["ValorM2"] = valreal.ToString("c");//GENARITO 
 
                     if (RadBtnCondominio.SelectedValue.ToString() == "SI")
                         {
@@ -1544,17 +1727,16 @@ namespace Cavat
                             limpiarAddConstrucciones();
                         }
                     }
+
                     //llena el gridview nuevamente
                     GVConstrucciones.DataSource = tabla;
                     GVConstrucciones.DataBind();
-                    //ContentAgregarConstruccion.Visible = false;
                 }
                 catch (Exception ex)
                 {
                     throw ex;
                 }          
         }
-
         public void limpiarAddConstrucciones()
         {
             //Limpiar todo lo seleccionado
@@ -1572,62 +1754,54 @@ namespace Cavat
         }
         protected void ddlZonaValor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlZonaValor.SelectedIndex == 0)
+            try
             {
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','DEBE SELECCIONAR UNA ZONA DE VALOR.')", true);
-            }
-            else
-            {
-                if (ddlMunicipio.SelectedIndex == 0)
+                if (ddlZonaValor.SelectedIndex == 0)
                 {
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','DEBE SELECCIONAR UN MUNICIPIO.')", true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','DEBE SELECCIONAR UNA ZONA DE VALOR.')", true);
                 }
                 else
                 {
-                    predios.ZonaValorTxt = ddlZonaValor.SelectedValue.ToString();
-                    Double valorZonza = 0.00;
-                    DataTable dt = new DataTable();
-
-                    switch (predios.centralizado)
+                    if (ddlMunicipio.SelectedIndex == 0)
                     {
-                        case "True"://Se maneja la informacion de serverBox
-                            if (predios.tipoPredio == "URBANO")
-                            {
-                                dt = catt.CatZonasValor(7, ddlMunicipio.SelectedIndex, 'U', "2022");
-                                verZonaValor(7, ddlMunicipio.SelectedIndex, 'R', "2022", ddlTipoSRustico, "TIPO PREDIO");
-                            }
-                            else if (predios.tipoPredio == "RÚSTICO")
-                            {
-                                dt = catt.CatZonasValor(7, ddlMunicipio.SelectedIndex, 'R', "2022");
-                            }
-                            else
-                            {
-                                dt = catt.CatZonasValor(7, ddlMunicipio.SelectedIndex, 'S', "2022");
-                            }
-
-                            EnumerableRowCollection<DataRow> query = from fila in dt.AsEnumerable()
-                                                                     where fila.Field<String>("nombreZona") == ddlZonaValor.SelectedValue.ToString()
-                                                                     select fila;
-                            DataTable dt1 = query.CopyToDataTable();
-                            valorZonza = Convert.ToDouble(dt1.Rows[0]["valorM2"]);
-                            predUrbano.zonaValor = valorZonza.ToString();  //envia el valor de la zona de valor a la variable statica que contendra el valor
-
-                            break;
-                        case "False"://Se maneja la informacion local
-                            if (ddlZonaValor.SelectedValue.Contains(ddlLocalidad.SelectedValue))
-                            {
-                                ddlZonaValor.SelectedValue = ddlLocalidad.SelectedValue;
-                            }
-                            EnumerableRowCollection<DataRow> queryval = from fila in infoMunicipio.Descentralizados.dtDescentralizados.AsEnumerable()
-                                                                     where fila.Field<String>("nombreZona") == ddlZonaValor.SelectedValue.ToString()
-                                                                     select fila;
-                            DataTable dt2 = queryval.CopyToDataTable();
-                            valorZonza = Convert.ToDouble(dt2.Rows[0]["valorM2"]);
-                            predUrbano.zonaValor = valorZonza.ToString();  //envia el valor de la zona de valor a la variable statica que contendra el valor
-
-                            break;
-                    }                                              
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','DEBE SELECCIONAR UN MUNICIPIO.')", true);
+                        ddlZonaValor.ClearSelection();
+                        ddlLocalidad.ClearSelection();
+                    }
+                    else
+                    {
+                        predios.ZonaValorTxt = ddlZonaValor.SelectedValue.ToString();//Envia la informacion que se esta seleccionando en el ddl Zona valor en la clase estatica predios
+                        Double valorZonza = 0.00;
+                        DataTable dt = new DataTable();
+                        DataSet ds = new DataSet();
+                        switch (predios.centralizado)
+                        {
+                            case "True"://Se maneja la informacion de serverBox
+                                EnumerableRowCollection<DataRow> queryvalue = from fil in infoMunicipio.Centralizado.ZonasValor.AsEnumerable()//dt.AsEnumerable()
+                                                                              where fil.Field<String>("nombreZona") == predios.ZonaValorTxt
+                                                                              select fil;
+                                DataTable dt2 = queryvalue.CopyToDataTable();
+                                valorZonza = Convert.ToDouble(dt2.Rows[0]["valorM2"]);
+                                predUrbano.zonaValor = valorZonza.ToString();  //envia el valor de la zona de valor a la variable statica que contendra el valor
+                                break;
+                            case "False"://Se maneja la informacion local
+                                if (ddlZonaValor.SelectedValue.Contains(ddlLocalidad.SelectedValue))
+                                {
+                                    ddlZonaValor.SelectedValue = ddlLocalidad.SelectedValue;
+                                }
+                                EnumerableRowCollection<DataRow> queryval = from fila in infoMunicipio.Descentralizados.dtDescentralizados.AsEnumerable()
+                                                                            where fila.Field<String>("nombreZona") == predios.ZonaValorTxt
+                                                                            select fila;
+                                DataTable dt3 = queryval.CopyToDataTable();
+                                valorZonza = Convert.ToDouble(dt3.Rows[0]["valorM2"]);
+                                predUrbano.zonaValor = valorZonza.ToString();  //envia el valor de la zona de valor a la variable statica que contendra el valor                                                    
+                                break;
+                        }
+                    }
                 }
+            }catch(Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -1645,10 +1819,23 @@ namespace Cavat
             ddlAvanceConstruccion.ClearSelection();
             btnGetAvaluo.Enabled = true;
             //btnTerminar.CssClass = "animate__animated animate__fadeInDown";
-            ddlAvanceConstruccion.ClearSelection();
-            llenarCatalgos(13, "avance", ddlAvanceConstruccion, "AVANCE DE OBRA");       
-          //  Response.Write("<script>alert('" + CatConstruccion() + "')</script>");
-
+            ddlAvanceConstruccion.ClearSelection();           
+        }
+      
+        public DataTable ClasificacionConstruccionCen(int opc, string anio, string municipio)
+        {
+            try
+            {
+                rs = catSW.CatClasifConstCentralizados(opc, anio, municipio); //LLAMA AL METODO DE LA CLASE CATALOGOSSW QUE ESTA CONSUMIENDO EL SERVICIO WEB           
+                int msg = rs.mensaje;
+                dsaux = rs.elDataSet;
+                dtaux = dsaux.Tables[0];
+                return dtaux; // DEVUELVE LA TABLA CON EL RESULTADO GENERADO
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void CatConstruccion()//llena la lista desplegable de Claseficacion de la construccion dependiendo del municipio que se selecciono
@@ -1656,28 +1843,47 @@ namespace Cavat
             DataTable dtAux = new DataTable();
             DataSet ds = new DataSet();
             ds = Construcciones.dtConstrucciones;
-            dtAux = ds.Tables[0]; 
+            dtAux = ds.Tables[0];
             List<string> myListA = new List<String>();
-            foreach (DataRow row in dtAux.Rows)
+
+            switch (predios.centralizado)//Verifica que se centralizado o no
             {
-                myListA.Add((string)row[2]);
-            }          
-            myListA = myListA.Distinct().ToList();
-            
+                case "True":
+                    //llena catalogos con informacion del serverbox.
+                    foreach (DataRow row in dtAux.Rows)
+                    {
+                        myListA.Add((string)row["descripcion"]); //Obtiene la informacion de la columna de la tabla que se esta solicitando
+                    }
+                    myListA = myListA.Distinct().ToList();//Elimina los duplicados de la lista obtenida
+                    var myListB = myListA;
+                    var query = from w in myListB
+                                where w.Contains("OBRA") || w.Contains("BARDA") || w.Contains("REJAS") ||
+                                        w.Contains("CESPED") || w.Contains("MALLA") || w.Contains("TANQUE")
+                                        || w.Contains("ESTRUCTURA") || w.Contains("MAMPOSTERIA")
+                                select w;
+                    myListA = myListA.Except(query).ToList();
+                    ddlClasPred.DataSource = myListA;
+                    ddlClasPred.DataBind();
+                    ddlClasPred.Items.Insert(0, new ListItem("CLASIFICACION"));
 
-            var myListB = myListA;
-            var query = from w in myListB
-                        where w.Contains("OBRA") || w.Contains("BARDA") || w.Contains("REJAS") ||
-                                w.Contains("CESPED") || w.Contains("MALLA") || w.Contains("TANQUE")
-                                || w.Contains("ESTRUCTURA") || w.Contains("MAMPOSTERIA")
-                        select w;
-
-
-            myListA = myListA.Except(query).ToList();         
-            ddlClasPred.DataSource = myListA;
-            ddlClasPred.DataBind();
-            ddlClasPred.Items.Insert(0, new ListItem("CLASIFICACION"));
-
+                    break;
+                case "False":
+                    //llenar catalogos con informacion de base de datos local de descentralizdos
+                    foreach (DataRow row in dtAux.Rows)
+                    {
+                        myListA.Add((string)row["tipoConstruccion"]);
+                    }
+                    myListA = myListA.Distinct().ToList();
+                    var myListB1 = myListA;
+                    var query1 = from w in myListB1
+                                where w.Contains("N/A")
+                                select w;
+                    myListA = myListA.Except(query1).ToList();
+                    ddlClasPred.DataSource = myListA;
+                    ddlClasPred.DataBind();
+                    ddlClasPred.Items.Insert(0, new ListItem("CLASIFICACION"));
+                    break;                   
+            }         
         }
       
 
@@ -1743,55 +1949,66 @@ namespace Cavat
    
 
         protected void ddlTipoSRustico_SelectedIndexChanged(object sender, EventArgs e)
-        {
-                if (ddlTipoSRustico.SelectedIndex == 0)
+        {          
+            try
             {
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','DEBE SELECCIONAR UNA ZONA DE VALOR.')", true);
-            }
-            else
-            {
+                predRustico.tipoSuelo = ddlTipoSRustico.SelectedValue.ToString();
                 if (ddlTipoSRustico.SelectedIndex == 0)
                 {
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','DEBE SELECCIONAR UN MUNICIPIO.')", true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','DEBE SELECCIONAR UNA ZONA DE VALOR.')", true);
                 }
                 else
                 {
-                    Double valorZonza = 0.00;
-                    DataTable dt = new DataTable();
-
-                    if (predios.tipoPredio == "URBANO")
+                    if (ddlTipoSRustico.SelectedIndex == 0)
                     {
-                        dt = catt.CatZonasValor(7, ddlMunicipio.SelectedIndex, 'U', "2022");
-                        // verZonaValor(7, ddlMunicipio.SelectedIndex, 'R', "2022", ddlTipoSRustico, "TIPO PREDIO");
-                    }
-                    else if (predios.tipoPredio == "RÚSTICO")
-                    {
-                        dt = catt.CatZonasValor(7, ddlMunicipio.SelectedIndex, 'R', "2022");
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','DEBE SELECCIONAR UN MUNICIPIO.')", true);
                     }
                     else
                     {
-                        dt = catt.CatZonasValor(7, ddlMunicipio.SelectedIndex, 'S', "2022");
+                        Double valorZonza = 0.00;
+                        switch (predios.centralizado)
+                        {
+                            case "True"://Si es Centralizado se maneja la informacion de serverBox                                
+                                EnumerableRowCollection<DataRow> query = from fila in infoMunicipio.Centralizado.ZonasValor.AsEnumerable() // la informacion de infoMunicipio.Centralizado.ZonasValor se almaceno al elegir el municipio y el tipo de predio
+                                                                         where fila.Field<String>("nombreZona") == predRustico.tipoSuelo// la variable predRustico.tipoSuelo contiene el tipo de suelo seleccionado 
+                                                                         select fila;
+                                DataTable dt1 = query.CopyToDataTable();
+                                valorZonza = Convert.ToDouble(dt1.Rows[0]["valorM2"]);//convierte el valor a doble para poder operarlo algebraicamente
+                                predRustico.ValorTerrenoM2 = valorZonza;  //envia el valor de la zona de valor a la variable statica que contendra el valor
+                                break;
+                            case "False"://Se maneja la informacion de los descentralizados de la base de datos local
+                                //DataSet ds1 = new DataSet();
+                                //ds1 = GetinfoDescentralizado(1, predios.municipio, "2022");
+                                //infoMunicipio.Descentralizados.dtDescentralizados = ds.Tables[0];
+                                // infoMunicipio.Descentralizados.dtDescentralizados = GetinfoDescentralizado(1, predios.municipio, "2022");//contiene la tabla con la información de los municipios descentralizados                                                                                                                                                                
+                              
+                                EnumerableRowCollection<DataRow> query1 = from f in infoMunicipio.Descentralizados.dtDescentralizados.AsEnumerable()  // la informacion de infoMunicipio.Centralizado.ZonasValor se almaceno al elegir el municipio y el tipo de predio
+                                                                          where f.Field<String>("nombreZona") == predRustico.tipoSuelo // la variable predRustico.tipoSuelo contiene el tipo de suelo seleccionado 
+                                                                          select f;
+                                DataTable dt2 = query1.CopyToDataTable();
+                                valorZonza = Convert.ToDouble(dt2.Rows[0]["valorM2"]);//convierte el valor a doble para poder operarlo algebraicamente
+                                predRustico.ValorTerrenoM2 = valorZonza;  //envia el valor de la zona de valor a la variable statica que contendra el valor
+                                break;
+                        }
                     }
-
-                    EnumerableRowCollection<DataRow> query = from fila in dt.AsEnumerable()
-                                                             where fila.Field<String>("nombreZona") == ddlTipoSRustico.SelectedValue.ToString()
-                                                             select fila;
-                    DataTable dt1 = query.CopyToDataTable();
-                    valorZonza = Convert.ToDouble(dt1.Rows[0]["valorM2"]);
-                    predRustico.ValorTerrenoM2 = valorZonza;  //envia el valor de la zona de valor a la variable statica que contendra el valor
-
                 }
+            }catch(Exception ex)
+            {
+                throw ex;
             }
-
-
         }
 
         protected void GVConstrucciones_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            GVConstrucciones.PageIndex = e.NewPageIndex;
-            //llena el gridview nuevamente
-            GVConstrucciones.DataSource = tabla;
-            GVConstrucciones.DataBind();
+            try
+            {
+                GVConstrucciones.PageIndex = e.NewPageIndex;
+                GVConstrucciones.DataSource = tabla;
+                GVConstrucciones.DataBind(); //llena el gridview nuevamente
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
@@ -1808,13 +2025,12 @@ namespace Cavat
                     else
                     {
                         string valor = ValorConstruccion(ddlObraComplementaria, ddlCalidadObra);
+                        double valorObra = infoConsRegular.VCCObraComplementaria(Convert.ToDouble(txtMetroObraComp.Text), Convert.ToDouble(valor));
 
                         DataRow fila = tablaObras.NewRow();
                         fila["OBRA COM"] = ddlObraComplementaria.SelectedValue.ToString();
                         fila["CALIDAD"] = ddlCalidadObra.Text;
-                        fila["VALORM2"] = valor;
-
-                        // fila["VALORM2"] = ddlCalidadObra.Text;
+                        fila["VALORM2"] = valorObra.ToString("c");                        // fila["VALORM2"] = ddlCalidadObra.Text;
                         tablaObras.Rows.Add(fila);       
                         //Limpiar todo lo seleccionado
                         ddlObraComplementaria.ClearSelection();
@@ -1823,8 +2039,10 @@ namespace Cavat
                     //llena el gridview nuevamente
                     GVObrasComplem.DataSource = tablaObras;
                     GVObrasComplem.DataBind();
-                    
-                    //ContentAgregarConstruccion.Visible = false;
+                    txtMetroObraComp.Text="";
+                    ddlObraComplementaria.ClearSelection();
+                    ddlCalidadObra.ClearSelection();
+                    ContentAgregarObraCom.Visible = false;
                 }
                 catch (Exception ex)
                 {
@@ -1836,6 +2054,9 @@ namespace Cavat
         {
             ContentAgregarConstruccion.Visible = true;
             //Llamar al metodo que va a llenar la clasificacion de la construccion
+            llenarCatalgos(13, "avance", ddlAvanceConstruccion, "AVANCE DE OBRA");
+            llenarCatalgos(19, "estadoConservacion", ddlCoservacion, "ESTADO DE CONSERVACIÓN");
+            ddlEdadConstruc();
             CatConstruccion();
         }
         protected void btnCancelAddConstr_Click(object sender, EventArgs e)
@@ -1861,25 +2082,49 @@ namespace Cavat
             DataTable dtAux = new DataTable();
             DataSet ds = new DataSet();
             ds = Construcciones.dtConstrucciones;
-            dtAux = ds.Tables[0];
-            
-            List<string> myList = new List<String>();
-            foreach (DataRow row in dtAux.Rows)
+            dtAux = ds.Tables[0];            
+            List<string> myList = new List<String>();     
+            switch (predios.centralizado)//Verifica que se centralizado o no
             {
-                myList.Add((string)row[2]);
+                case "True":
+                    //llena catalogos con informacion del serverbox.
+                    foreach (DataRow row in dtAux.Rows)
+                    {
+                        myList.Add((string)row[2]);
+                    }
+                    myList = myList.Distinct().ToList();
+                    var words = myList;
+                    var query = from w in words
+                                where w.Contains("OBRA") || w.Contains("BARDA") || w.Contains("REJAS") ||
+                                        w.Contains("CESPED") || w.Contains("MALLA") || w.Contains("TANQUE")
+                                        || w.Contains("ESTRUCTURA") || w.Contains("MAMPOSTERIA")
+                                select w;
+                    myList = query.ToList();
+                    ddlObraComplementaria.DataSource = myList;
+                    ddlObraComplementaria.DataBind();
+                    ddlObraComplementaria.Items.Insert(0, new ListItem("OBRAS"));
+                    break;
+                case "False":
+                    //llenar catalogos con informacion de base de datos local de descentralizdos
+                    foreach (DataRow row in dtAux.Rows)
+                    {
+                        myList.Add((string)row["obraComplementaria"]);
+                    }
+                    myList = myList.Distinct().ToList();
+                    var word = myList;
+                    var quer = from w in word
+                                where w.Contains("N/A")
+                                select w;
+                    myList = myList.Except(quer).ToList();   
+                    ddlObraComplementaria.DataSource = myList;
+                    ddlObraComplementaria.DataBind();
+                    ddlObraComplementaria.Items.Insert(0, new ListItem("OBRAS"));
+                    break;
             }
-            myList = myList.Distinct().ToList();
 
-            var words = myList;
-            var query = from w in words
-                        where w.Contains("OBRA") || w.Contains("BARDA") || w.Contains("REJAS") ||
-                                w.Contains("CESPED") || w.Contains("MALLA") || w.Contains("TANQUE") 
-                                || w.Contains("ESTRUCTURA") || w.Contains("MAMPOSTERIA") 
-                        select w;
-            myList = query.ToList();
-            ddlObraComplementaria.DataSource = myList;
-            ddlObraComplementaria.DataBind();
-            ddlObraComplementaria.Items.Insert(0, new ListItem("OBRAS"));
+
+
+
         }
 
         protected void btnGetAvaluo_Click(object sender, ImageClickEventArgs e)
@@ -1908,11 +2153,32 @@ namespace Cavat
 
         protected void txtSuperficieObra_TextChanged(object sender, EventArgs e)
         {
-            infoConstrucciones.VCUS = Convert.ToDouble(txtSuperficieObra.Text);
+            try
+            {
+                if (Convert.ToDouble(txtSuperficieObra.Text) <= predios.superficie)
+                {
+                    infoConstrucciones.Sc = Convert.ToDouble(txtSuperficieObra.Text);//Almacena la superfice de la construccion
+                    txtSuperficieObra.BorderColor = Color.Transparent;
+                    txtSuperficieObra.BorderWidth = 0;
+                }
+                else
+                {
+                    txtSuperficieObra.Text = "";
+                    txtSuperficieObra.BorderColor = Color.Red;
+                    txtSuperficieObra.BorderWidth = 2;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('warning','LA SUPERFICIE DE LA CONSTRUCCION DEBE SER MENOR O IGUAL AL VALOR TOTAL DE LA SUPERFICIE DEL PREDIO'')", true);
+                }
+            }catch(Exception ex)
+            {
+                Response.Write(ex);
+                Response.Redirect("404.aspx");
+            }
+                                                                            
         }
 
         protected void ddlAvanceConstruccion_SelectedIndexChanged(object sender, EventArgs e)
-        {            
+        {
+                infoConstrucciones.AvanceConstruccion = ddlAvanceConstruccion.SelectedValue;
                 switch (ddlAvanceConstruccion.SelectedValue){
                     case "TERMINADA":
                          infoConsRegular.FTR = 1.0;
@@ -2003,41 +2269,153 @@ namespace Cavat
 
         protected void ddlEdadConstruccion_SelectedIndexChanged(object sender, EventArgs e)
         {
+            infoConstrucciones.edadConstruccion = ddlEdadConstruccion.SelectedValue;
             switch (ddlAvanceConstruccion.SelectedValue)
             {
                 case "01-10":
                     infoConsRegular.FED = 1.00;
                     break;
                 case "11-20":
-                    if (ddlClasPred.SelectedValue.Contains("INDUSTRIAL MEDIO") || ddlClasPred.SelectedValue.Contains("INDUSTRIAL LIGERO") || ddlCalidadConstruccion.SelectedValue.Contains("PRECARIA"))
+                    if (ddlClasPred.SelectedValue.Contains("INDUSTRIAL MEDIO") || ddlClasPred.SelectedValue.Contains("INDUSTRIAL LIGERO") || ddlCalidadConstruccion.SelectedValue.Contains("PRECARIA") || ddlCalidadConstruccion.SelectedValue.Contains("MEDIA")|| ddlCalidadConstruccion.SelectedValue.Contains("MEDIO"))
                     {
-                        infoConsRegular.FTR = 0.70;
+                        infoConsRegular.FED = 0.70;
                     }
                     else
                     {
-                        if (ddlClasPred.SelectedValue.Contains("INTERES SOCIAL") || ddlClasPred.SelectedValue.Contains("INDUSTRIAL LIGERO") || ddlCalidadConstruccion.SelectedValue.Contains("PRECARIA"))
+                        if (ddlClasPred.SelectedValue.Contains("INTERES SOCIAL") || ( ddlClasPred.SelectedValue.Contains("INDUSTRIAL PESADO")) || ddlCalidadConstruccion.SelectedValue.Contains("MEDIA") || ddlCalidadConstruccion.SelectedValue.Contains("MEDIO"))
                         {
-                            infoConsRegular.FTR = 0.70;
+                            infoConsRegular.FED = 0.80;
                         }
                         else
                         {
-
+                            if (ddlCalidadConstruccion.SelectedValue.Contains("SUPERIOR")|| ddlCalidadConstruccion.SelectedValue.Contains("LUJO")|| ddlCalidadConstruccion.SelectedValue.Contains("ESPECIAL"))
+                            {
+                                infoConsRegular.FED = 0.90;
+                            }
+                            else
+                            {
+                                infoConsRegular.FED = 1; //Revisar si corresponde a 1 el fator en este caso, basandose en la pagina 39 del pdf del manual de valuacion
+                            }
                         }
                     }
                     break;
                 case "21-30":
-                   
+                    if (ddlClasPred.SelectedValue.Contains("INDUSTRIAL MEDIO") || ddlClasPred.SelectedValue.Contains("INDUSTRIAL LIGERO") || ddlCalidadConstruccion.SelectedValue.Contains("PRECARIA"))
+                    {
+                        infoConsRegular.FED = 0.50;
+                    }
+                    else
+                    {
+                        if (ddlClasPred.SelectedValue.Contains("INTERES SOCIAL") || (ddlClasPred.SelectedValue.Contains("INDUSTRIAL PESADO")))
+                        {
+                            infoConsRegular.FED = 0.70;
+                        }
+                        else
+                        {
+                            if (ddlCalidadConstruccion.SelectedValue.Contains("SUPERIOR") || ddlCalidadConstruccion.SelectedValue.Contains("LUJO") || ddlCalidadConstruccion.SelectedValue.Contains("ESPECIAL"))
+                            {
+                                infoConsRegular.FED = 0.80;
+                            }
+                            else
+                            {
+                                infoConsRegular.FED = 1; //Revisar si corresponde a 1 el fator en este caso, basandose en la pagina 39 del pdf del manual de valuacion
+                            }
+                        }
+                    }
                     break;
                 case "31-40":
+                    if (ddlClasPred.SelectedValue.Contains("INDUSTRIAL MEDIO") || ddlClasPred.SelectedValue.Contains("INDUSTRIAL LIGERO") || ddlCalidadConstruccion.SelectedValue.Contains("PRECARIA"))
+                    {
+                        infoConsRegular.FED = 0.50;
+                    }
+                    else
+                    {
+                        if (ddlClasPred.SelectedValue.Contains("INTERES SOCIAL") || (ddlClasPred.SelectedValue.Contains("INDUSTRIAL PESADO")))
+                        {
+                            infoConsRegular.FED = 0.60;
+                        }
+                        else
+                        {
+                            if (ddlCalidadConstruccion.SelectedValue.Contains("SUPERIOR") || ddlCalidadConstruccion.SelectedValue.Contains("LUJO") || ddlCalidadConstruccion.SelectedValue.Contains("ESPECIAL"))
+                            {
+                                infoConsRegular.FED = 0.70;
+                            }
+                            else
+                            {
+                                infoConsRegular.FED = 1; //Revisar si corresponde a 1 el fator en este caso, basandose en la pagina 39 del pdf del manual de valuacion
+                            }
+                        }
+                    }
                     break;
                 case "41-50":
+                    if (ddlClasPred.SelectedValue.Contains("INDUSTRIAL MEDIO") || ddlClasPred.SelectedValue.Contains("INDUSTRIAL LIGERO") || ddlCalidadConstruccion.SelectedValue.Contains("PRECARIA"))
+                    {
+                        infoConsRegular.FED = 0.50;
+                    }
+                    else
+                    {
+                        if (ddlClasPred.SelectedValue.Contains("INTERES SOCIAL") || (ddlClasPred.SelectedValue.Contains("INDUSTRIAL PESADO")))
+                        {
+                            infoConsRegular.FED = 0.50;
+                        }
+                        else
+                        {
+                            if (ddlCalidadConstruccion.SelectedValue.Contains("SUPERIOR") || ddlCalidadConstruccion.SelectedValue.Contains("LUJO") || ddlCalidadConstruccion.SelectedValue.Contains("ESPECIAL"))
+                            {
+                                infoConsRegular.FED = 0.60;
+                            }
+                            else
+                            {
+                                infoConsRegular.FED = 1; //Revisar si corresponde a 1 el fator en este caso, basandose en la pagina 39 del pdf del manual de valuacion
+                            }
+                        }
+                    }
                     break;
                 case "51-EN ADELANTE":
+                    infoConsRegular.FED = 0.50;
                     break;
                 default:
-                    infoConsRegular.FTR = 1.0;
+                    infoConsRegular.FED = 1.0;
                     break;
             }
+        }
+
+        protected void ddlCalidadConstruccion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            infoConstrucciones.CalidadConstruccion = ddlCalidadConstruccion.SelectedValue;
+        }
+
+        protected void ddlCoservacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            infoConstrucciones.edoConservacionConstruccion = ddlCoservacion.SelectedValue;
+        }
+
+        protected void btnCancelAddObraC_Click(object sender, EventArgs e)
+        {
+            if (IsPostBack)
+            {
+                ddlObraComplementaria.ClearSelection();
+                ddlCalidadObra.ClearSelection();
+                ContentAgregarObraCom.Visible = false;
+            }
+        }
+
+        protected void btnValConstruccion_Click(object sender, EventArgs e)
+        {
+            //Se encarga de sealizar las sumas correspondientes a los valores de las construcciones 
+            try
+            {
+                double suma1 = 0.0, suma2 = 0.0;
+                suma1 = (double)GVConstrucciones.Rows.Cast<GridViewRow>().Sum(x => double.Parse(x.Cells[11].Text, NumberStyles.Currency));//suma los valores de la columna de la tabla de construcciones
+                suma2 = (double)GVObrasComplem.Rows.Cast<GridViewRow>().Sum(x => double.Parse(x.Cells[3].Text, NumberStyles.Currency));//suma los valores de la columna de la tabla de las obras complementarias 
+                lblValorFactorconstruccion.Text = suma1.ToString("C"); // se envia a la etiqueta del factor de la construccion la suma total de construcciones 
+                lblValorFactorObraCom.Text = suma2.ToString("C");// se envia a la etiqueta del factor de la obras complementarias la suma total de las obras complementarias
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
 }

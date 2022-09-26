@@ -1,4 +1,8 @@
-﻿function OpenLetreros(tipo, letrero) {
+﻿/*
+ * | Autor: Ing. Maria de Lourdes Sosa Cruz
+ * | metodos para la manipudacion de los letreros emergentes durante la compilacion del sistema
+ */
+function OpenLetreros(tipo, letrero) {
     Swal.fire({
         customClass: {
             confirmButton: 'swalBtnColor',
@@ -23,15 +27,15 @@
 }
 
 
-$(document).ready(function () {
-    $("input[name=radioName]").click(function () {
-        if ($('input:radio[name=radioName]:checked').val() === 'm') {
-            $('#<%=txtSuperficieRu.ClientID%>').mask("000000000.00");
-        } else {
-            $('#<%=txtSuperficieRu.ClientID%>').mask("000-000-000.00");
-        }
-    });
-});
+//$(document).ready(function () {
+//    $("input[name=radioName]").click(function () {
+//        if ($('input:radio[name=radioName]:checked').val() === 'm') {
+//            $('#<%=txtSuperficieRu.ClientID%>').mask("000000000.00");
+//        } else {
+//            $('#<%=txtSuperficieRu.ClientID%>').mask("000-000-000.00");
+//        }
+//    });
+//});
 
 
 

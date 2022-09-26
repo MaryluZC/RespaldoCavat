@@ -816,6 +816,15 @@ namespace Cavat
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl obrasComplementarias;
 
         /// <summary>
+        /// Control txtMetroObraComp.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMetroObraComp;
+
+        /// <summary>
         /// Control ddlObraComplementaria.
         /// </summary>
         /// <remarks>
@@ -841,6 +850,15 @@ namespace Cavat
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddObrasCom;
+
+        /// <summary>
+        /// Control btnCancelAddObraC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelAddObraC;
 
         /// <summary>
         /// Control Div1.

@@ -448,6 +448,54 @@ namespace Cavat.ServiceCavat {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatConstruccion", ReplyAction="http://tempuri.org/IServiceCavat/VerCatConstruccionResponse")]
         System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatConstruccionAsync(int opc, int municipio, int año);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatZonasDesCentralizados", ReplyAction="http://tempuri.org/IServiceCavat/VerCatZonasDesCentralizadosResponse")]
+        Cavat.ServiceCavat.wRespuesta VerCatZonasDesCentralizados(int opc, string municipio, string año);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatZonasDesCentralizados", ReplyAction="http://tempuri.org/IServiceCavat/VerCatZonasDesCentralizadosResponse")]
+        System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatZonasDesCentralizadosAsync(int opc, string municipio, string año);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatLocalidadesCentr", ReplyAction="http://tempuri.org/IServiceCavat/VerCatLocalidadesCentrResponse")]
+        Cavat.ServiceCavat.wRespuesta VerCatLocalidadesCentr(int opc, int mun);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatLocalidadesCentr", ReplyAction="http://tempuri.org/IServiceCavat/VerCatLocalidadesCentrResponse")]
+        System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatLocalidadesCentrAsync(int opc, int mun);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatLocalidadesDes", ReplyAction="http://tempuri.org/IServiceCavat/VerCatLocalidadesDesResponse")]
+        Cavat.ServiceCavat.wRespuesta VerCatLocalidadesDes(int opc, string municipio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatLocalidadesDes", ReplyAction="http://tempuri.org/IServiceCavat/VerCatLocalidadesDesResponse")]
+        System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatLocalidadesDesAsync(int opc, string municipio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatZonasCentralizados", ReplyAction="http://tempuri.org/IServiceCavat/VerCatZonasCentralizadosResponse")]
+        Cavat.ServiceCavat.wRespuesta VerCatZonasCentralizados(int opc, int idmun, char tipoPredio, string anio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatZonasCentralizados", ReplyAction="http://tempuri.org/IServiceCavat/VerCatZonasCentralizadosResponse")]
+        System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatZonasCentralizadosAsync(int opc, int idmun, char tipoPredio, string anio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatUbicacion", ReplyAction="http://tempuri.org/IServiceCavat/VerCatUbicacionResponse")]
+        Cavat.ServiceCavat.wRespuesta VerCatUbicacion(int opc, int tipoPredio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatUbicacion", ReplyAction="http://tempuri.org/IServiceCavat/VerCatUbicacionResponse")]
+        System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatUbicacionAsync(int opc, int tipoPredio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatGeneral", ReplyAction="http://tempuri.org/IServiceCavat/VerCatGeneralResponse")]
+        Cavat.ServiceCavat.wRespuesta VerCatGeneral(int opc, string tipoPredio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatGeneral", ReplyAction="http://tempuri.org/IServiceCavat/VerCatGeneralResponse")]
+        System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatGeneralAsync(int opc, string tipoPredio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatUsoSuelo", ReplyAction="http://tempuri.org/IServiceCavat/VerCatUsoSueloResponse")]
+        Cavat.ServiceCavat.wRespuesta VerCatUsoSuelo(int opc, string tipoPredio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/VerCatUsoSuelo", ReplyAction="http://tempuri.org/IServiceCavat/VerCatUsoSueloResponse")]
+        System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatUsoSueloAsync(int opc, string tipoPredio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/CatalogConstCentralizados", ReplyAction="http://tempuri.org/IServiceCavat/CatalogConstCentralizadosResponse")]
+        Cavat.ServiceCavat.wRespuesta CatalogConstCentralizados(int opc, string anio, string municipio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCavat/CatalogConstCentralizados", ReplyAction="http://tempuri.org/IServiceCavat/CatalogConstCentralizadosResponse")]
+        System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> CatalogConstCentralizadosAsync(int opc, string anio, string municipio);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -507,6 +555,70 @@ namespace Cavat.ServiceCavat {
         
         public System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatConstruccionAsync(int opc, int municipio, int año) {
             return base.Channel.VerCatConstruccionAsync(opc, municipio, año);
+        }
+        
+        public Cavat.ServiceCavat.wRespuesta VerCatZonasDesCentralizados(int opc, string municipio, string año) {
+            return base.Channel.VerCatZonasDesCentralizados(opc, municipio, año);
+        }
+        
+        public System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatZonasDesCentralizadosAsync(int opc, string municipio, string año) {
+            return base.Channel.VerCatZonasDesCentralizadosAsync(opc, municipio, año);
+        }
+        
+        public Cavat.ServiceCavat.wRespuesta VerCatLocalidadesCentr(int opc, int mun) {
+            return base.Channel.VerCatLocalidadesCentr(opc, mun);
+        }
+        
+        public System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatLocalidadesCentrAsync(int opc, int mun) {
+            return base.Channel.VerCatLocalidadesCentrAsync(opc, mun);
+        }
+        
+        public Cavat.ServiceCavat.wRespuesta VerCatLocalidadesDes(int opc, string municipio) {
+            return base.Channel.VerCatLocalidadesDes(opc, municipio);
+        }
+        
+        public System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatLocalidadesDesAsync(int opc, string municipio) {
+            return base.Channel.VerCatLocalidadesDesAsync(opc, municipio);
+        }
+        
+        public Cavat.ServiceCavat.wRespuesta VerCatZonasCentralizados(int opc, int idmun, char tipoPredio, string anio) {
+            return base.Channel.VerCatZonasCentralizados(opc, idmun, tipoPredio, anio);
+        }
+        
+        public System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatZonasCentralizadosAsync(int opc, int idmun, char tipoPredio, string anio) {
+            return base.Channel.VerCatZonasCentralizadosAsync(opc, idmun, tipoPredio, anio);
+        }
+        
+        public Cavat.ServiceCavat.wRespuesta VerCatUbicacion(int opc, int tipoPredio) {
+            return base.Channel.VerCatUbicacion(opc, tipoPredio);
+        }
+        
+        public System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatUbicacionAsync(int opc, int tipoPredio) {
+            return base.Channel.VerCatUbicacionAsync(opc, tipoPredio);
+        }
+        
+        public Cavat.ServiceCavat.wRespuesta VerCatGeneral(int opc, string tipoPredio) {
+            return base.Channel.VerCatGeneral(opc, tipoPredio);
+        }
+        
+        public System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatGeneralAsync(int opc, string tipoPredio) {
+            return base.Channel.VerCatGeneralAsync(opc, tipoPredio);
+        }
+        
+        public Cavat.ServiceCavat.wRespuesta VerCatUsoSuelo(int opc, string tipoPredio) {
+            return base.Channel.VerCatUsoSuelo(opc, tipoPredio);
+        }
+        
+        public System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> VerCatUsoSueloAsync(int opc, string tipoPredio) {
+            return base.Channel.VerCatUsoSueloAsync(opc, tipoPredio);
+        }
+        
+        public Cavat.ServiceCavat.wRespuesta CatalogConstCentralizados(int opc, string anio, string municipio) {
+            return base.Channel.CatalogConstCentralizados(opc, anio, municipio);
+        }
+        
+        public System.Threading.Tasks.Task<Cavat.ServiceCavat.wRespuesta> CatalogConstCentralizadosAsync(int opc, string anio, string municipio) {
+            return base.Channel.CatalogConstCentralizadosAsync(opc, anio, municipio);
         }
     }
 }

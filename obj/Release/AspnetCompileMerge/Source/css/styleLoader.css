@@ -1,6 +1,6 @@
 ﻿/*
- * Baseline styles
- */
+    Cascading Style Sheets para el Loader (indicador de carga de la pagina)| Autor: Ing. Maria de Lourdes Sosa Cruz
+*/
 body {
     text-align: center;
 }
@@ -38,7 +38,8 @@ body {
     }
 
     .loading span:nth-of-type(3) {
-        background: #873600;
+       /* background: #873600;*/
+        background: rgb(0 0 0 / 0.35);
         animation-delay: 0.4s;
     }
 

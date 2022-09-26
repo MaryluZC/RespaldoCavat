@@ -32,6 +32,54 @@
   <wsdl:message name="IServiceCavat_VerCatConstruccion_OutputMessage">
     <wsdl:part name="parameters" element="tns:VerCatConstruccionResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatZonasDesCentralizados_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatZonasDesCentralizados" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatZonasDesCentralizados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatZonasDesCentralizadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatLocalidadesCentr_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatLocalidadesCentr" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatLocalidadesCentr_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatLocalidadesCentrResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatLocalidadesDes_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatLocalidadesDes" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatLocalidadesDes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatLocalidadesDesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatZonasCentralizados_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatZonasCentralizados" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatZonasCentralizados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatZonasCentralizadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatUbicacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatUbicacion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatUbicacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatUbicacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatGeneral_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatGeneral" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatGeneral_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatUsoSuelo_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatUsoSuelo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_VerCatUsoSuelo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerCatUsoSueloResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_CatalogConstCentralizados_InputMessage">
+    <wsdl:part name="parameters" element="tns:CatalogConstCentralizados" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCavat_CatalogConstCentralizados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CatalogConstCentralizadosResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceCavat">
     <wsdl:operation name="AccesLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceCavat/AccesLogin" message="tns:IServiceCavat_AccesLogin_InputMessage" />
@@ -48,6 +96,38 @@
     <wsdl:operation name="VerCatConstruccion">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceCavat/VerCatConstruccion" message="tns:IServiceCavat_VerCatConstruccion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceCavat/VerCatConstruccionResponse" message="tns:IServiceCavat_VerCatConstruccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerCatZonasDesCentralizados">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCavat/VerCatZonasDesCentralizados" message="tns:IServiceCavat_VerCatZonasDesCentralizados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCavat/VerCatZonasDesCentralizadosResponse" message="tns:IServiceCavat_VerCatZonasDesCentralizados_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerCatLocalidadesCentr">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCavat/VerCatLocalidadesCentr" message="tns:IServiceCavat_VerCatLocalidadesCentr_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCavat/VerCatLocalidadesCentrResponse" message="tns:IServiceCavat_VerCatLocalidadesCentr_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerCatLocalidadesDes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCavat/VerCatLocalidadesDes" message="tns:IServiceCavat_VerCatLocalidadesDes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCavat/VerCatLocalidadesDesResponse" message="tns:IServiceCavat_VerCatLocalidadesDes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerCatZonasCentralizados">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCavat/VerCatZonasCentralizados" message="tns:IServiceCavat_VerCatZonasCentralizados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCavat/VerCatZonasCentralizadosResponse" message="tns:IServiceCavat_VerCatZonasCentralizados_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerCatUbicacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCavat/VerCatUbicacion" message="tns:IServiceCavat_VerCatUbicacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCavat/VerCatUbicacionResponse" message="tns:IServiceCavat_VerCatUbicacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerCatGeneral">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCavat/VerCatGeneral" message="tns:IServiceCavat_VerCatGeneral_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCavat/VerCatGeneralResponse" message="tns:IServiceCavat_VerCatGeneral_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerCatUsoSuelo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCavat/VerCatUsoSuelo" message="tns:IServiceCavat_VerCatUsoSuelo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCavat/VerCatUsoSueloResponse" message="tns:IServiceCavat_VerCatUsoSuelo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CatalogConstCentralizados">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCavat/CatalogConstCentralizados" message="tns:IServiceCavat_CatalogConstCentralizados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCavat/CatalogConstCentralizadosResponse" message="tns:IServiceCavat_CatalogConstCentralizados_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceCavat" type="tns:IServiceCavat">
@@ -81,6 +161,78 @@
     </wsdl:operation>
     <wsdl:operation name="VerCatConstruccion">
       <soap:operation soapAction="http://tempuri.org/IServiceCavat/VerCatConstruccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerCatZonasDesCentralizados">
+      <soap:operation soapAction="http://tempuri.org/IServiceCavat/VerCatZonasDesCentralizados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerCatLocalidadesCentr">
+      <soap:operation soapAction="http://tempuri.org/IServiceCavat/VerCatLocalidadesCentr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerCatLocalidadesDes">
+      <soap:operation soapAction="http://tempuri.org/IServiceCavat/VerCatLocalidadesDes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerCatZonasCentralizados">
+      <soap:operation soapAction="http://tempuri.org/IServiceCavat/VerCatZonasCentralizados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerCatUbicacion">
+      <soap:operation soapAction="http://tempuri.org/IServiceCavat/VerCatUbicacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerCatGeneral">
+      <soap:operation soapAction="http://tempuri.org/IServiceCavat/VerCatGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerCatUsoSuelo">
+      <soap:operation soapAction="http://tempuri.org/IServiceCavat/VerCatUsoSuelo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CatalogConstCentralizados">
+      <soap:operation soapAction="http://tempuri.org/IServiceCavat/CatalogConstCentralizados" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

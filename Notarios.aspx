@@ -157,16 +157,16 @@
                                     <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" runat="server" id="tagZonaValor" visible="false">
                                         <h6 style="font-size: 0.8em; text-align: left;">ZONA DE VALOR</h6>
                                         <asp:DropDownList ID="ddlZonaValor" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Style="display:flex;text-align: left;" OnSelectedIndexChanged="ddlZonaValor_SelectedIndexChanged" AutoPostBack="true">
-                                            <asp:ListItem>Zona de Valor</asp:ListItem>
+                                            <asp:ListItem>ZONA DE VALOR</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" runat="server" id="tagCalle" visible="false">
                                         <h6 style="font-size: 0.8em; text-align: left;">CALLE</h6>
-                                        <asp:TextBox ID="txtCalle" runat="server" CssClass="form-control w-75" Style="display:flex;text-align: left;" Font-Size="Small" PlaceHolder="CALLE" OnTextChanged="txtCalle_TextChanged"></asp:TextBox>
+                                        <asp:TextBox ID="txtCalle" runat="server" CssClass="form-control w-75" Style="display:flex;text-align: left;" Font-Size="Small" PlaceHolder="CALLE" onkeypress="return alphaNum(event);" OnTextChanged="txtCalle_TextChanged"></asp:TextBox>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" runat="server" id="tagNumero" visible="false">
                                         <h6 style="font-size: 0.8em; text-align: left;">NÚMERO</h6>
-                                        <asp:TextBox ID="txtNumero" runat="server" CssClass="form-control w-75" Style="display:flex;text-align: left;" Font-Size="Small" PlaceHolder="NÚMERO" OnTextChanged="txtNumero_TextChanged"></asp:TextBox>
+                                        <asp:TextBox ID="txtNumero" runat="server" CssClass="form-control w-75" Style="display:flex;text-align: left;" Font-Size="Small" PlaceHolder="NÚMERO" onkeypress="return alphaNum(event);" OnTextChanged="txtNumero_TextChanged"></asp:TextBox>
                                     </div>
                                 </div>
 
@@ -195,7 +195,7 @@
                                 <asp:AsyncPostBackTrigger ControlID="ddlMunicipio" />
                                 <asp:AsyncPostBackTrigger ControlID="ddlTipoPredio" />
                                 <asp:AsyncPostBackTrigger ControlID="ddlLocalidad" />
-                                <asp:PostBackTrigger ControlID="ddlZonaValor" />
+                                <asp:AsyncPostBackTrigger ControlID="ddlZonaValor" />
                                 <asp:PostBackTrigger ControlID="btnSiguiente1" />
                             </Triggers>
                         </asp:UpdatePanel>
@@ -507,9 +507,6 @@
                                                 <asp:BoundField DataField="Clasificacion" HeaderText="CLASIFICACION">
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:BoundField>
-                                                <asp:BoundField DataField="Tipo" HeaderText="TIPO">
-                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                </asp:BoundField>
                                                 <asp:BoundField DataField="Calidad" HeaderText="CALIDAD">
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:BoundField>
@@ -531,7 +528,7 @@
                                                 <asp:BoundField DataField="CalidadObra" HeaderText="CALIDAD OBRA" DataFormatString="{0:d}" HtmlEncode="false">
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:BoundField>
-                                                <asp:BoundField DataField="ValorM2" HeaderText="VALOR m²" DataFormatString="{0:d}" HtmlEncode="false">
+                                                <asp:BoundField DataField="ValorM2" HeaderText="VALOR CONSTRUCCION" DataFormatString="{0:C2}" HtmlEncode="false">
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:BoundField>
                                             </Columns>
@@ -593,7 +590,7 @@
                                             <asp:Button ID="btnAgregarObrasComp" runat="server" Text="AGREGAR OBRAS" CssClass="btn text-white btn-sm" Style="background:#494949;" OnClick="btnAgregarObrasComp_Click"/>
                                         </div>             
                                         <div class="col text-center" style="text-align: right; margin-top: 2em;">
-                                            <asp:Button ID="btnValConstruccion" runat="server" Text="CALCULAR VALOR" CssClass="btn text-white btn-sm" Style="background:#494949;"/>
+                                            <asp:Button ID="btnValConstruccion" runat="server" Text="CALCULAR VALOR" CssClass="btn text-white btn-sm" Style="background:#494949;" OnClick="btnValConstruccion_Click"/>
                                         </div>  
                                     </div>
                                 </div>
@@ -603,7 +600,7 @@
                                         <ContentTemplate>
                                     <div class="row" style="padding: 1.5rem; background:#A2A1A1;" >
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
-                                            <asp:TextBox ID="txtSuperficieObra" PlaceHolder="SUPERFICIE" CssClass="form-control form-control-sm" runat="server" onkeypress="return onlyDecimalNumber(event);" OnTextChanged="txtSuperficieObra_TextChanged"></asp:TextBox>
+                                            <asp:TextBox ID="txtSuperficieObra" PlaceHolder="SUPERFICIE" CssClass="form-control form-control-sm" runat="server" onkeypress="return onlyDecimalNumber(event);" AutoPostBack="true" OnTextChanged="txtSuperficieObra_TextChanged"></asp:TextBox>
                                         </div>
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
                                             <asp:DropDownList ID="ddlClasPred" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" Style="text-align: left;" OnSelectedIndexChanged="ddlClasPred_SelectedIndexChanged" AutoPostBack="true">
@@ -611,7 +608,7 @@
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
-                                            <asp:DropDownList ID="ddlCalidadConstruccion" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" Style="text-align: left;" AutoPostBack="true">
+                                            <asp:DropDownList ID="ddlCalidadConstruccion" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" Style="text-align: left;" AutoPostBack="true" OnSelectedIndexChanged="ddlCalidadConstruccion_SelectedIndexChanged">
                                                 <asp:ListItem>CALIDAD</asp:ListItem>
                                             </asp:DropDownList>
                                          </div>
@@ -624,7 +621,7 @@
                                         </div>
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
                                             <div class="input-group mb-2">
-                                                <asp:DropDownList ID="ddlCoservacion" runat="server" Font-Size="Small" CssClass="btn btn-sm btn-light dropdown-toggle dropdown-toggle-split w-75" Style="text-align: left;">
+                                                <asp:DropDownList ID="ddlCoservacion" runat="server" Font-Size="Small" CssClass="btn btn-sm btn-light dropdown-toggle dropdown-toggle-split w-75" Style="text-align: left;" OnSelectedIndexChanged="ddlCoservacion_SelectedIndexChanged">
                                                     <%--     <asp:ListItem>Conservación</asp:ListItem>--%>
                                                 </asp:DropDownList>
                                                 <div class="input-group-prepend ">
@@ -643,11 +640,14 @@
                                     </div>
                                         </ContentTemplate>
                                         <Triggers>
-                                            <asp:PostBackTrigger ControlID="ddlClasPred" />
-                                            <asp:PostBackTrigger ControlID="ddlCalidadConstruccion" />
+                                             
+                                            <asp:AsyncPostBackTrigger ControlID="ddlClasPred" /> 
+                                            <asp:AsyncPostBackTrigger ControlID="ddlCalidadConstruccion" />
                                             <asp:AsyncPostBackTrigger ControlID="ddlAvanceConstruccion" />
                                             <asp:AsyncPostBackTrigger ControlID="ddlCoservacion" />
                                             <asp:AsyncPostBackTrigger ControlID="ddlEdadConstruccion" />
+                                            <asp:AsyncPostBackTrigger ControlID="txtSuperficieObra" />
+                                            <asp:AsyncPostBackTrigger ControlID="btnValConstruccion" />
                                         </Triggers>
                                     </asp:UpdatePanel>
                                     <asp:UpdatePanel runat="server" ID="UpdatePanel8" UpdateMode="Conditional">
@@ -694,21 +694,11 @@
                                 <div runat="server" id="ContentAgregarObraCom" visible="false" class="container">
                                         <asp:UpdatePanel runat="server" ID="UpdatePanel9" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                          <%--  <div class="row" style="padding: 1.5rem; background:#A2A1A1; margin-top:1rem;">                                                
-                                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-1">
-                                                    <h6 style="text-align: right;">¿CUENTA CON OBRAS COMPLEMENTARIAS?</h6>
-                                                </div>
-                                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 p-1 text-left">
-                                                   <%-- <asp:RadioButtonList ID="RBObrasComplementarias" runat="server" AutoPostBack="true" Font-Size="Small" OnSelectedIndexChanged="RBObrasComplementarias_SelectedIndexChanged" >
-                                                        <asp:ListItem>SI</asp:ListItem>
-                                                        <asp:ListItem>NO</asp:ListItem>
-                                                    </asp:RadioButtonList>
-                                                </div>               
-                                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-1"></div>
-                                            </div>--%>
                                             <div class="row" style="padding: 1rem; background:#A2A1A1;" runat="server" id="obrasComplementarias" visible="false">
                                                 <%--visible="false"--%>
-                                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1"></div>
+                                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
+                                                     <asp:TextBox ID="txtMetroObraComp" PlaceHolder="Superficie m²" CssClass="form-control form-control-sm" runat="server"></asp:TextBox>
+                                                </div>
                                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
                                                     <asp:DropDownList ID="ddlObraComplementaria" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-100" runat="server" Style="text-align: left;" AutoPostBack="true" OnSelectedIndexChanged="ddlObraComplementaria_SelectedIndexChanged">
                                                     </asp:DropDownList>
@@ -720,9 +710,12 @@
                                                 </div>
                                             </div>
                                              <div class="row" style="padding: 1.5rem; background:#A2A1A1;">
-                                                 <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 p-1"></div>
-                                                 <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                                                <div class="col-12 col-sm-12 col-md8 col-lg-4 col-xl-4 p-1"></div>
+                                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1 text-left">
                                                    <asp:Button ID="btnAddObrasCom" runat="server" CssClass="btn btn-sm" Style="background: #570E25; color: white;" Text="GUARDAR CAMBIOS" OnClick="btnAddObrasCom_Click" />
+                                                </div>
+                                                  <div class="col-12 col-sm-12 col-md8 col-lg-4 col-xl-4 p-1">
+                                                     <asp:Button ID="btnCancelAddObraC" runat="server" CssClass="btn btn-sm" Style="background: #570E25; color: white;" Text="CANCELAR" OnClick="btnCancelAddObraC_Click" />
                                                 </div>
                                              </div>
                                         </ContentTemplate>
@@ -730,14 +723,14 @@
                                           <%--  <asp:PostBackTrigger ControlID="RBObrasComplementarias" />--%>
                                             <asp:AsyncPostBackTrigger ControlID="ddlObraComplementaria" />
                                             <asp:PostBackTrigger ControlID="btnAddObrasCom" />
+                                             <asp:PostBackTrigger ControlID="btnCancelAddObraC" />
                                         </Triggers>
                                     </asp:UpdatePanel>
                                 </div>
-
                             </ContentTemplate>
                             <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="btnAgregarObrasComp" /> 
-                                <asp:PostBackTrigger ControlID="btnAgregarConstruccion" /> 
+                                <asp:AsyncPostBackTrigger ControlID="btnAgregarConstruccion" /> 
                             </Triggers>
                         </asp:UpdatePanel>
                         <%-- *************** AGREGAR CONSTRUCCION A LA LISTA    *****************--%>
@@ -826,7 +819,7 @@
                             </div>
                             <div class="col-md-6">
                                 <h5>Rústico</h5>
-                                <p>Un terreno rústico, o suelo rústico, es un espacio de tierra que no es urbano y su uso más común es en el sector agrícola o ganadero.</p>
+                                <p>Un terreno rústico, o suelo rústico, es un espacio de tierra que no es urbano y su uso más común es en el sector agrícola o ganadero.</p>
                             </div>
                         </div>
                         <div class="row" style="padding: 1rem;">
@@ -1000,8 +993,8 @@
                             <div class="col-md-6">
                                 <h5>Eriazo</h5>
                                 <p>
-                                    Se considera terrenos eriazos aquellos que se encuentran sin cultivar por falta o exceso
-                                    de agua y los terrenos improductivos y terrenos ribereños al mar los ubicados a lo largo
+                                    Se considera terrenos eriazos aquellos que se encuentran sin cultivar por falta o exceso
+                                    de agua y los terrenos improductivos y terrenos ribereños al mar los ubicados a lo largo
                                     del litoral de la República, en la franja de 1 Km. medido a partir de la línea de la más
                                     alta marea.
                                 </p>
@@ -1202,7 +1195,7 @@
                             <div class="col-md-6">
                                 <h5>Riego</h5>
                                 <p>
-                                    Terreno de Riego son los que, debido a obras artificiales, disponen de agua suficiente
+                                    Terreno de Riego son los que, debido a obras artificiales, disponen de agua suficiente
                                     para sostener en forma permanente los cultivos propios de cada región,
                                     con independencia de la precipitación pluvial.
                                 </p>
@@ -1234,7 +1227,7 @@
                             <div class="col-md-6 text-center">
                                 <img src="img/predio/rustico/monte.png" class="muestaImg" style="width: 70%; height: auto;" />
                                 <p>
-                                    Monte, (del latín mons y montis), desde el punto de vista biogeográfico es un terreno no
+                                    Monte, (del latín mons y montis), desde el punto de vista biogeográfico es un terreno no
                                      urbano y sin cultivar en el que hay vegetación. Esta vegetación puede estar formada por
                                      árboles, arbustos y hierbas. Además es una eminencia topológica mayor que un cerro pero
                                      menor que una montaña.
@@ -1312,7 +1305,7 @@
                                 <h5>Suelos Pedregosos</h5>
                                 <p>
                                     Son los que tienen muchas piedras, ya sean grandes o pequeñas y son difíciles para cultivar. 
-                                    Es la manera como se unen partículas para formar terrones. Cuando las partículas del suelo,
+                                    Es la manera como se unen partículas para formar terrones. Cuando las partículas del suelo,
                                     están unidas en formas de láminas o lajas se dice que hay estructura laminar.
                                 </p>
                             </div>
@@ -1342,8 +1335,8 @@
                             <div class="col-md-6">
                                 <h5>Plano o llano</h5>
                                 <p>
-                                    Una llanura es un campo o terreno sin altos ni bajos. Se trata, por lo tanto, de una superficie dilatada que se 
-                                    caracteriza por su igualdad. Se conoce como llanura o planicie al área geográfica plana o cuya ondulación es 
+                                    Una llanura es un campo o terreno sin altos ni bajos. Se trata, por lo tanto, de una superficie dilatada que se 
+                                    caracteriza por su igualdad. Se conoce como llanura o planicie al área geográfica plana o cuya ondulación es 
                                     inferior a los 150 metros de altura sobre el nivel del mar.
                                 </p>
                             </div>
@@ -1355,7 +1348,7 @@
                             <div class="col-md-6">
                                 <h5>Lomerío suave o modernamente inclinado</h5>
                                 <p>
-                                    El lomerío es una porción del terreno quebrado, caracterizado por una repetición de colinas redondas
+                                    El lomerío es una porción del terreno quebrado, caracterizado por una repetición de colinas redondas
                                     o lomas alargadas, con cumbres a alturas variables, separadas por valles coluvio-aluviales.
                                 </p>
                             </div>
@@ -1378,7 +1371,7 @@
                             <div class="col-md-6">
                                 <h5>Escarpado</h5>
                                 <p>
-                                    Un terreno escarpado, es aquel que posee mucha inclinación o pendiente. Se trata de elevaciones 
+                                    Un terreno escarpado, es aquel que posee mucha inclinación o pendiente. Se trata de elevaciones 
                                     que son abruptas, extremadamente desniveladas y contienen rocas, lo que las hacen de muy dificultoso 
                                     o imposible tránsito.
                                 </p>
@@ -1683,7 +1676,6 @@
                     function onlyNumbersSuperficie(evt) {
                         // code is the decimal ASCII representation of the pressed key.
                         var code = (evt.which) ? evt.which : evt.keyCode;
-
                         if (code == 8 || code == 46 || code == 44) { // backspace.
                             return true;
                         } else if (code >= 48 && code <= 57) { // is a number.
@@ -1695,16 +1687,7 @@
                  }
              });
          });--%>      
-
-
-
-
-
-
-
-
-
-        </script>
+    </script>
     <script src="js/mask.js"></script>
     <%-- <script type="text/javascript" src="js/mask.js"></script>--%>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>

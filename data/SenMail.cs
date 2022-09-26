@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
-
+/// <summary>
+/// | Autor: Ing. Maria de Lourdes Sosa Cruz
+/// Clase para realizar el envio de correo electronico a los usuarios 
+/// </summary>
 namespace Cavat.data
 {
     public class SenMail : ConnectionToString
@@ -10,7 +13,7 @@ namespace Cavat.data
         {
             MailMessage mail = new MailMessage();
 
-            mail.From = new MailAddress("lourdeszoza@gmail.com");
+            mail.From = new MailAddress("ejemplo@gmail.com");
 
             mail.To.Add(correo1);
             mail.Subject = asunto;
@@ -22,7 +25,7 @@ namespace Cavat.data
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.UseDefaultCredentials = false;//----
-            smtp.Credentials = new NetworkCredential("lourdeszoza@gmail.com", "MaryluZoza1");
+            smtp.Credentials = new NetworkCredential("ejemplo@gmail.com", "contraseña");//la contraseña con la que accedes a tu correo, pero revisa que se pueda enviar desde un correo institucional.
             smtp.EnableSsl = true;
             try
             {

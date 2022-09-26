@@ -14,7 +14,7 @@ namespace Cavat
         DataSet dsaux = new DataSet();
         LoginCavat entrar = new LoginCavat();
         dataUser datauser = new dataUser();
-        catalogos catalog = new catalogos();//SERVICIO WEB
+        catalogosSW catalog = new catalogosSW();//Clase que consume SERVICIO WEB
         TestConexion ts = new TestConexion();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -59,7 +59,7 @@ namespace Cavat
 
         public DataSet VerCatalogo(int opc)
         {
-            rs = catalog.Cataloggo(opc);
+            rs = catalog.Cataloggo(opc);//instancia 
             int msg = rs.mensaje;
             dsaux = rs.elDataSet;
             return dsaux;
@@ -234,8 +234,8 @@ namespace Cavat
                 try
                 {
                     SolicitudReg.Visible = true;
-                    Registro dataReg = new Registro();
-
+                    Registro dataReg = new Registro(); //Consumo de servicio web
+                    
                     datauser.nombre = txtNombreR.Text;
                     datauser.ape1 = txtApePatR.Text;
                     datauser.ape2 = txtApeMatR.Text;
@@ -263,7 +263,6 @@ namespace Cavat
                     }
                     else if (validReg == -3 || validReg == 0)
                     {
-                        //          Response.Write("<script>alert('No se pudo enviar la solicitud, La cedula ya existe')</script>");
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('error','NO SE PUDO ENVIAR LA SOLICITUD, LA CEDULA YA EXISTE .')", true);
                         LimpiarCajas();
                         SolicitudReg.Visible = false;

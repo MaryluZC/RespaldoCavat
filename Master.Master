@@ -75,7 +75,6 @@
                                         <br />
                                         Dirección de Registro Público de la Propiedad: (22) 213 75 00 ext: 105 </h5>
                                 </div>
-
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="padding: 2em;">
                                 <div class="row">
@@ -95,6 +94,13 @@
                                     </h5>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-3"></div>
+                            <div class="col-3 text-center" style="color:rgb(182 174 174 / 0.79); text-align:center;">
+                              <p style="font-size:0.8rem;">  | Autor: Ing. Maria de Lourdes Sosa Cruz |</p>
+                            </div>
+                            <div class="col-3"></div>
                         </div>
                     </div>
                 </footer>

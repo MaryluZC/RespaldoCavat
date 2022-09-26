@@ -1,4 +1,8 @@
-﻿function onlyNumbers(evt) {
+﻿/*
+ * | Autor: Ing. Maria de Lourdes Sosa Cruz
+ * | clase para realizar validaciones de las entradas de texto en el sistema
+ */
+function onlyNumbers(evt) {
     // code is the decimal ASCII representation of the pressed key.
     var code = (evt.which) ? evt.which : evt.keyCode;
 
@@ -28,7 +32,7 @@ function onlyletters(evt) {
 function alphaNum(evt) {
     // code is the decimal ASCII representation of the pressed key.
     var code = (evt.which) ? evt.which : evt.keyCode;
-    if (code == 8) { // backspace.
+    if (code == 8 || code ==32) { // backspace.
         return true;
     }
     else if ((code > 47 && code <58) || (code >= 65 && code <= 90) || (code >= 97 && code <= 122)) { // is a letter.

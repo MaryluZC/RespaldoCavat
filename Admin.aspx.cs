@@ -11,30 +11,36 @@ namespace Cavat
 {
     public partial class Admin : System.Web.UI.Page
     {
-        dataUser ifus = new dataUser();
         UserDAo user = new UserDAo();
         SenMail mail = new SenMail();
-        Catalogos catt = new Catalogos();//CAPA COMUN
+        Catalogos catt = new Catalogos();//CAPA COMUN              
         Color colorVinoClaro = Color.FromArgb(171, 68, 104);
         Color colorVinoOscuro = Color.FromArgb(89, 4, 34);
         Color colorCafeClaro = Color.FromArgb(169, 150, 150);
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (UserLoginCache.nombre == string.Empty || UserLoginCache.nombre == null)
+            try
             {
-                Response.Redirect("Default.aspx");
-            }
-            else
+                if (UserLoginCache.nombre == string.Empty || UserLoginCache.nombre == null)
+                {
+                    Response.Redirect("Default.aspx");
+                }
+                else
+                {
+                    llenaRegistrosA();
+                    llenaSolReg();
+                    llenaSolCambioPsw();
+                    lnkHome.ForeColor = colorVinoClaro;
+                    lnkUserRegistrados.ForeColor = colorVinoOscuro;
+                    lnkCambioPsw.ForeColor = colorVinoOscuro;
+                    lblLetterOption.Text = "SOLICITUDES DE REGISTRO";
+                    lblUserAdm.Text = "USUARIO: " + UserLoginCache.tipoUser;///Coloca el nombre del Usuario
+                    lblNombre.Text = "NOMBRE: " + UserLoginCache.nombre + " " + UserLoginCache.ape1 + " " + UserLoginCache.ape2;
+                }
+            }catch(Exception ex)
             {
-                llenaRegistrosA();
-                llenaSolReg();
-                llenaSolCambioPsw();
-                lnkHome.ForeColor = colorVinoClaro;
-                lnkUserRegistrados.ForeColor = colorVinoOscuro;
-                lnkCambioPsw.ForeColor = colorVinoOscuro;
-                lblLetterOption.Text = "SOLICITUDES DE REGISTRO";
-                lblUserAdm.Text = "USUARIO: " + UserLoginCache.tipoUser;///Coloca el nombre del Usuario
-                lblNombre.Text = "NOMBRE: " + UserLoginCache.nombre + " " + UserLoginCache.ape1 + " " + UserLoginCache.ape2;
+                throw ex;
             }
 
         }
@@ -66,7 +72,6 @@ namespace Cavat
             lnkUserRegistrados.ForeColor = colorVinoOscuro;
             lnkCambioPsw.ForeColor = colorVinoOscuro;
             lblLetterOption.Text = "SOLICITUDES DE REGISTRO";
-
             GVSolicitudes.Visible = true;
             GVRegistrados.Visible = false;
             GVCambioPss.Visible = false;

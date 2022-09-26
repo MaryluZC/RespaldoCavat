@@ -2,7 +2,12 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
-
+/// <summary>
+/// | Autor: Ing. Maria de Lourdes Sosa Cruz
+/// Clase que obtiene informacion para listar usuarios registrados, 
+/// cambios de contraseña desde el panel del administrador
+/// LO IDEAL ES PASARLO A UN SERVICIO WEB Y AQUI SOLO CONSUMIR EL SERVICIO COMO EN EL CASO DE LOS CATALOGOS
+/// </summary>
 namespace Cavat.data
 {
     public class UserDAo : ConnectionToString

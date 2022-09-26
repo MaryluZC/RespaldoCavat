@@ -1,7 +1,10 @@
 ﻿using Cavat.ServiceCavat;
 using InfoUsuarios;
 using InfoUsuarios.cache;
-
+/// <summary>
+/// | Autor: Ing. Maria de Lourdes Sosa Cruz
+/// Clase para el consumo del servicio que contiene  el acceso al sistema y el registro de los usuarios 
+/// </summary>
 namespace Cavat.data
 {
     public class LoginCavat
@@ -11,12 +14,10 @@ namespace Cavat.data
         resultado rs = new resultado();
         login lg = new login();
 
-        public resultado LoginDA(dataUser log)
-        {
+        public resultado LoginDA(dataUser log)        {
             lg.usuariok__BackingField = UserLoginCache.userCache;
             lg.paswdk__BackingField = log.contrasena;
             lg.opck__BackingField = log.opc1;
-
             res = swCavat.AccesLogin(lg);
             rs.mensaje = res.mensaje;
             rs.elDataSet = res.elDataSet;

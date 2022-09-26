@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:65007/ServiceCavat.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/wcfComun" />
+  <xs:import schemaLocation="http://localhost:65007/ServiceCavat.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:element name="AccesLogin">
     <xs:complexType>
       <xs:sequence>
@@ -56,6 +57,130 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/wcfComun" minOccurs="0" name="VerCatConstruccionResult" nillable="true" type="q5:wRespuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatZonasDesCentralizados">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="opc" type="xs:int" />
+        <xs:element minOccurs="0" name="municipio" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="año" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatZonasDesCentralizadosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/wcfComun" minOccurs="0" name="VerCatZonasDesCentralizadosResult" nillable="true" type="q6:wRespuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatLocalidadesCentr">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="opc" type="xs:int" />
+        <xs:element minOccurs="0" name="mun" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatLocalidadesCentrResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/wcfComun" minOccurs="0" name="VerCatLocalidadesCentrResult" nillable="true" type="q7:wRespuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatLocalidadesDes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="opc" type="xs:int" />
+        <xs:element minOccurs="0" name="municipio" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatLocalidadesDesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/wcfComun" minOccurs="0" name="VerCatLocalidadesDesResult" nillable="true" type="q8:wRespuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatZonasCentralizados">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="opc" type="xs:int" />
+        <xs:element minOccurs="0" name="idmun" type="xs:int" />
+        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="tipoPredio" type="q9:char" />
+        <xs:element minOccurs="0" name="anio" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatZonasCentralizadosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/wcfComun" minOccurs="0" name="VerCatZonasCentralizadosResult" nillable="true" type="q10:wRespuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatUbicacion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="opc" type="xs:int" />
+        <xs:element minOccurs="0" name="tipoPredio" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatUbicacionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/wcfComun" minOccurs="0" name="VerCatUbicacionResult" nillable="true" type="q11:wRespuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatGeneral">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="opc" type="xs:int" />
+        <xs:element minOccurs="0" name="tipoPredio" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatGeneralResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/wcfComun" minOccurs="0" name="VerCatGeneralResult" nillable="true" type="q12:wRespuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatUsoSuelo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="opc" type="xs:int" />
+        <xs:element minOccurs="0" name="tipoPredio" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerCatUsoSueloResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/wcfComun" minOccurs="0" name="VerCatUsoSueloResult" nillable="true" type="q13:wRespuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CatalogConstCentralizados">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="opc" type="xs:int" />
+        <xs:element minOccurs="0" name="anio" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="municipio" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CatalogConstCentralizadosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/wcfComun" minOccurs="0" name="CatalogConstCentralizadosResult" nillable="true" type="q14:wRespuesta" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

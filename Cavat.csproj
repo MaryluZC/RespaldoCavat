@@ -411,9 +411,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reportes\reporteCavat.rdlc" />
-    <EmbeddedResource Include="Reportes\reporteCavatUrbano.rdlc" />
     <EmbeddedResource Include="Reportes\reporteRustico.rdlc" />
+    <EmbeddedResource Include="Reportes\ReportUrbanos.rdlc" />
     <EmbeddedResource Include="reporteUrbanos.rdlc" />
   </ItemGroup>
   <ItemGroup>

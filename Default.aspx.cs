@@ -235,7 +235,7 @@ namespace Cavat
                 {
                     SolicitudReg.Visible = true;
                     Registro dataReg = new Registro(); //Consumo de servicio web
-                    
+
                     datauser.nombre = txtNombreR.Text;
                     datauser.ape1 = txtApePatR.Text;
                     datauser.ape2 = txtApeMatR.Text;

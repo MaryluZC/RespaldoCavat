@@ -11,6 +11,7 @@ namespace Cavat.data
     public class ConnectionToString
     {
         private readonly string connectionString;
+        private readonly string connectionStringServer;
         public ConnectionToString()
         {
             //connectionString = "Server=DC-CARTO-08\\SQLEXPRESS;DataBase=prueba;integrated security=true";

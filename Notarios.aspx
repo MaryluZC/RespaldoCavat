@@ -63,7 +63,11 @@
                                 <div class="row" style="margin-top: 1rem;">
                                     <div class="col-8"></div>
                                     <div class="col-4">
-                                        <asp:Button ID="btnImprimir" runat="server" Text="IMPPRIMIR CALCULO" CssClass="btnEntrar btn" Font-Size="Small"  BackColor="#590422" ForeColor="White" OnClick="btnImprimir_Click" />
+                                        <asp:UpdatePanel runat="server" ID="UpdatePanel6" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <asp:Button ID="btnImprimir" runat="server" Text="IMPPRIMIR CALCULO" CssClass="btnEntrar btn" Font-Size="Small" BackColor="#590422" ForeColor="White" OnClick="btnImprimir_Click" />
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
                                     </div>
                                 </div>                        
                             <div class="row border-bottom-0 border border-2 rounded-2 my-2 mx-5" style="border: red 3px inset;">
@@ -172,7 +176,7 @@
 
                                 <div class="row" style="padding: 1.5rem;">
                                     <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" runat="server" id="tagCP" visible="false">
-                                        <h6 style="font-size: 0.8em; text-align: left;">CODGO POSTAL</h6>
+                                        <h6 style="font-size: 0.8em; text-align: left;">CODIGO POSTAL</h6>
                                         <asp:TextBox ID="txtCP" runat="server" MaxLength="5" Font-Size="Small" CssClass="form-control w-75" Style="display:flex;text-align: left;" PlaceHolder="Codigo Postal" OnTextChanged="txtCP_TextChanged" onkeypress="return onlyNumbers(event);"></asp:TextBox>
                                     </div>
                                 </div>
@@ -309,7 +313,7 @@
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1 ">
                                             <h6 style="font-size: 0.8em; text-align: left;">USO DE SUELO</h6>
                                             <div class="input-group mb-2">
-                                                <asp:DropDownList ID="ddlUsoSueloUrbano" runat="server" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Font-Size="Small" Style="text-align: left;" OnTextChanged="ddlUsoSueloUrbano_TextChanged"></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlUsoSueloUrbano" runat="server" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" AutoPostBack="true" Font-Size="Small" Style="text-align: left;" OnSelectedIndexChanged="ddlUsoSueloUrbano_SelectedIndexChanged"></asp:DropDownList>
                                                 <div class="input-group-prepend ">
                                                     <div class="input-group-text bg-transparent border-0">
                                                         <button type="button" title="Saber más" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#ModalUsoSueloUrbano" font-size="Small" style="width: 1em; height: auto; border: none; background: none;">
@@ -350,7 +354,7 @@
                                     <div class="row justify-content p-4" runat="server">
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1" style="display: block; text-align: center;">
                                             <h6 style="font-size: 0.8em; text-align: left;">¿PERTENECE A FRACCIONAMIENTO?</h6>
-                                            <asp:DropDownList ID="ddlPreguntaFraccionamiento" Enabled="false" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Style="display: flex; text-align: left;" AutoPostBack="true" OnTextChanged="ddlPreguntaFraccionamiento_TextChanged"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlPreguntaFraccionamiento" Enabled="false" runat="server" Font-Size="Small" CssClass="btn btn-light dropdown-toggle dropdown-toggle-split w-75" Style="display: flex; text-align: left;" AutoPostBack="true" OnSelectedIndexChanged="ddlPreguntaFraccionamiento_SelectedIndexChanged"></asp:DropDownList>
                                         </div>
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1" style="display: block;">
                                             <h6 style="font-size: 0.8em; text-align: left;">PROFUNDIDAD</h6>
@@ -410,10 +414,10 @@
                                     <div class="row justify-content p-4">
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
                                             <h6 style="font-size: 0.8em; text-align: left;">ESQUINAS TOTALES</h6>
-                                            <asp:TextBox ID="txtNoTotalEsquinas" Enabled="false" runat="server" CssClass="form-control w-75" Font-Size="Small" PlaceHolder="No de Esquinas totales" ToolTip="debe ingresar el numero de esquinas que rodea el predio" onkeypress="return onlyNumbers(event);" Visible="true" OnTextChanged="txtNoTotalEsquinas_TextChanged"></asp:TextBox>
+                                            <asp:TextBox ID="txtNoTotalEsquinas" Enabled="false" runat="server" CssClass="form-control w-75" Font-Size="Small" AutoPostBack="true" PlaceHolder="No de Esquinas totales" ToolTip="debe ingresar el numero de esquinas que rodea el predio" onkeypress="return onlyNumbers(event);" Visible="true" OnTextChanged="txtNoTotalEsquinas_TextChanged"></asp:TextBox>
                                         </div>
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
-                                            <h6 style="font-size: 0.8em; text-align: left;">ANGULO ESQUINAS</h6>
+                                            <h6 style="font-size: 0.8em; text-align: left;">ANGULO ESQUINAS °</h6>
                                             <asp:TextBox ID="txtAnguloEsquinas" Enabled="false" runat="server" CssClass="form-control w-75" Font-Size="Small" PlaceHolder="Ándulo de las esquinas" ToolTip="debe ingresar el numero de esquinas que rodea el predio" onkeypress="return onlyNumbers(event);" Visible="true" OnTextChanged="txtAnguloEsquinas_TextChanged"></asp:TextBox>
                                         </div>
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-1">
@@ -639,8 +643,7 @@
                                         </div>
                                     </div>
                                         </ContentTemplate>
-                                        <Triggers>
-                                             
+                                        <Triggers>                                             
                                             <asp:AsyncPostBackTrigger ControlID="ddlClasPred" /> 
                                             <asp:AsyncPostBackTrigger ControlID="ddlCalidadConstruccion" />
                                             <asp:AsyncPostBackTrigger ControlID="ddlAvanceConstruccion" />
@@ -1628,29 +1631,57 @@
             </div>
         </div>
     </div>
-
+   
 
      <!-- Modal -->
         <div class="modal fade" id="modalReporteUrbanos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
+          <div class="modal-dialog modal-xl  h-100">
             <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabedd">REPORTE </h5>
+              <div class="modal-header text-white" style="background:rgb(86,75,75);">
+                <h5 class="modal-title" id="exampleModalLabedd">REPORTE URBANO </h5>  
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">                
-              
-              </div>
+                <div class="modal-body" style="height: 40em;">
+                    <div class="container h-100">
+                         <rsweb:ReportViewer ID="ReportViewer1" Width="100%" runat="server" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor="" PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor="" SecondaryButtonHoverBackgroundColor="" SecondaryButtonHoverForegroundColor="" SplitterBackColor="" ToolbarDividerColor="" ToolbarForegroundColor="" ToolbarForegroundDisabledColor="" ToolbarHoverBackgroundColor="" ToolbarHoverForegroundColor="" ToolBarItemBorderColor="" ToolBarItemBorderStyle="Solid" ToolBarItemBorderWidth="1px" ToolBarItemHoverBackColor="" ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226">
+                            <LocalReport ReportPath="Reportes\ReportUrbanos.rdlc">
+                            </LocalReport>
+                        </rsweb:ReportViewer>
+                    </div>
+                </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>
-        </div>
-  
+        </div>    
+
+    <div class="modal fade" id="modalReporteRusticos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl  h-100">
+            <div class="modal-content">
+              <div class="modal-header text-white" style="background:rgb(86,75,75);">
+                <h5 class="modal-title" id="exampleModalLabdd">REPORTE RÚSTICOS</h5>  
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+                <div class="modal-body" style="height: 40em;">
+                    <div class="container h-100">
+                        <rsweb:ReportViewer ID="ReportViewerRustico" Width="100%"  runat="server" SizeToReportContent="True"  BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor="" PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor="" SecondaryButtonHoverBackgroundColor="" SecondaryButtonHoverForegroundColor="" SplitterBackColor="" ToolbarDividerColor="" ToolbarForegroundColor="" ToolbarForegroundDisabledColor="" ToolbarHoverBackgroundColor="" ToolbarHoverForegroundColor="" ToolBarItemBorderColor="" ToolBarItemBorderStyle="Solid" ToolBarItemBorderWidth="1px" ToolBarItemHoverBackColor="" ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226">
+                          <LocalReport ReportPath="Reportes\reporteRustico.rdlc">
+                          </LocalReport>
+                      </rsweb:ReportViewer>
+                    </div>
+                </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div> 
 
 
+       
     <%--Leaflet--%>
     <%--      <script type="text/javascript">
         //// Initialize the map

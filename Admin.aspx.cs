@@ -17,7 +17,7 @@ namespace Cavat
         Color colorVinoClaro = Color.FromArgb(171, 68, 104);
         Color colorVinoOscuro = Color.FromArgb(89, 4, 34);
         Color colorCafeClaro = Color.FromArgb(169, 150, 150);
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -34,11 +34,11 @@ namespace Cavat
                     lnkHome.ForeColor = colorVinoClaro;
                     lnkUserRegistrados.ForeColor = colorVinoOscuro;
                     lnkCambioPsw.ForeColor = colorVinoOscuro;
-                    lblLetterOption.Text = "SOLICITUDES DE REGISTRO";
                     lblUserAdm.Text = "USUARIO: " + UserLoginCache.tipoUser;///Coloca el nombre del Usuario
                     lblNombre.Text = "NOMBRE: " + UserLoginCache.nombre + " " + UserLoginCache.ape1 + " " + UserLoginCache.ape2;
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -259,7 +259,7 @@ namespace Cavat
                     DataTable dt = new DataTable();
                     dt = catt.nombreDocumento(8, cedula);
                     string nombreSoc = dt.Rows[0][0].ToString();
-                    if (nombreSoc != "No Aplica")
+                    if (nombreSoc != "No Aplica" || nombreSoc!=null)
                     {
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenModalViewPdf('" + nombreSoc + "')", true);
                     }
@@ -415,34 +415,29 @@ namespace Cavat
                 string body = "Bienvido al sistema Cavat. <br> Este sistema sirve como apoyo para realizar una simulación" +
                    "de un valor aproximado al real de la propiedad. <br><b>USUARIO: </b>" + txtNewUser.Text + "<br> <b>CONTRASEÑA: </b>" + txtNewPsw.Text;
                 int val = mail.SendMail(txtcorreo.Text, body, "Solicitud Aprobada, Registro Portal Notarial Cavat");
-                string mensaje = "";
                 if (val == 1)
                 {
                     int v = user.ChangeStatusAprob(txtNewUser.Text, txtNewPsw.Text, 4, txtCedulaP.Text); //debe actualizar el status a aprobado para que se actualice la tabla de datos.
 
                     if (v == 9)
                     {
-                        mensaje = "CORREO ENVIADO";
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('success','SE ENVIO CORREO')", true);
                         CleanRegNuevNota();//Limpia las cajas de texto
                     }
                     else
                     {
-                        mensaje = "NO SE PUDO ENVIAR EL CORREO";
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('error','NO SE PUDO ENVIAR EL CORREO')", true);
                         CleanRegNuevNota();//Limpia las cajas de texto
                     }
                 }
                 else
                 {
-                    mensaje = "NO SE PUDO ENVIAR EL CORREO";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "Msg('" + mensaje + "')", true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "MyScript", "OpenLetreros('error','NO SE PUDO ENVIAR EL CORREO')", true);
                     CleanRegNuevNota();//Limpia las cajas de texto
                 }
                 llenaRegistrosA(); //Actualiza los datos del sistema
                 llenaSolReg();//Actualiza los datos del sistema
                 CleanRegNuevNota();//Limpia las cajas de texto
-                //Falta enviar mensaje de exito o fracaso para informar al usuario que se envio el correo
             }
         }
 

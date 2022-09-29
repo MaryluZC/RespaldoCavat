@@ -1,0 +1,6 @@
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\InfoUsuarios\bin\Release\InfoUsuarios.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\InfoUsuarios\bin\Release\InfoUsuarios.pdb
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\InfoUsuarios\obj\Release\InfoUsuarios.csproj.AssemblyReference.cache
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\InfoUsuarios\obj\Release\InfoUsuarios.csproj.CoreCompileInputs.cache
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\InfoUsuarios\obj\Release\InfoUsuarios.dll
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\InfoUsuarios\obj\Release\InfoUsuarios.pdb

@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.Data;
+/*
+ * | Autor: Ing. Maria de Lourdes Sosa Cruz
+ * | metodos para almacenar la informacion de los usuarios
+ */
 namespace InfoUsuarios
 {
+
     public class entrarLogin
     {
-        public  string user{ get; set; }
-        public  string contrasena { get; set; }
+        public string user { get; set; }
+        public string contrasena { get; set; }
         public int opc1 { get; set; }
-         
+
     }
-  
 
 
     public class solicitudCambioPass : entrarLogin
@@ -26,6 +24,7 @@ namespace InfoUsuarios
     {
         public int mensaje { get; set; }
         public DataSet elDataSet { get; set; }
+        public DataTable laDataTable { get; set; }
     }
 
     public class dataUser : solicitudCambioPass
@@ -47,4 +46,9 @@ namespace InfoUsuarios
         public string nombreDoc { get; set; }
     }
     public class mnsg { public static int mensaje = 0; }
+
+    public class usoSuelo
+    {
+        public static string tipoPredio { get; set; }
+    }
 }

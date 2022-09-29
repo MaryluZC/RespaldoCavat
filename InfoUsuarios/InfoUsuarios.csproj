@@ -43,6 +43,15 @@
   <ItemGroup>
     <Compile Include="accesoLogin.cs" />
     <Compile Include="cache\UserLoginCache.cs" />
+    <Compile Include="CalculoAvaluo.cs" />
+    <Compile Include="Catalogos.cs" />
+    <Compile Include="ConecctionToString.cs" />
+    <Compile Include="construciones\Construcciones.cs" />
+    <Compile Include="Conversiones.cs" />
+    <Compile Include="infoPredio\infoMunicipio.cs" />
+    <Compile Include="infoPredio\predios.cs" />
+    <Compile Include="infoPredio\predRustico.cs" />
+    <Compile Include="infoPredio\predUrbano.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

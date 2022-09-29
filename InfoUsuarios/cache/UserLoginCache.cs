@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InfoUsuarios.cache
+﻿namespace InfoUsuarios.cache
 {
-   public static class UserLoginCache
+    public static class UserLoginCache
     {
         public static string userCache { get; set; }
         public static string nombre { get; set; }
@@ -15,5 +9,5 @@ namespace InfoUsuarios.cache
         public static string tipoUser { get; set; }
     }
 
-    
+
 }

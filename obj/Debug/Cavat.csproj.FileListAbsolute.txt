@@ -36,6 +36,9 @@ C:\Users\ml.sosa\Documents\Cavat\obj\Debug\Cavat.csproj.CoreCompileInputs.cache
 C:\Users\ml.sosa\Documents\Cavat\obj\Debug\Cavat.csproj.CopyComplete
 C:\Users\ml.sosa\Documents\Cavat\obj\Debug\Cavat.dll
 C:\Users\ml.sosa\Documents\Cavat\obj\Debug\Cavat.pdb
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\Cavat.csproj.AssemblyReference.cache
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\RdlCompile.cache
+C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\RdlCompile.compiled
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\SqlServerTypes\x64\msvcr120.dll
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\SqlServerTypes\x86\msvcr120.dll
@@ -150,9 +153,6 @@ C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\pt\Mi
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\Cavat.csproj.AssemblyReference.cache
-C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\RdlCompile.cache
-C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\RdlCompile.compiled
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\Cavat.csproj.CoreCompileInputs.cache
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\Cavat.csproj.CopyComplete
 C:\Users\ml.sosa\Documents\PROYECTOS IRCEP\MARYLU\Proyecto Cavat\Cavat\obj\Debug\Cavat.dll

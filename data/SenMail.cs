@@ -12,20 +12,16 @@ namespace Cavat.data
         public int SendMail(string correo1, string motivo, string asunto)
         {
             MailMessage mail = new MailMessage();
-
-            mail.From = new MailAddress("ejemplo@gmail.com");
-
-            mail.To.Add(correo1);
-            mail.Subject = asunto;
+            mail.From = new MailAddress("alejandra.lobato.santos@hotmail.com");//Quien envia
+            mail.To.Add(correo1);//Correo a quien de envia el correo
+            mail.Subject = asunto;//Asunto del correo
             mail.IsBodyHtml = true;
             mail.Body = motivo;
-
             SmtpClient smtp = new SmtpClient();
-            // var smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com");
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
+            smtp.Host = "smtp-mail.outlook.com";//Host del servidor
+            smtp.Port = 587;//Puerto de salida
             smtp.UseDefaultCredentials = false;//----
-            smtp.Credentials = new NetworkCredential("ejemplo@gmail.com", "contraseña");//la contraseña con la que accedes a tu correo, pero revisa que se pueda enviar desde un correo institucional.
+            smtp.Credentials = new NetworkCredential("alejandra.lobato.santos@hotmail.com", "Rcmmcc25**");//la contraseña con la que accedes a tu correo, pero revisa que se pueda enviar desde un correo institucional.
             smtp.EnableSsl = true;
             try
             {
@@ -34,15 +30,12 @@ namespace Cavat.data
             }
             catch (Exception ex)
             {
-                throw new Exception("No se ha podido enviar el email", ex.InnerException);
-                //return -1;
+                throw new Exception("No se ha podido enviar el email", ex.InnerException);                
             }
             finally
             {
                 smtp.Dispose();
             }
         }
-
-
     }
 }

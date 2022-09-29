@@ -130,7 +130,7 @@
                 </div>
             <div class="col-md-9">
                 <div class="row text-white" style="background:rgb(89,4,34); font-weight:bold;  margin:0.5rem;">
-                    <asp:Label ID="lblLetterOption" runat="server" Text=""></asp:Label>
+                    <asp:Label ID="lblLetterOption" runat="server" Text="SOLICITUDES DE REGISTRO"></asp:Label>
                 </div>
                 <div class="row">
                     <div class="col-md-3"></div>
@@ -289,8 +289,8 @@
                             <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="GVSolicitudes"></asp:AsyncPostBackTrigger>
                                 <asp:PostBackTrigger ControlID="txtNombre"></asp:PostBackTrigger>
-                                <asp:PostBackTrigger ControlID="GVCambioPss"></asp:PostBackTrigger>
-                                <asp:PostBackTrigger ControlID="GVRegistrados"></asp:PostBackTrigger>
+                                <asp:AsyncPostBackTrigger ControlID="GVCambioPss"></asp:AsyncPostBackTrigger>
+                                <asp:AsyncPostBackTrigger ControlID="GVRegistrados"></asp:AsyncPostBackTrigger>
                             </Triggers>
                          </asp:UpdatePanel>
                 </div>     

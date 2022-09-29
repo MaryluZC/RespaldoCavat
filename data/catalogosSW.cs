@@ -12,7 +12,7 @@ namespace Cavat.data
     public class catalogosSW : ConnectionToString
     {
         ServiceCavatClient swCavat = new ServiceCavatClient();// instancia para acceso al servicio 
-       wRespuesta res = new wRespuesta(); //respuestas del servicio
+        wRespuesta res = new wRespuesta(); //respuestas del servicio
         resultado rs = new resultado();
         public resultado Cataloggo(int opc)//
         {
@@ -33,8 +33,8 @@ namespace Cavat.data
             rs.mensaje = res.mensaje;
             rs.elDataSet = res.elDataSet;
             return rs;
-        }   
-        public resultado CatZonasValorDesCentralizados(int opc, string  municipio, string anio)
+        }
+        public resultado CatZonasValorDesCentralizados(int opc, string municipio, string anio)
         {
             try
             {
@@ -56,7 +56,8 @@ namespace Cavat.data
                 rs.mensaje = res.mensaje;
                 rs.elDataSet = res.elDataSet;
                 return rs;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -84,7 +85,7 @@ namespace Cavat.data
         }
         public resultado CatUsoGeneral(int opc, string tipoPredio)//Se utiliza en distintos apartados para llenar el dropdown lista, puede mejorarse la tecnica
         {
-            res = swCavat.VerCatGeneral(opc,tipoPredio);//CONSUMO DE SERVICIO WEB
+            res = swCavat.VerCatGeneral(opc, tipoPredio);//CONSUMO DE SERVICIO WEB
             rs.mensaje = res.mensaje;
             rs.elDataSet = res.elDataSet;
             return rs;
@@ -104,7 +105,8 @@ namespace Cavat.data
                 rs.mensaje = res.mensaje;
                 rs.elDataSet = res.elDataSet;
                 return rs;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -224,6 +226,6 @@ namespace Cavat.data
             return catPregunta;
         }
 
-      
+
     }
 }

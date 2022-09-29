@@ -27,6 +27,7 @@ function OpenLetreros(tipo, letrero) {
 }
 
 
+
 //$(document).ready(function () {
 //    $("input[name=radioName]").click(function () {
 //        if ($('input:radio[name=radioName]:checked').val() === 'm') {

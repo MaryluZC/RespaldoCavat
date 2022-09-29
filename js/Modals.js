@@ -12,3 +12,7 @@ function OpenModalViewPdf(nombre) {
 function OpenReporteUrbano() {
     $('#modalReporteUrbanos').modal('show'); // abrir
 }
+
+function OpenReporteRustico() {
+    $('#modalReporteRusticos').modal('show'); // abrir
+}

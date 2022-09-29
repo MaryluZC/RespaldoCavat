@@ -14,7 +14,8 @@ namespace Cavat.data
         resultado rs = new resultado();
         login lg = new login();
 
-        public resultado LoginDA(dataUser log)        {
+        public resultado LoginDA(dataUser log)
+        {
             lg.usuariok__BackingField = UserLoginCache.userCache;
             lg.paswdk__BackingField = log.contrasena;
             lg.opck__BackingField = log.opc1;
